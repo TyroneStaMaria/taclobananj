@@ -1,0 +1,11 @@
+.footer {
+  @apply bg-red absolute bottom-0 left-0 w-full overflow-hidden;
+}
+
+.navItems {
+  @apply flex items-center;
+
+  & > li {
+    @apply mt-4 mr-4 text-white;
+  }
+}

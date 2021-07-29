@@ -1,0 +1,12 @@
+.navBar {
+  @apply shadow-md py-5 sticky w-full top-0 left-0 bg-white z-10;
+}
+.navItems {
+  @apply flex items-center;
+
+  & > li {
+    @apply mr-4;
+  }
+  // display: flex;
+  // align-items: center;
+}

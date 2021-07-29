@@ -1,0 +1,10 @@
+@import "./base/typography";
+@import "./abstracts/variables";
+@import "./normalize.scss";
+
+h1 {
+  font-family: theme("fontFamily.heading");
+}
+p {
+  font-family: theme("fontFamily.body");
+}

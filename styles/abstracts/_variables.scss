@@ -1,0 +1,45 @@
+$heading-color: theme("colors.heading");
+$text-color: theme("colors.body");
+$red: theme("colors.red.DEFAULT");
+$light-red: theme("colors.red.light");
+$yellow: theme("colors.yellow.DEFAULT");
+$yellow-light: theme("colors.yellow.light");
+$alternate-bg: theme("colors.alternate");
+$white: theme("colors.white");
+$ff-primary: "Source Sans Pro";
+$ff-secondary: "Sintony";
+
+$base: theme("fontSize.base");
+$h1: theme("fontSize.h1");
+$h2: theme("fontSize.h2");
+$h3: theme("fontSize.h3");
+$h4: theme("fontSize.h4");
+
+// :root {
+//   --heading-color: #{$heading-color};
+//   --text-color: #{$text-color};
+//   --color-red: #{$red};
+//   --color-light-red: #{$light-red};
+//   --color-yellow: #{$yellow};
+//   --color-yellow-light: #{$yellow-light};
+//   --color-alternate-bg: #{$alternate-bg};
+//   --color-white: #{$white};
+//   --font-ff-primary: #{$ff-primary};
+//   --font-ff-secondary: #{$ff-secondary};
+//   --value-4: 0.25rem;
+//   --value-8: 0.5rem;
+//   --value-12: 0.75rem;
+//   --value-16: 1rem;
+//   --value-24: 1.5rem;
+//   --value-32: 2rem;
+//   --value-48: 3rem;
+//   --value-64: 4rem;
+//   --value-96: 6rem;
+//   --value-128: 8rem;
+//   --value-192: 12rem;
+//   --value-256: 16rem;
+//   --value-384: 24rem;
+//   --value-512: 32rem;
+//   --value-640: 40rem;
+//   --value-768: 48rem;
+// }

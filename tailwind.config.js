@@ -31,8 +31,5 @@ module.exports = {
       h5: "1rem",
     },
   },
-  variants: {
-    extend: {},
-  },
   plugins: [],
 };

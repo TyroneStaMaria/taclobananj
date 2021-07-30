@@ -8,7 +8,13 @@ import Button from "../../elements/Button/Button";
 const Hero = (): JSX.Element => {
   return (
     <section className="banner">
-      <Carousel infiniteLoop={true} showThumbs={false} showIndicators={false} showStatus={false} autoPlay={true}>
+      <Carousel
+        infiniteLoop={true}
+        showThumbs={false}
+        showIndicators={false}
+        showStatus={false}
+        autoPlay={true}
+      >
         <div className={styles.heroBanner}>
           <Image
             src="/images/home/banners/banner1.png"
@@ -25,7 +31,7 @@ const Hero = (): JSX.Element => {
               honing your skills
             </p>
             <Button href="#" variant="outline" color="red">
-              Visit our Training Center > 
+              Visit our Training Center &gt;
             </Button>
           </div>
         </div>
@@ -45,7 +51,7 @@ const Hero = (): JSX.Element => {
               honing your skills
             </p>
             <Button href="#" variant="outline" color="red">
-              Visit our Training Center > 
+              Visit our Training Center &gt;
             </Button>
           </div>
         </div>
@@ -65,11 +71,10 @@ const Hero = (): JSX.Element => {
               honing your skills
             </p>
             <Button href="#" variant="outline" color="red">
-              Visit our Training Center > 
+              Visit our Training Center &gt;
             </Button>
           </div>
         </div>
-        
       </Carousel>
     </section>
   );

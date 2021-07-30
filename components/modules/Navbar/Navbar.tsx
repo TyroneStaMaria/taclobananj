@@ -23,7 +23,7 @@ const Navbar = () => {
         <div>
           <button
             onClick={toggleNav}
-            className=" inline-flex p-3  rounded lg:hidden text-red ml-auto hover:text-red-light outline-none"
+            className=" inline-flex p-3  rounded md:hidden text-red ml-auto hover:text-red-light outline-none"
           >
             <svg
               className="w-6 h-6"
@@ -62,7 +62,7 @@ const Navbar = () => {
                 <Link href="#">Contact Us</Link>
               </li>
               <li>
-                <Button href="#" variant="outline">
+                <Button href="#" variant="outline" color="red">
                   Register / Log in
                 </Button>
               </li>

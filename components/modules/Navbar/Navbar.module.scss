@@ -15,7 +15,7 @@
 }
 
 .navItems {
-  @apply flex-col lg:flex lg:flex-row lg:items-center;
+  @apply flex-col md:flex md:flex-row md:items-center;
 
   & > li {
     @apply py-3 pl-3  sm:py-0 sm:pl-0 sm:mr-4;

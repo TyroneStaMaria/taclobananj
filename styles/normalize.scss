@@ -41,10 +41,12 @@ a {
 }
 
 h1 {
-  font-size: $h1;
+  @apply text-h2 md:text-h1;
+  // font-size: $h1;;
 }
 h2 {
-  font-size: $h2;
+  @apply text-h3 md:text-h2;
+  // font-size: $h2;
 }
 h3 {
   font-size: $h3;
@@ -57,11 +59,19 @@ a {
   font-size: $base;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+p {
+  color: $text-color;
 }
 
-body {
-  margin: 0 0 350px;
+// html {
+//   position: relative;
+//   min-height: 100%;
+// }
+
+// body {
+//   margin: 0 0 350px;
+// }
+
+section:not(.banner) {
+  @apply py-24;
 }

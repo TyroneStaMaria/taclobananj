@@ -1,8 +1,16 @@
-.btnRedOutline {
-  @apply text-red py-3 px-6 border-red border-2;
+.btn {
+  @apply py-3 px-6 font-bold;
   border-radius: 8px;
   transition: all 0.2s ease-in-out;
+  z-index: 3;
+}
+
+.btnRedOutline {
+  @apply border-2;
   &:hover {
-    @apply text-white bg-red;
+    @apply text-white;
   }
 }
+
+// .btnFill{
+// }

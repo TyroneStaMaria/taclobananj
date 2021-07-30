@@ -22,6 +22,7 @@ const Layout = (props: LayoutProp): JSX.Element => {
           href="https://fonts.googleapis.com/css2?family=Sintony:wght@400;700&family=Source+Sans+Pro:ital,wght@0,900;1,900&display=swap"
           rel="stylesheet"
         />
+        <link rel="icon" href="/images/anj-logo.png" />
       </Head>
       {/* Navbar */}
       <Navbar />

@@ -6,17 +6,18 @@ interface ButtonProps {
   href: string;
   variant: string;
   children: string;
+  color: string;
 }
 
 const Button = (props: ButtonProps) => {
   return (
     <Link href={props.href}>
       <a
-        className={
+        className={`${style.btn} ${
           props.variant === "outline"
-            ? style.btnRedOutline
+            ? `${style.btnRedOutline} text-${props.color} border-${props.color} hover:bg-${props.color}`
             : style.btnRedOutline
-        }
+        }`}
       >
         {props.children}
       </a>

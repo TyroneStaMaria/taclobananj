@@ -1,0 +1,15 @@
+.catalogCardContainer {
+  @apply relative inline-block;
+}
+
+.catalogCardText {
+  @apply absolute top-0  w-full h-full flex flex-col items-center justify-center;
+
+  & > p {
+    @apply text-h4 text-white;
+  }
+
+  & > h2 {
+    @apply text-white border-b-8 border-white text-h1 capitalize;
+  }
+}

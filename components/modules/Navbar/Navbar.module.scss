@@ -1,11 +1,24 @@
 .navBar {
   @apply shadow-md py-5 sticky w-full top-0 left-0 bg-white z-10;
 }
+
+.navItemContainer {
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    position: absolute;
+    // left: 0;
+    background: white;
+    height: 100vh;
+    margin-top: 20px;
+    transition: all 0.2s ease-in-out;
+  }
+}
+
 .navItems {
-  @apply flex items-center;
+  @apply flex-col lg:flex lg:flex-row lg:items-center;
 
   & > li {
-    @apply mr-4;
+    @apply py-3 pl-3  sm:py-0 sm:pl-0 sm:mr-4;
   }
   // display: flex;
   // align-items: center;

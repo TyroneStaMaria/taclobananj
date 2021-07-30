@@ -15,7 +15,7 @@ const Button = (props: ButtonProps) => {
       <a
         className={`${style.btn} ${
           props.variant === "outline"
-            ? `${style.btnRedOutline} text-${props.color} border-${props.color} hover:bg-${props.color}`
+            ? `${style.btnRedOutline} text-${props.color} border-${props.color} hover:bg-${props.color} hover:text-white hover:border-${props.color}`
             : style.btnRedOutline
         }`}
       >

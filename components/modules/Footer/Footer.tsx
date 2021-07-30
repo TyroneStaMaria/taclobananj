@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="container mx-auto py-24">
         <div className="flex flex-col items-center">
           <Image
-            src="/images/anj-logo.png"
+            src="/images/anj-logo.PNG"
             alt="Tacloban ANJ Logo"
             width={70}
             height={70}

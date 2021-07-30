@@ -3,13 +3,17 @@ import Image from "next/image";
 import style from "./Navbar.module.scss";
 import Link from "next/link";
 import Button from "../../elements/Button/Button";
-import image from "../../../public/images/anj-logo.png";
 
 const Navbar = () => {
   return (
     <nav className={style.navBar}>
       <div className="container mx-auto flex items-center justify-between">
-        <Image src={image} alt="Tacloban ANJ Logo" width={70} height={70} />
+        <Image
+          src="/images/anj-logo.PNG"
+          alt="Tacloban ANJ Logo"
+          width={70}
+          height={70}
+        />
         <div>
           <ul className={style.navItems}>
             <li>

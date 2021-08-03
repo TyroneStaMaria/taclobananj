@@ -1,0 +1,32 @@
+.imageContainer {
+  width: 100%;
+  & > div {
+    @apply mx-auto;
+    position: relative;
+    max-height: 500px;
+    max-width: 600px;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+
+    @screen lg {
+      @apply mx-0;
+    }
+    @screen 2xl {
+      max-height: 600px;
+      max-width: 700px;
+    }
+  }
+}
+.textContainer {
+  @apply container mx-auto flex flex-col justify-center h-full items-center py-24 px-5;
+  @screen lg {
+    @apply items-end pr-24;
+  }
+  & > h2 {
+    @apply text-h1;
+  }
+  & > p {
+    @apply text-h3 text-center lg:text-right;
+  }
+}

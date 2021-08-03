@@ -59,10 +59,10 @@ const Navbar = () => {
                 <Link href="#">Training Center</Link>
               </li>
               <li>
-                <Link href="#">Contact Us</Link>
+                <Link href="/contact-us">Contact Us</Link>
               </li>
               <li>
-                <Button href="#" variant="outline" color="red">
+                <Button href="#" btnStyle="redOutline">
                   Register / Log in
                 </Button>
               </li>

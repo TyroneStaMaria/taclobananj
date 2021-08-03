@@ -4,6 +4,8 @@ import About from "./About";
 import FeaturedProducts from "./FeaturedProducts";
 import Catalogue from "./Catalogue";
 import TrainingCenter from "./TrainingCenter";
+import Brands from "./Brands";
+import ContactBanner from "../../elements/ContactBanner/ContactBanner";
 
 const HomeTemplate = (): JSX.Element => {
   return (
@@ -13,6 +15,8 @@ const HomeTemplate = (): JSX.Element => {
       <FeaturedProducts />
       <Catalogue />
       <TrainingCenter />
+      <Brands />
+      <ContactBanner />
     </>
   );
 };

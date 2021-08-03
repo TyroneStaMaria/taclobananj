@@ -1,80 +1,125 @@
 import React from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
+import "react-multi-carousel/lib/styles.css";
+import Carousel from "react-multi-carousel";
 import Image from "next/image";
 import styles from "./Home.module.scss";
 import Button from "../../elements/Button/Button";
+import {
+  CustomRightArrow,
+  CustomLeftArrow,
+} from "../../elements/CustomArrows/CustomArrows";
+
+interface HeroData {
+  heroImageSrc: string;
+  heroHeading: string;
+  heroBody: string;
+  heroButton: JSX.Element;
+}
 
 const Hero = (): JSX.Element => {
+  const responsive = {
+    desktop: {
+      breakpoint: {
+        max: 3000,
+        min: 1024,
+      },
+      items: 1,
+      // partialVisibilityGutter: 40,
+    },
+    mobile: {
+      breakpoint: {
+        max: 768,
+        min: 0,
+      },
+      items: 1,
+      // partialVisibilityGutter: 30,
+    },
+    tablet: {
+      breakpoint: {
+        max: 1024,
+        min: 768,
+      },
+      items: 1,
+      // partialVisibilityGutter: 30,
+    },
+  };
+
+  const heroData: Array<HeroData> = [
+    {
+      heroImageSrc: "/images/home/banners/banner1.png",
+      heroHeading: "Focused on Shared Growth",
+      heroBody:
+        "We are always invested into letting you explore opportunities leading to your own growth. Get educated online and kickstart to honing your skills",
+      heroButton: (
+        <Button href="#" btnStyle="redOutline">
+          Visit our Training Center &gt;
+        </Button>
+      ),
+    },
+    {
+      heroImageSrc: "/images/home/banners/banner2.png",
+      heroHeading: "Commited to Provide the Best",
+      heroBody:
+        "With our sole purpose to provide you with your day-to-day essentials, we only choose to partner with the best. Sustain all your needs with Tacloban AnJ Marketing!",
+      heroButton: (
+        <Button href="#" btnStyle="redOutline">
+          Learn More about Our Products &gt;
+        </Button>
+      ),
+    },
+    {
+      heroImageSrc: "/images/home/banners/banner3.png",
+      heroHeading: "Going Beyond your Experience",
+      heroBody:
+        "We are aimed to see what's beyond our products. It's always the customer experience that matters to us. Our products make those experience memorable!",
+      heroButton: (
+        <Button href="#" btnStyle="redOutline">
+          Check out our Full Catalogue &gt;
+        </Button>
+      ),
+    },
+  ];
+
   return (
     <section className="banner">
       <Carousel
-        infiniteLoop={true}
-        showThumbs={false}
-        showIndicators={false}
-        showStatus={false}
-        autoPlay={true}
+        customRightArrow={<CustomRightArrow />}
+        customLeftArrow={<CustomLeftArrow />}
+        additionalTransfrom={0}
+        arrows
+        autoPlaySpeed={3000}
+        centerMode={false}
+        draggable
+        focusOnSelect={false}
+        infinite={true}
+        keyBoardControl
+        minimumTouchDrag={80}
+        renderButtonGroupOutside={false}
+        renderDotsOutside={false}
+        responsive={responsive}
+        showDots={false}
+        slidesToSlide={1}
+        swipeable
       >
-        <div className={styles.heroBanner}>
-          <Image
-            src="/images/home/banners/banner1.png"
-            layout="fill"
-            objectFit="cover"
-            quality={100}
-            alt="banner"
-          />
-          <div className={styles.textContainer}>
-            <h1 className={styles.heroHeading}>Focused on Shared Growth</h1>
-            <p className={styles.heroBody}>
-              We are always invested into letting you explore opportunities
-              leading to your own growth. Get educated online and kickstart to
-              honing your skills
-            </p>
-            <Button href="#" variant="outline" color="red">
-              Visit our Training Center &gt;
-            </Button>
-          </div>
-        </div>
-        <div className={styles.heroBanner}>
-          <Image
-            src="/images/home/banners/banner2.png"
-            layout="fill"
-            objectFit="cover"
-            quality={100}
-            alt="banner"
-          />
-          <div className={styles.textContainer}>
-            <h1 className={styles.heroHeading}>Focused on Shared Growth</h1>
-            <p className={styles.heroBody}>
-              We are always invested into letting you explore opportunities
-              leading to your own growth. Get educated online and kickstart to
-              honing your skills
-            </p>
-            <Button href="#" variant="outline" color="red">
-              Visit our Training Center &gt;
-            </Button>
-          </div>
-        </div>
-        <div className={styles.heroBanner}>
-          <Image
-            src="/images/home/banners/banner3.png"
-            layout="fill"
-            objectFit="cover"
-            quality={100}
-            alt="banner"
-          />
-          <div className={styles.textContainer}>
-            <h1 className={styles.heroHeading}>Focused on Shared Growth</h1>
-            <p className={styles.heroBody}>
-              We are always invested into letting you explore opportunities
-              leading to your own growth. Get educated online and kickstart to
-              honing your skills
-            </p>
-            <Button href="#" variant="outline" color="red">
-              Visit our Training Center &gt;
-            </Button>
-          </div>
-        </div>
+        {heroData.map((item, index) => {
+          // console.log(item.heroImageSrc);
+          return (
+            <div key={index} className={styles.heroBanner}>
+              <Image
+                src={item.heroImageSrc}
+                layout="fill"
+                objectFit="cover"
+                quality={100}
+                alt="banner"
+              />
+              <div className={styles.textContainer}>
+                <h1 className={styles.heroHeading}>{item.heroHeading}</h1>
+                <p className={styles.heroBody}>{item.heroBody}</p>
+                {item.heroButton}
+              </div>
+            </div>
+          );
+        })}
       </Carousel>
     </section>
   );

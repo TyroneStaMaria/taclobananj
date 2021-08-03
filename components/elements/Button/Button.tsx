@@ -4,21 +4,21 @@ import style from "./Button.module.scss";
 
 interface ButtonProps {
   href: string;
-  variant: string;
   children: string;
-  color: string;
+  btnStyle: string;
 }
 
 const Button = (props: ButtonProps) => {
+  const buttonStyles = {
+    redOutline: style.btnRedOutline,
+    redFill: style.btnRedFill,
+    yellowOutline: style.btnYellowOutline,
+    yellowFill: style.btnYellowFill,
+  };
+
   return (
     <Link href={props.href}>
-      <a
-        className={`${style.btn} ${
-          props.variant === "outline"
-            ? `${style.btnRedOutline} text-${props.color} border-${props.color} hover:bg-${props.color} hover:text-white hover:border-${props.color}`
-            : style.btnRedOutline
-        }`}
-      >
+      <a className={`${style.btn} ${buttonStyles[props.btnStyle]}`}>
         {props.children}
       </a>
     </Link>

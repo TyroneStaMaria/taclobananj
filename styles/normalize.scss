@@ -41,12 +41,12 @@ a {
 }
 
 h1 {
-  @apply text-h2 md:text-h1;
+  @apply text-h2 sm:text-h1;
   // font-size: $h1;;
 }
 h2 {
-  @apply text-h3 md:text-h2;
-  // font-size: $h2;
+  // @apply text-h3 sm:text-h2;
+  font-size: $h2;
 }
 h3 {
   font-size: $h3;
@@ -56,7 +56,8 @@ h4 {
 }
 p,
 a {
-  font-size: $base;
+  @apply text-base 2xl:text-h5;
+  // font-size: $base;;
 }
 
 p {
@@ -73,5 +74,10 @@ p {
 // }
 
 section:not(.banner) {
-  @apply py-24;
+  @apply py-24 md:px-24;
+}
+
+input,
+textarea {
+  border: 2px solid black;
 }

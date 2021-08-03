@@ -1,6 +1,7 @@
 import React from "react";
 import ProductCard from "../../elements/ProductCard/ProductCard";
 import Product from "../../../interface/Product";
+import FlexContainer from "../../elements/FlexContainer/FlexContainer";
 
 const FeaturedProducts = (): JSX.Element => {
   const products: Array<Product> = [
@@ -30,11 +31,11 @@ const FeaturedProducts = (): JSX.Element => {
     <section>
       <div className="container mx-auto ">
         <h2 className="text-center mb-5">Featured Products</h2>
-        <div className=" flex flex-wrap items-center justify-center">
+        <FlexContainer className="flex-wrap items-center justify-center">
           {products.map((product, index) => {
             const { name, id, quantity, measurement, img } = product;
             return (
-              <div key={index} className="mb-5 mr-0  md:mb-0 md:mr-5">
+              <div key={index} className="mb-5 mr-0 lg:mr-5">
                 <ProductCard
                   name={name}
                   id={id}
@@ -45,10 +46,7 @@ const FeaturedProducts = (): JSX.Element => {
               </div>
             );
           })}
-          {/* <ProductCard name="" id="" quantity={0} measurement="" img="" />
-          <ProductCard name="" id="" quantity={0} measurement="" img="" />
-          <ProductCard name="" id="" quantity={0} measurement="" img="" /> */}
-        </div>
+        </FlexContainer>
       </div>
     </section>
   );

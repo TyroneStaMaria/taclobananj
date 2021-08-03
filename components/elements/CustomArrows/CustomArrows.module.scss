@@ -1,0 +1,27 @@
+.heroBannerRightArrow {
+  @apply right-0;
+
+  &::before {
+    content: "\e825";
+  }
+}
+
+.heroBannerLeftArrow {
+  @apply left-0;
+  &::before {
+    content: "\e824";
+  }
+}
+
+.heroBannerArrow {
+  @apply bg-body p-3 opacity-5 transition-opacity transition absolute h-full;
+  &:hover {
+    @apply opacity-80;
+  }
+  &::before {
+    @apply relative block text-center text-white;
+    font-size: 20px;
+    font-family: revicons;
+    z-index: 2;
+  }
+}

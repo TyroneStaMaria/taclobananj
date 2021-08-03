@@ -21,7 +21,7 @@ const TrainingCenter = () => {
             your baking skills, provide livelihood opportunities for your, and
             achieve long term partnerships with you.
           </p>
-          <Button href="#" variant="outline" color="red">
+          <Button href="#" btnStyle="redFill">
             Learn More
           </Button>
         </div>

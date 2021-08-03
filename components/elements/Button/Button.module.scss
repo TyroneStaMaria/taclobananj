@@ -6,8 +6,24 @@
 }
 
 .btnRedOutline {
-  @apply border-2;
+  @apply border-2 border-red text-red;
+
+  &:hover {
+    @apply text-white bg-red;
+  }
 }
 
-// .btnFill{
-// }
+.btnRedFill {
+  @apply bg-red text-white;
+  &:hover {
+    background-color: #e22020;
+  }
+}
+
+.btnYellowFill {
+  @apply bg-yellow;
+  color: black;
+  &:hover {
+    background-color: #fde34d;
+  }
+}

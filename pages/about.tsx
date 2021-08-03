@@ -1,4 +1,5 @@
 import Head from "next/head";
+import AboutTemplate from "../components/templates/About/AboutTemplate";
 
 const About = () => {
   return (
@@ -6,7 +7,7 @@ const About = () => {
       <Head>
         <title>About | Tacloban ANJ</title>
       </Head>
-      <h1>About</h1>
+      <AboutTemplate />
     </div>
   );
 };

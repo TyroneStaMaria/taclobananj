@@ -1,0 +1,18 @@
+.contactContainer {
+  @apply flex flex-col;
+
+  input:not(input[type="submit"]),
+  textarea {
+    @apply mb-2 py-2 px-3;
+    border: 1px solid #4444;
+    border-radius: 8px;
+  }
+  input[type="submit"] {
+    @apply p-3 border-2 border-red bg-white text-red cursor-pointer font-bold;
+    transition: all 0.2s ease-in-out;
+    border-radius: 8px;
+    &:hover {
+      @apply text-white bg-red;
+    }
+  }
+}

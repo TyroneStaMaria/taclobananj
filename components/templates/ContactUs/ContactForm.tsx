@@ -1,72 +1,117 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./ContactForm.module.scss";
+import Loader from "react-loader-spinner";
+interface ContactFormData {
+  fullname: string;
+  email: string;
+  message: string;
+}
+
 const ContactForm = () => {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const API_URL = "https://wp.taclobananjph.com";
+  const [formData, setFormData] = useState({
+    fullname: "",
+    email: "",
+    message: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+
   const [submitted, setSubmitted] = useState(false);
 
-  const changeFieldState = (e, setter) => {
-    setter(e.target.value);
+  const convertJsontoUrlencoded = (obj: ContactFormData) => {
+    let str = [];
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        str.push(encodeURIComponent(key) + "=" + encodeURIComponent(obj[key]));
+      }
+    }
+    return str.join("&");
   };
 
-  const submitForm = (e) => {
+  const changeFieldState = (e) => {
+    e.persist();
+    setFormData((formData) => ({
+      ...formData,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const submitForm = async (e) => {
     e.preventDefault();
+
     console.log("Sending");
-    const data = {
-      fullName,
-      email,
-      message,
-    };
-    axios
-      .get("https://wp.taclobananjph.com/wp-json/wp/v2/users")
-      .then((res) => console.log(res));
-    // axios
-    //   .post(
-    //     "/api/contact/",
-    //     { fullName, email, message },
-    //     {
-    //       headers: {
-    //         Accept: "application/json, text/plain, */*",
-    //         "Content-Type": "application/json",
-    //       },
-    //     }
-    //   )
-    //   .then((res) => {
-    //     console.log(res);
-    //   });
+
+    try {
+      setLoading(true);
+      const { data } = await axios({
+        url: `${API_URL}/wp-json/contact-form-7/v1/contact-forms/7/feedback`,
+        method: "POST",
+        data: convertJsontoUrlencoded(formData),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
+        },
+      });
+      setSubmitted(true);
+      setFormData({
+        fullname: "",
+        email: "",
+        message: "",
+      });
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
   };
 
   return (
     <div>
       <p className="mb-3">Leave us a Message</p>
       <div>
-        <form className={styles.contactContainer}>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Email Address"
-            onChange={(e) => changeFieldState(e, setEmail)}
-          />
-          <input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Full Name"
-            onChange={(e) => changeFieldState(e, setFullName)}
-          />
-          <textarea
-            name="message"
-            id="message"
-            cols={30}
-            rows={10}
-            placeholder="Message"
-            onChange={(e) => changeFieldState(e, setMessage)}
-          ></textarea>
-          <input type="submit" value="Send" onClick={(e) => submitForm(e)} />
-        </form>
+        {submitted ? (
+          <p className="text-success">Thank you, your message has been sent</p>
+        ) : (
+          ""
+        )}
+        {loading ? (
+          <div className="flex justify-center">
+            <Loader type="TailSpin" color="#bf2626" height={80} width={80} />
+          </div>
+        ) : (
+          <form className={styles.contactContainer} onSubmit={submitForm}>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email Address"
+              onChange={(e) => changeFieldState(e)}
+              value={formData.email}
+              required
+            />
+            <input
+              type="text"
+              name="fullname"
+              id="fullname"
+              placeholder="Full Name"
+              onChange={(e) => changeFieldState(e)}
+              value={formData.fullname}
+              required
+            />
+            <textarea
+              name="message"
+              id="message"
+              cols={30}
+              rows={10}
+              placeholder="Message"
+              onChange={(e) => changeFieldState(e)}
+              value={formData.message}
+              required
+            ></textarea>
+            <input type="submit" value="Send" />
+          </form>
+        )}
       </div>
     </div>
   );

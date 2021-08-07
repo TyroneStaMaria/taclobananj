@@ -6,6 +6,7 @@ module.exports = {
     extend: {},
     colors: {
       body: "#444444",
+      success: `rgba(16, 185, 129)`,
       red: {
         light: "#f9bfbf",
         DEFAULT: "#bf2626",

@@ -76,3 +76,6 @@ p {
 section:not(.banner) {
   @apply py-24 md:px-24;
 }
+.react-multiple-carousel__arrow {
+  z-index: 5 !important;
+}

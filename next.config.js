@@ -29,7 +29,7 @@ module.exports = {
       process.env.MAINTENANCE_MODE === "1"
         ? {
             source: "/((?!coming-soon).*)",
-            destination: "/coming-soon",
+            destination: "/coming-soon.html",
             permanent: false,
           }
         : null,

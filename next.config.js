@@ -1,3 +1,4 @@
+require("dotenv").config();
 module.exports = {
   async headers() {
     return [
@@ -22,5 +23,16 @@ module.exports = {
         ],
       },
     ];
+  },
+  async redirects() {
+    return [
+      process.env.MAINTENANCE_MODE === "1"
+        ? {
+            source: "/((?!coming-soon).*)",
+            destination: "/coming-soon",
+            permanent: false,
+          }
+        : null,
+    ].filter(Boolean);
   },
 };

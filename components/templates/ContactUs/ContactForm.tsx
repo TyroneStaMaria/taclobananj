@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import styles from "./ContactForm.module.scss";
 import Loader from "react-loader-spinner";
+import { CONTACT_FORM_API_URL } from "../../../lib/constants";
 interface ContactFormData {
   fullname: string;
   email: string;
@@ -9,7 +10,6 @@ interface ContactFormData {
 }
 
 const ContactForm = () => {
-  const API_URL = "https://wp.taclobananjph.com";
   const [formData, setFormData] = useState({
     fullname: "",
     email: "",
@@ -46,7 +46,7 @@ const ContactForm = () => {
     try {
       setLoading(true);
       const { data } = await axios({
-        url: `${API_URL}/wp-json/contact-form-7/v1/contact-forms/7/feedback`,
+        url: CONTACT_FORM_API_URL,
         method: "POST",
         data: convertJsontoUrlencoded(formData),
         headers: {
@@ -68,7 +68,7 @@ const ContactForm = () => {
 
   return (
     <div>
-      <p className="mb-3">Leave us a Message</p>
+      <p className="mb-3 text-h4">Leave us a Message</p>
       <div>
         {submitted ? (
           <p className="text-success">Thank you, your message has been sent</p>

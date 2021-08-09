@@ -46,22 +46,22 @@ const Navbar = () => {
             }`}
           >
             <ul className={`${style.navItems}`}>
-              <li>
+              <li onClick={toggleNav}>
                 <Link href="/">Home</Link>
               </li>
-              <li>
+              <li onClick={toggleNav}>
                 <Link href="/about">About us</Link>
               </li>
-              <li>
+              <li onClick={toggleNav}>
                 <Link href="#">Products</Link>
               </li>
-              <li>
+              <li onClick={toggleNav}>
                 <Link href="#">Training Center</Link>
               </li>
-              <li>
+              <li onClick={toggleNav}>
                 <Link href="/contact-us">Contact Us</Link>
               </li>
-              <li>
+              <li onClick={toggleNav}>
                 <Button href="#" btnStyle="redOutline">
                   Register / Log in
                 </Button>

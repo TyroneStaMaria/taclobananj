@@ -7,7 +7,7 @@ import Button from "../../elements/Button/Button";
 import {
   CustomRightArrow,
   CustomLeftArrow,
-} from "../../elements/CustomArrows/CustomArrows";
+} from "../../elements/Carousel/CustomArrows/CustomArrows";
 
 interface HeroData {
   heroImageSrc: string;
@@ -49,7 +49,7 @@ const Hero = (): JSX.Element => {
       heroImageSrc: "/images/home/banners/banner1.png",
       heroHeading: "Focused on Shared Growth",
       heroBody:
-        "We are always invested into letting you explore opportunities leading to your own growth. Get educated online and kickstart to honing your skills",
+        "We are always invested into letting you explore opportunities leading to your own growth. Get educated online and kickstart to honing your skills.",
       heroButton: (
         <Button href="#" btnStyle="redOutline">
           Visit our Training Center &gt;
@@ -71,7 +71,7 @@ const Hero = (): JSX.Element => {
       heroImageSrc: "/images/home/banners/banner3.png",
       heroHeading: "Going Beyond your Experience",
       heroBody:
-        "We are aimed to see what's beyond our products. It's always the customer experience that matters to us. Our products make those experience memorable!",
+        "We are aimed to see what's beyond our products. It's always the customer experiences that matters to us. Our products make those experience memorable!",
       heroButton: (
         <Button href="#" btnStyle="redOutline">
           Check out our Full Catalogue &gt;

@@ -16,7 +16,7 @@ const TrainingCenter = () => {
         />
         <div className={styles.textContainer}>
           <h2 className={styles.bannerHeading}>Training Center</h2>
-          <p className={styles.heroBody}>
+          <p className={`${styles.heroBody} ${styles.bannerBody}`}>
             Get access to our training videos that are crafted to help improve
             your baking skills, provide livelihood opportunities for your, and
             achieve long term partnerships with you.

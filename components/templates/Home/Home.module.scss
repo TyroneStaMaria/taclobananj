@@ -23,11 +23,24 @@
 }
 
 .bannerHeading {
-  @apply text-body inline-block text-h2 md:text-h1;
+  @apply text-body inline-block text-h1;
   z-index: 1;
 }
 
+.bannerBody {
+  width: 100% !important;
+}
+
 .heroBody {
-  @apply sm:text-h4 md:text-h3 mb-4;
+  @apply text-h4 md:text-h3 mb-4;
   width: 80%;
+}
+
+.carousel > ul:first-child {
+  margin-bottom: 80px !important;
+}
+
+.carouselImageContainer {
+  height: 150px;
+  width: 150px;
 }

@@ -9,7 +9,7 @@ const About = (): JSX.Element => {
       <div className="container mx-auto ">
         <h2 className="text-center lg:text-left">About Us</h2>
         <FlexContainer className="items-center justify-between">
-          <div className="mb-9 mr-0 text-center px-4 order-2 lg:px-0 lg:text-left lg:mb-0 lg:mr-24 lg:order-1">
+          <div className="mb-9 mr-0 text-center px-4 order-2 lg:px-0 lg:text-justify lg:mb-0 lg:mr-24 lg:order-1">
             <p className="mb-7">
               Sunshine Bakery Science Center is a project between Pilmico Foods
               Corporation and Tacloban AnJ Marketing. Tacloban AnJ Marketing is

@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Image from "next/image";
+import { BRANDS_API_URL } from "../../../lib/constants";
+import axios from "axios";
+import CustomDots from "../../elements/Carousel/CustomDots/CustomDots";
+import styles from "./Home.module.scss";
 
 const Brands = () => {
   const responsive = {
@@ -19,7 +23,7 @@ const Brands = () => {
         min: 0,
       },
       items: 1,
-      partialVisibilityGutter: 30,
+      partialVisibilityGutter: 0,
     },
     tablet: {
       breakpoint: {
@@ -31,16 +35,36 @@ const Brands = () => {
     },
   };
 
+  const [brands, setBrands] = useState([]);
+
+  const getBrands = async () => {
+    try {
+      const brandsData = await axios.get(BRANDS_API_URL);
+      return brandsData;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getBrands().then((b) => {
+      const { data } = b;
+      setBrands(data);
+      console.log(brands);
+    });
+  }, []);
+
   return (
-    <section>
+    <section className="">
       <div className="container mx-auto">
         <Carousel
+          customDot={<CustomDots items={brands.id} />}
           additionalTransfrom={0}
-          arrows
+          arrows={false}
           autoPlaySpeed={3000}
           centerMode={false}
           className=""
-          containerClass="container"
+          containerClass={`container ${styles.carousel}`}
           dotListClass=""
           draggable
           focusOnSelect={false}
@@ -51,56 +75,26 @@ const Brands = () => {
           renderButtonGroupOutside={false}
           renderDotsOutside={false}
           responsive={responsive}
-          showDots={false}
+          showDots
           sliderClass=""
           slidesToSlide={1}
           swipeable
         >
-          <div style={{ width: `250px`, height: `250px` }}>
-            <Image
-              src="/images/home/brands/Del Monte Logo.png"
-              alt="Del monte"
-              layout="fill"
-              objectFit="contain"
-              quality={100}
-            />
-          </div>
-          <div style={{ width: `250px`, height: `250px` }}>
-            <Image
-              src="/images/home/brands/Emperador Logo.png"
-              alt="Del monte"
-              layout="fill"
-              objectFit="contain"
-              quality={100}
-            />
-          </div>
-          <div style={{ width: `250px`, height: `250px` }}>
-            <Image
-              src="/images/home/brands/Lucky Me Logo.png"
-              alt="Del monte"
-              layout="fill"
-              objectFit="contain"
-              quality={100}
-            />
-          </div>
-          <div style={{ width: `250px`, height: `250px` }}>
-            <Image
-              src="/images/home/brands/Nestle Logo.png"
-              alt="Del monte"
-              layout="fill"
-              objectFit="contain"
-              quality={100}
-            />
-          </div>
-          <div style={{ width: `250px`, height: `250px` }}>
-            <Image
-              src="/images/home/brands/Oishi Logo.jpeg"
-              alt="Del monte"
-              layout="fill"
-              objectFit="contain"
-              quality={100}
-            />
-          </div>
+          {brands.map((brand, index) => {
+            // console.log(brand);
+            return (
+              <div key={index} className={styles.carouselImageContainer}>
+                {/* {brand._embedded} */}
+                <Image
+                  src={brand._embedded["wp:featuredmedia"][0].source_url}
+                  alt={brand.title.rendered}
+                  layout="fill"
+                  objectFit="contain"
+                  quality={100}
+                />
+              </div>
+            );
+          })}
         </Carousel>
       </div>
     </section>

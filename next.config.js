@@ -1,5 +1,8 @@
 require("dotenv").config();
 module.exports = {
+  images: {
+    domains: ["wp.taclobananjph.com"],
+  },
   async headers() {
     return [
       {
@@ -9,7 +12,7 @@ module.exports = {
           { key: "Access-Control-Allow-Credentials", value: "true" },
           {
             key: "Access-Control-Allow-Origin",
-            value: "https://taclobananjph.com",
+            value: "*",
           },
           {
             key: "Access-Control-Allow-Methods",

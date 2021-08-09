@@ -1,5 +1,8 @@
 .catalogCardContainer {
   @apply relative inline-block;
+  & > div:first-child {
+    @apply w-11/12 mx-auto lg:mx-0 lg:w-full;
+  }
 }
 
 .catalogCardText {

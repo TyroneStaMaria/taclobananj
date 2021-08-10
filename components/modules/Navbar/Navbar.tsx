@@ -13,7 +13,7 @@ const Navbar = () => {
 
   return (
     <nav className={style.navBar}>
-      <div className="container mx-auto flex items-center justify-between">
+      <div className="container mx-auto flex items-center justify-between px-7 lg:px-0">
         <Image
           src="/images/anj-logo.PNG"
           alt="Tacloban ANJ Logo"

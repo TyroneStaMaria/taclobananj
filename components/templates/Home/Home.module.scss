@@ -16,7 +16,7 @@
 }
 
 .heroHeading {
-  @apply bg-red text-white p-4 mb-10 inline-block;
+  @apply bg-red text-white px-8 py-6 mb-4 leading-9 lg:mb-10 inline-block;
   // line-height: 3rem;
   z-index: 1;
   border-radius: 8px;

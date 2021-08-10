@@ -58,7 +58,7 @@ const Brands = () => {
     <section className="">
       <div className="container mx-auto">
         <Carousel
-          customDot={<CustomDots items={brands.id} />}
+          customDot={<CustomDots items={brands.values} />}
           additionalTransfrom={0}
           arrows={false}
           autoPlaySpeed={3000}

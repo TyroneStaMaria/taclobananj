@@ -87,6 +87,7 @@ const Hero = (): JSX.Element => {
         customLeftArrow={<CustomLeftArrow />}
         additionalTransfrom={0}
         arrows
+        autoPlay={true}
         autoPlaySpeed={3000}
         centerMode={false}
         draggable

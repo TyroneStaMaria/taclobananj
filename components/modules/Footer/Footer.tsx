@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import style from "./Footer.module.scss";
+import { FaFacebookSquare, FaEnvelope } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -47,26 +48,13 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  x="0px"
-                  y="0px"
-                  width="40"
-                  height="40"
-                  viewBox="0 0 30 30"
-                  fill="#FFFFFF"
-                >
-                  <path d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h10v-9h-3v-3h3v-1.611C16,9.339,17.486,8,20.021,8 c1.214,0,1.856,0.09,2.16,0.131V11h-1.729C19.376,11,19,11.568,19,12.718V14h3.154l-0.428,3H19v9h5c1.105,0,2-0.895,2-2V6 C26,4.895,25.104,4,24,4z"></path>
-                </svg>
+                <FaFacebookSquare style={{ fontSize: `32px` }} />
               </a>
             </li>
             <li>
               <a href="mailto:anjtacloban@yahoo.com">
                 {/* eslint-disable @next/next/no-img-element */}
-                <img
-                  src="https://img.icons8.com/material-rounded/40/ffffff/mail.png"
-                  alt="email"
-                />
+                <FaEnvelope style={{ fontSize: `32px` }} />
               </a>
             </li>
           </ul>

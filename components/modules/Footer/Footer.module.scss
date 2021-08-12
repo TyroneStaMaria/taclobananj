@@ -4,8 +4,17 @@
 
 .navItems {
   @apply flex items-center justify-center flex-wrap lg:flex-nowrap;
-
   & > li {
     @apply mx-2 mt-4 lg:mr-4 text-white text-center;
+  }
+}
+
+.sitemap {
+  & > li {
+    @apply px-3 transition-all;
+
+    &:hover {
+      @apply bg-yellow text-body rounded-full;
+    }
   }
 }

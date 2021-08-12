@@ -14,7 +14,7 @@ const Footer = () => {
             width={70}
             height={70}
           />
-          <ul className={style.navItems}>
+          <ul className={`${style.navItems} ${style.sitemap}`}>
             <li>
               <Link href="/">Home</Link>
             </li>
@@ -31,6 +31,15 @@ const Footer = () => {
               <Link href="#">Contact Us</Link>
             </li>
           </ul>
+          <div className="mt-7 text-center">
+            <p className="text-white mb-3">
+              Address: 151 Rizal Avenue, Tacloban City, Leyte, 6500
+            </p>
+            <p className="text-white">
+              Contact Number: 0917 <span></span> 323 <span></span> 3139{" "}
+              <span></span>{" "}
+            </p>
+          </div>
           <ul className={style.navItems}>
             <li>
               <a
@@ -55,21 +64,12 @@ const Footer = () => {
               <a href="mailto:anjtacloban@yahoo.com">
                 {/* eslint-disable @next/next/no-img-element */}
                 <img
-                  src="https://img.icons8.com/ios-glyphs/40/FFFFFF/email.png"
+                  src="https://img.icons8.com/material-rounded/40/ffffff/mail.png"
                   alt="email"
                 />
               </a>
             </li>
           </ul>
-          <div className="mt-7 text-center">
-            <p className="text-white mb-3">
-              Address: 151 Rizal Avenue, Tacloban City, Leyte, 6500
-            </p>
-            <p className="text-white">
-              Contact Number: 0917 <span></span> 323 <span></span> 3139{" "}
-              <span></span>{" "}
-            </p>
-          </div>
         </div>
       </div>
     </footer>

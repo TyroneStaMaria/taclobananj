@@ -71,7 +71,7 @@ const Hero = (): JSX.Element => {
       heroImageSrc: "/images/home/banners/banner3.png",
       heroHeading: "Going Beyond your Experience",
       heroBody:
-        "We are aimed to see what's beyond our products. It's always the customer experiences that matters to us. Our products make those experience memorable!",
+        "We are aimed to see what's beyond our products. It's always the customer experience that matters to us. Our products make those experiences memorable!",
       heroButton: (
         <Button href="#" btnStyle="redOutline">
           Check out our Full Catalogue &gt;

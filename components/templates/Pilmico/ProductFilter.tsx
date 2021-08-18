@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { api } from "../../../lib/woocommerceApi";
+import styles from "./Pilmico.module.scss";
 
 interface Category {
   id: number;
@@ -9,11 +10,12 @@ interface Category {
 
 const ProductFilter = ({ storeProducts }) => {
   const [parentCategories, setParentCategories] = useState<Category[]>([]);
-  // const [categoryId, setCategoryId] = useState(20);
+  const [categoryId, setCategoryId] = useState(19);
   // const [subCategories, setSubCategories] = useState<Category[]>([]);
 
   const filterProducts = (categoryId) => {
     storeProducts(categoryId);
+    setCategoryId(categoryId);
   };
 
   const pilmicoId = 18;
@@ -48,36 +50,38 @@ const ProductFilter = ({ storeProducts }) => {
     return a.id - b.id;
   });
   return (
-    <div style={{ width: `300px`, height: `auto` }}>
-      <div>
-        {parentCategories.map((parent) => {
-          return (
-            <div key={parent.id}>
-              <h3
-                onClick={() => {
-                  filterProducts(parent.id);
-                }}
-              >
-                {parent.name}
-              </h3>
-              <ul>
-                {parent.subCategory.map((subCategory) => {
-                  return (
-                    <li
-                      key={subCategory["id"]}
-                      onClick={() => {
-                        filterProducts(subCategory["id"]);
-                      }}
-                    >
-                      {subCategory["name"]}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          );
-        })}
-      </div>
+    <div className={styles.filterContainer}>
+      {parentCategories.map((parent) => {
+        return (
+          <div key={parent.id}>
+            <h3
+              onClick={() => {
+                filterProducts(parent.id);
+              }}
+              className={parent.id === categoryId ? styles.active : ""}
+            >
+              {parent.name}
+            </h3>
+            <ul>
+              {parent.subCategory.map((subCategory) => {
+                return (
+                  <li
+                    className={
+                      subCategory["id"] === categoryId ? styles.active : ""
+                    }
+                    key={subCategory["id"]}
+                    onClick={() => {
+                      filterProducts(subCategory["id"]);
+                    }}
+                  >
+                    {subCategory["name"]}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        );
+      })}
     </div>
   );
 };

@@ -15,11 +15,15 @@ const PilmicoProductTemplate = (props: PilmicoProduct) => {
       <div className="relative mb-5 lg:mb-0 mr-5">
         <div style={{ width: `300px`, height: `300px` }}>
           <Image
-            src="/images/home/about1.jpeg"
-            alt="about us"
+            src={props.imageUrl ? props.imageUrl : "/images/home/about1.jpeg"}
+            alt={props.productName}
             layout="fill"
             objectFit="contain"
             quality={100}
+            placeholder="blur"
+            blurDataURL={
+              props.imageUrl ? props.imageUrl : "/images/home/about1.jpeg"
+            }
           />
         </div>
       </div>

@@ -1,0 +1,22 @@
+.filterContainer {
+  @apply sticky;
+  top: 25%;
+  h3,
+  li {
+    cursor: pointer;
+    text-transform: capitalize;
+    &:hover {
+      @apply text-red;
+    }
+  }
+  h3 {
+    @apply text-body;
+    width: 90%;
+  }
+  ul {
+    @apply mb-4 ml-3;
+  }
+  .active {
+    @apply border-l-4 border-red pl-1 text-red;
+  }
+}

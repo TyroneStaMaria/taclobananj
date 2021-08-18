@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import PilmicoProductTemplate from "../../elements/PilmicoProductTemplate/PilmicoProductTemplate";
 import { api } from "./../../../lib/woocommerceApi";
 import ProductFilter from "./ProductFilter";
+import Loader from "react-loader-spinner";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const category = 19;
+  const [loading, setLoading] = useState(false);
   // const [category, setCategory] = useState(20);
 
   const fetchProducts = async (categoryId) => {
@@ -21,8 +23,10 @@ const Products = () => {
   };
 
   const storeProducts = async (categoryId) => {
+    setLoading(true);
     const products = await fetchProducts(categoryId);
     setProducts(products);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -32,20 +36,32 @@ const Products = () => {
     <section>
       <div className="container mx-auto">
         <h2>Pilmico</h2>
-        <div className="flex">
-          {/* <div style={{ width: `300px`, height: `300px` }}></div> */}
-          <ProductFilter storeProducts={storeProducts} />
-          <div>
-            {products.map((product, index) => {
-              return (
-                <PilmicoProductTemplate
-                  key={index}
-                  productName={product.name}
-                  productDescription={product.description}
-                  imageUrl="/"
+        <div className="flex justify-center">
+          <div className="w-1/5 relative">
+            <ProductFilter storeProducts={storeProducts} />
+          </div>
+          <div className="w-4/5">
+            {loading ? (
+              <div className="flex justify-center items-center">
+                <Loader
+                  type="TailSpin"
+                  color="#bf2626"
+                  height={80}
+                  width={80}
                 />
-              );
-            })}
+              </div>
+            ) : (
+              products.map(({ name, description, images }, index) => {
+                return (
+                  <PilmicoProductTemplate
+                    key={index}
+                    productName={name}
+                    productDescription={description}
+                    imageUrl={images[0].src}
+                  />
+                );
+              })
+            )}
           </div>
           {/* <PilmicoProductTemplate
             productName="Wooden Spoon All-Purpose Flour"

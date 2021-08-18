@@ -23,3 +23,6 @@ export const BRANDS_QUERY: string = `query brandsQuery {
 // export const BRANDS_API_URL: string = API_URL + "/wp/v2/brands?_embed";
 
 // export const Constants = [API_URL, CONTACT_FORM_API_URL, BRANDS_API_URL];
+
+export const CONSUMER_KEY = process.env.CONSUMER_KEY;
+export const CONSUMER_SECRET = process.env.CONSUMER_SECRET;

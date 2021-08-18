@@ -7,6 +7,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@woocommerce/woocommerce-rest-api": "^1.0.1",
     "axios": "^0.21.1",
     "dotenv": "^10.0.0",
     "next": "latest",

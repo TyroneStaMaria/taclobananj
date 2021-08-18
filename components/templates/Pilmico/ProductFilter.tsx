@@ -16,6 +16,7 @@ const ProductFilter = ({ storeProducts }) => {
   const filterProducts = (categoryId) => {
     storeProducts(categoryId);
     setCategoryId(categoryId);
+    window.scrollTo(0, 0);
   };
 
   const pilmicoId = 18;

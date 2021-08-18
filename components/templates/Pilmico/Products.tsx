@@ -15,6 +15,7 @@ const Products = () => {
       const { data } = await api.get("products", {
         orderby: "id",
         category: categoryId,
+        per_page: 30,
       });
       return data;
     } catch (err) {

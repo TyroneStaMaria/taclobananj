@@ -12,7 +12,7 @@ const HomeTemplate = (): JSX.Element => {
     <>
       <Hero />
       <About />
-      {/* <FeaturedProducts /> */}
+      <FeaturedProducts />
       <Catalogue />
       <TrainingCenter />
       <Brands />

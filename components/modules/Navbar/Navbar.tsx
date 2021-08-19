@@ -53,7 +53,7 @@ const Navbar = () => {
                 <Link href="/about">About us</Link>
               </li>
               <li onClick={toggleNav}>
-                <Link href="/products/pilmico">Products</Link>
+                <Link href="/products">Products</Link>
               </li>
               <li onClick={toggleNav}>
                 <Link href="#">Training Center</Link>

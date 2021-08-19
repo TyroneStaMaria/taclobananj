@@ -12,12 +12,14 @@ const Catalogue = () => {
             <CatalogCard
               img="/images/home/catalogue/groceries.png"
               name="groceries"
+              link="/products/groceries"
             />
           </div>
           <div className="mr-0 lg:mr-5">
             <CatalogCard
               img="/images/home/catalogue/pilmico.png"
               name="pilmico"
+              link="/products/pilmico"
             />
           </div>
         </div>

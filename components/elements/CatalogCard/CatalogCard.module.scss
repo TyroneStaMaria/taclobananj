@@ -1,5 +1,5 @@
 .catalogCardContainer {
-  @apply relative inline-block;
+  @apply relative inline-block cursor-pointer;
   & > div:first-child {
     @apply w-11/12 mx-auto lg:mx-0 lg:w-full;
   }

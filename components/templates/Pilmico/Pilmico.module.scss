@@ -20,3 +20,11 @@
     @apply border-l-4 border-red pl-1 text-red;
   }
 }
+
+.aquaProductsContainer {
+  @apply flex flex-wrap justify-center;
+  & > * {
+    @apply my-3 mx-3;
+    width: 25%;
+  }
+}

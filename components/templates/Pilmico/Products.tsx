@@ -2,13 +2,18 @@ import React, { useEffect, useState } from "react";
 import PilmicoProductTemplate from "../../elements/PilmicoProductTemplate/PilmicoProductTemplate";
 import { api } from "./../../../lib/woocommerceApi";
 import ProductFilter from "./ProductFilter";
+import AquaProductLayout from "./AquaProductLayout";
 import Loader from "react-loader-spinner";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const category = 19;
   const [loading, setLoading] = useState(false);
-  // const [category, setCategory] = useState(20);
+  // TODO: uncomment this after
+  const [category, setCategory] = useState({
+    id: 28,
+    name: "hard wheat flour",
+  });
+  // const [category, setCategory] = useState({ id: 24, name: "aqua" });
 
   const fetchProducts = async (categoryId) => {
     try {
@@ -31,7 +36,7 @@ const Products = () => {
   };
 
   useEffect(() => {
-    storeProducts(category);
+    storeProducts(category.id);
   }, []);
   return (
     <section>
@@ -39,7 +44,13 @@ const Products = () => {
         <h2>Pilmico</h2>
         <div className="flex justify-center">
           <div className="w-1/5 relative">
-            <ProductFilter storeProducts={storeProducts} />
+            <ProductFilter
+              filterCategory={(categ) => {
+                setCategory(categ);
+                storeProducts(categ.id);
+              }}
+              currentCategory={category.id}
+            />
           </div>
           <div className="w-4/5">
             {loading ? (
@@ -51,6 +62,11 @@ const Products = () => {
                   width={80}
                 />
               </div>
+            ) : category.name === "aqua" ? (
+              <AquaProductLayout
+                categoryId={category.id}
+                fetchProducts={fetchProducts}
+              />
             ) : (
               products.map(({ name, description, images }, index) => {
                 return (

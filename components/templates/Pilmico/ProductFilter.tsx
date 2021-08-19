@@ -5,17 +5,14 @@ import styles from "./Pilmico.module.scss";
 interface Category {
   id: number;
   name: string;
-  subCategory: [];
+  subCategory: Array<Object>;
 }
 
-const ProductFilter = ({ storeProducts }) => {
+const ProductFilter = ({ filterCategory, currentCategory }) => {
   const [parentCategories, setParentCategories] = useState<Category[]>([]);
-  const [categoryId, setCategoryId] = useState(19);
-  // const [subCategories, setSubCategories] = useState<Category[]>([]);
 
-  const filterProducts = (categoryId) => {
-    storeProducts(categoryId);
-    setCategoryId(categoryId);
+  const filterProducts = (categoryId, categoryName) => {
+    filterCategory({ id: categoryId, name: categoryName });
     window.scrollTo(0, 0);
   };
 
@@ -57,9 +54,12 @@ const ProductFilter = ({ storeProducts }) => {
           <div key={parent.id}>
             <h3
               onClick={() => {
-                filterProducts(parent.id);
+                filterProducts(
+                  parent.subCategory[0]["id"],
+                  parent.subCategory[0]["name"]
+                );
               }}
-              className={parent.id === categoryId ? styles.active : ""}
+              // className={parent.id === currentCategory ? styles.active : ""}
             >
               {parent.name}
             </h3>
@@ -68,11 +68,11 @@ const ProductFilter = ({ storeProducts }) => {
                 return (
                   <li
                     className={
-                      subCategory["id"] === categoryId ? styles.active : ""
+                      subCategory["id"] === currentCategory ? styles.active : ""
                     }
                     key={subCategory["id"]}
                     onClick={() => {
-                      filterProducts(subCategory["id"]);
+                      filterProducts(subCategory["id"], subCategory["name"]);
                     }}
                   >
                     {subCategory["name"]}

@@ -11,9 +11,14 @@ const ProductCard = (props: Product): JSX.Element => {
       </div>
       <div className="px-10">
         <h3>{props.name}</h3>
-        <p>Id: {props.id}</p>
-        <p>Measurement: {props.measurement}</p>
-        <p>Quantity: {props.quantity} pcs</p>
+        {props.id ? (
+          <div>
+            <p>Id: {props.id}</p>
+            <div dangerouslySetInnerHTML={{ __html: props.description }}></div>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

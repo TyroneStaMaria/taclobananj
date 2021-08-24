@@ -11,8 +11,11 @@ interface AquaSubCategory {
   products: [];
 }
 
+// TODO: refactor this so that when filtered into subcategories marread siya
+
 const AquaProductLayout = ({ categoryId, fetchProducts }) => {
   const [subCategories, setSubCategories] = useState([]);
+  const aquaId = 24;
 
   const fetchAquaSubCategories = async () => {
     try {
@@ -26,18 +29,25 @@ const AquaProductLayout = ({ categoryId, fetchProducts }) => {
     }
   };
 
+  const fetchSingleSubCategory = async () => {
+    try {
+      const { data } = await api.get(`products/categories/${categoryId}`, {
+        orderby: "id",
+      });
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   subCategories.sort((a, b) => {
     return a.id - b.id;
   });
 
-  const convertDescriptionToJSX = (description): string => {
+  const convertDescriptionToHtml = (description): string => {
     const descriptionArray: Array<string> = description.split("●");
     const mainDescription = descriptionArray[0];
     const bulletedList = descriptionArray.slice(1, -1);
-    bulletedList.forEach((bullet) => {
-      bullet.replace("●", "");
-    });
-    console.log(mainDescription, bulletedList);
 
     return `
       <div>
@@ -45,6 +55,7 @@ const AquaProductLayout = ({ categoryId, fetchProducts }) => {
         <ul class="list-disc pl-8 mt-4 text-body font-body">
           ${bulletedList
             .map((bullet, index) => {
+              bullet.replace("●", "");
               return `<li key=${index}>${bullet}</li>`;
             })
             .join("")}
@@ -52,19 +63,41 @@ const AquaProductLayout = ({ categoryId, fetchProducts }) => {
       </div>`;
   };
 
+  const initializeSubCategory = (
+    subCategoryItem,
+    products
+  ): AquaSubCategory => {
+    return {
+      id: subCategoryItem.id,
+      name: subCategoryItem.name,
+      description: convertDescriptionToHtml(subCategoryItem.description),
+      products: products,
+    };
+  };
+
   useEffect(() => {
-    fetchAquaSubCategories().then((subCategories) => {
-      subCategories.map(async (singleSubCategory) => {
-        const products = await fetchProducts(singleSubCategory.id);
-        const subCategoryItem: AquaSubCategory = {
-          id: singleSubCategory.id,
-          name: singleSubCategory.name,
-          description: convertDescriptionToJSX(singleSubCategory.description),
-          products: products,
-        };
+    const fetchAquaProducts = async () => {
+      if (aquaId === categoryId) {
+        const subCategories = await fetchAquaSubCategories();
+        subCategories.map(async (singleSubCategory) => {
+          const products = await fetchProducts(singleSubCategory.id);
+          const subCategoryItem: AquaSubCategory = initializeSubCategory(
+            singleSubCategory,
+            products
+          );
+          setSubCategories((categories) => [...categories, subCategoryItem]);
+        });
+      } else {
+        const subCategory = await fetchSingleSubCategory();
+        const products = await fetchProducts(subCategory.id);
+        const subCategoryItem: AquaSubCategory = initializeSubCategory(
+          subCategory,
+          products
+        );
         setSubCategories((categories) => [...categories, subCategoryItem]);
-      });
-    });
+      }
+    };
+    fetchAquaProducts();
   }, []);
 
   return (

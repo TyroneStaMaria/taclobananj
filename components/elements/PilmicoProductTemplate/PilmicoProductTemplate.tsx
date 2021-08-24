@@ -33,7 +33,7 @@ const PilmicoProductTemplate = (props: PilmicoProduct) => {
       )}
 
       <div>
-        <h3>{props.productName}</h3>
+        <h3 className="capitalize">{props.productName}</h3>
         <div
           dangerouslySetInnerHTML={{ __html: props.productDescription }}
         ></div>

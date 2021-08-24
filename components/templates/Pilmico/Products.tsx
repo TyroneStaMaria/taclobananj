@@ -5,15 +5,9 @@ import ProductFilter from "./ProductFilter";
 import AquaProductLayout from "./AquaProductLayout";
 import Loader from "react-loader-spinner";
 
-const Products = () => {
+const Products = ({ category, setCategory, name }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-  // TODO: uncomment this after
-  const [category, setCategory] = useState({
-    id: 28,
-    name: "hard wheat flour",
-  });
-  // const [category, setCategory] = useState({ id: 24, name: "aqua" });
 
   const fetchProducts = async (categoryId) => {
     try {
@@ -39,55 +33,55 @@ const Products = () => {
     storeProducts(category.id);
   }, []);
   return (
-    <section>
-      <div className="container mx-auto">
-        <h2>Pilmico</h2>
-        <div className="flex justify-center">
-          <div className="w-1/5 relative">
-            <ProductFilter
-              filterCategory={(categ) => {
-                setCategory(categ);
-                storeProducts(categ.id);
-              }}
-              currentCategory={category.id}
-            />
-          </div>
-          <div className="w-4/5">
-            {loading ? (
-              <div className="flex justify-center items-center">
-                <Loader
-                  type="TailSpin"
-                  color="#bf2626"
-                  height={80}
-                  width={80}
-                />
-              </div>
-            ) : category.name === "aqua" ? (
-              <AquaProductLayout
+    <>
+      {/* <Hero image={banner} /> */}
+      <section>
+        <div className="container mx-auto">
+          <h1 className="capitalize text-center mb-3">{name}</h1>
+          <div className="flex justify-center  items-center flex-col lg:items-stretch lg:flex-row">
+            <div className="w-full lg:w-1/5 relative">
+              <ProductFilter
                 categoryId={category.id}
-                fetchProducts={fetchProducts}
+                setCategory={(category) => {
+                  setCategory(category);
+                  storeProducts(category.id);
+                  window.scrollTo(0, 700);
+                }}
               />
-            ) : (
-              products.map(({ name, description, images }, index) => {
-                return (
-                  <PilmicoProductTemplate
-                    key={index}
-                    productName={name}
-                    productDescription={description}
-                    imageUrl={images[0].src}
+            </div>
+            <div className="w-4/5">
+              {loading ? (
+                <div className="flex justify-center items-center">
+                  <Loader
+                    type="TailSpin"
+                    color="#bf2626"
+                    height={80}
+                    width={80}
                   />
-                );
-              })
-            )}
+                </div>
+              ) : category.name.includes("aqua") ||
+                category.name.includes("arya") ? (
+                <AquaProductLayout
+                  categoryId={category.id}
+                  fetchProducts={fetchProducts}
+                />
+              ) : (
+                products.map(({ name, description, images }, index) => {
+                  return (
+                    <PilmicoProductTemplate
+                      key={index}
+                      productName={name.toLowerCase()}
+                      productDescription={description}
+                      imageUrl={images[0].src}
+                    />
+                  );
+                })
+              )}
+            </div>
           </div>
-          {/* <PilmicoProductTemplate
-            productName="Wooden Spoon All-Purpose Flour"
-            productDescription="Premium quality all-purpose flour suitable for all types of home baking. Best used in batter-type cakes, steamed breads, and various types of soft breads. Moisture: Not more that 14% Protein: Not less than 9.5%"
-            imageUrl="/"
-          /> */}
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

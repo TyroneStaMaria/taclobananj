@@ -5,22 +5,16 @@ import styles from "./Pilmico.module.scss";
 interface Category {
   id: number;
   name: string;
-  subCategory: Array<Object>;
+  subCategories: Array<Object>;
 }
 
-const ProductFilter = ({ filterCategory, currentCategory }) => {
-  const [parentCategories, setParentCategories] = useState<Category[]>([]);
+const ProductFilter = ({ categoryId, setCategory }) => {
+  const [categories, setCategories] = useState<Category[]>([]);
 
-  const filterProducts = (categoryId, categoryName) => {
-    filterCategory({ id: categoryId, name: categoryName });
-    window.scrollTo(0, 0);
-  };
-
-  const pilmicoId = 18;
-  const getCategories = async (parentId) => {
+  const getCategories = async (categoryId) => {
     try {
       const { data } = await api.get("products/categories", {
-        parent: parentId,
+        parent: categoryId,
         orderby: "id",
       });
       return data;
@@ -30,60 +24,116 @@ const ProductFilter = ({ filterCategory, currentCategory }) => {
   };
 
   useEffect(() => {
-    getCategories(pilmicoId).then((category) => {
-      // sets the main categories
-      category.map(async (singleCategory) => {
+    const fetchCategories = async (categoryId) => {
+      const categoryItems = await getCategories(categoryId);
+      categoryItems.map(async (singleCategory) => {
         const subCategories = await getCategories(singleCategory.id);
         const categoryItem: Category = {
           id: singleCategory.id,
           name: singleCategory.name,
-          subCategory: subCategories,
+          subCategories: subCategories,
         };
-        setParentCategories((categories) => [...categories, categoryItem]);
+        setCategories((categories) => [...categories, categoryItem]);
       });
-    });
+    };
+    fetchCategories(categoryId);
   }, []);
 
-  parentCategories.sort((a, b) => {
+  categories.sort((a, b) => {
     return a.id - b.id;
   });
+
   return (
     <div className={styles.filterContainer}>
-      {parentCategories.map((parent) => {
+      {categories.map((category) => {
         return (
-          <div key={parent.id}>
+          <div key={category.id}>
             <h3
-              onClick={() => {
-                filterProducts(
-                  parent.subCategory[0]["id"],
-                  parent.subCategory[0]["name"]
-                );
-              }}
-              // className={parent.id === currentCategory ? styles.active : ""}
+              onClick={() =>
+                setCategory({
+                  id: category.id,
+                  name: category.name,
+                })
+              }
+              className={category.id === categoryId ? styles.active : ""}
             >
-              {parent.name}
+              {category.name}
             </h3>
-            <ul>
-              {parent.subCategory.map((subCategory) => {
-                return (
-                  <li
-                    className={
-                      subCategory["id"] === currentCategory ? styles.active : ""
-                    }
-                    key={subCategory["id"]}
-                    onClick={() => {
-                      filterProducts(subCategory["id"], subCategory["name"]);
-                    }}
-                  >
-                    {subCategory["name"]}
-                  </li>
-                );
-              })}
-            </ul>
+            {category.subCategories.length > 0 ? (
+              <ul>
+                {category.subCategories.map((subCategory: Category) => {
+                  return (
+                    <li
+                      key={subCategory.id}
+                      onClick={() =>
+                        setCategory({
+                          id: subCategory.id,
+                          name: subCategory.name,
+                        })
+                      }
+                      className={
+                        subCategory.id === categoryId ? styles.active : ""
+                      }
+                    >
+                      {subCategory.name}
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : (
+              ""
+            )}
           </div>
         );
       })}
     </div>
+    // <div className={styles.filterContainer}>
+    //   {parentCategories.map((parent) => {
+    //     return (
+    //       <div key={parent.id}>
+    //         <h3>{parent.name}</h3>
+    //         <ul>
+    //           {parent.subCategory.map((subCategory) => {
+    //             return (
+    //               <div key={subCategory["id"]}>
+    //                 <li
+    //                   className={
+    //                     subCategory["id"] === currentCategory
+    //                       ? styles.active
+    //                       : ""
+    //                   }
+    //                   onClick={() => {
+    //                     filterProducts(subCategory["id"], subCategory["name"]);
+    //                   }}
+    //                 >
+    //                   {subCategory["name"]}
+    //                   {/* <p>{subCategories.get(subCategory["id"])}</p> */}
+    //                 </li>
+    //                 {subCategories.size > 0 &&
+    //                 subCategories.get(subCategory["id"]) ? (
+    //                   subCategories.get(subCategory["id"]).map((categ) => {
+    //                     return (
+    //                       <p
+    //                         key={categ.id}
+    //                         onClick={() => {
+    //                           filterProducts(categ.id, categ.name);
+    //                         }}
+    //                       >
+    //                         {categ.name}
+    //                       </p>
+    //                     );
+    //                   })
+    //                 ) : (
+    //                   <div></div>
+    //                 )}
+    //               </div>
+    //             );
+    //           })}
+    //         </ul>
+    //       </div>
+    //     );
+    //   })}
+    // </div>
   );
 };
 

@@ -1,23 +1,37 @@
 .filterContainer {
-  @apply sticky;
+  @apply sticky flex flex-row lg:flex-col;
   top: 25%;
+
   h3,
   li {
-    cursor: pointer;
+    @apply text-body font-body;
     text-transform: capitalize;
+    cursor: pointer;
     &:hover {
       @apply text-red;
     }
   }
+
   h3 {
-    @apply text-body;
+    @apply text-h4 mb-3;
     width: 90%;
   }
   ul {
     @apply mb-4 ml-3;
   }
   .active {
-    @apply border-l-4 border-red pl-1 text-red;
+    @apply border-b-4 border-red text-red lg:pl-1 lg:border-l-4;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .filterContainer {
+    @apply justify-center flex-wrap;
+    width: 100%;
+    h3 {
+      @apply mr-6 text-center;
+      width: 100%;
+    }
   }
 }
 
@@ -27,4 +41,13 @@
     @apply my-3 mx-3;
     width: 25%;
   }
+}
+
+.heroBanner {
+  @apply text-center md:text-left px-4 md:px-24;
+  position: relative;
+  max-height: 700px;
+  height: 40vw;
+  width: 100%;
+  overflow: hidden;
 }

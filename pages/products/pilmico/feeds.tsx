@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React, { useState } from "react";
 import Hero from "../../../components/templates/Pilmico/Hero";
 import Products from "../../../components/templates/Pilmico/Products";
@@ -9,6 +10,9 @@ const Feeds = () => {
 
   return (
     <div>
+      <Head>
+        <title>Feeds | Tacloban ANJ</title>
+      </Head>
       <Hero image={banner} />
       <Products
         category={category}

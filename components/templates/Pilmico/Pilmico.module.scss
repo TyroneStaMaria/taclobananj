@@ -20,7 +20,7 @@
     @apply mb-4 ml-3;
   }
   .active {
-    @apply border-b-4 border-red text-red lg:pl-1 lg:border-l-4;
+    @apply border-red text-red lg:pl-1 lg:border-l-4;
   }
 }
 
@@ -31,6 +31,9 @@
     h3 {
       @apply mr-6 text-center;
       width: 100%;
+    }
+    .active {
+      @apply border-b-4;
     }
   }
 }

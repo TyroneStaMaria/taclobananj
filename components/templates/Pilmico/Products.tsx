@@ -39,7 +39,7 @@ const Products = ({ category, setCategory, name }) => {
         <div className="container mx-auto">
           <h1 className="capitalize text-center mb-3">{name}</h1>
           <div className="flex justify-center  items-center flex-col lg:items-stretch lg:flex-row">
-            <div className="w-full lg:w-1/5 relative">
+            <div className="w-full lg:w-1/5 lg:relative">
               <ProductFilter
                 categoryId={category.id}
                 setCategory={(category) => {

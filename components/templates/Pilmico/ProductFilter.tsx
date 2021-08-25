@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { api } from "../../../lib/woocommerceApi";
 import styles from "./Pilmico.module.scss";
+import { MdFilterList } from "react-icons/md";
 
 interface Category {
   id: number;
@@ -10,6 +11,11 @@ interface Category {
 
 const ProductFilter = ({ categoryId, setCategory }) => {
   const [categories, setCategories] = useState<Category[]>([]);
+  const [showFilter, setShowFilter] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = showFilter ? "hidden" : "scroll";
+  }, [showFilter]);
 
   const getCategories = async (categoryId) => {
     try {
@@ -44,96 +50,82 @@ const ProductFilter = ({ categoryId, setCategory }) => {
   });
 
   return (
-    <div className={styles.filterContainer}>
-      {categories.map((category) => {
-        return (
-          <div key={category.id}>
-            <h3
-              onClick={() =>
-                setCategory({
-                  id: category.id,
-                  name: category.name,
-                })
-              }
-              className={category.id === categoryId ? styles.active : ""}
-            >
-              {category.name}
-            </h3>
-            {category.subCategories.length > 0 ? (
-              <ul>
-                {category.subCategories.map((subCategory: Category) => {
-                  return (
-                    <li
-                      key={subCategory.id}
-                      onClick={() =>
-                        setCategory({
-                          id: subCategory.id,
-                          name: subCategory.name,
-                        })
-                      }
-                      className={
-                        subCategory.id === categoryId ? styles.active : ""
-                      }
-                    >
-                      {subCategory.name}
-                    </li>
-                  );
-                })}
-              </ul>
-            ) : (
-              ""
-            )}
-          </div>
-        );
-      })}
+    <div>
+      <div className="px-10 mb-4">
+        <button
+          className="flex items-center text-h3 text-body w-full px-3 py-2 md:hidden "
+          style={{ borderWidth: `1px`, borderColor: `#D3D3D3` }}
+          onClick={() => {
+            setShowFilter(!showFilter);
+            window.scrollTo(0, 245);
+          }}
+        >
+          <MdFilterList /> Filter
+        </button>
+      </div>
+      <div
+        className={`${styles.filterContainer} ${
+          showFilter ? "left-0 bg-white h-screen z-10 px-5" : "-left-full"
+        }`}
+      >
+        <button
+          className={`block ml-auto pr-5 lg:hidden`}
+          onClick={() => setShowFilter(!showFilter)}
+        >
+          &#10005;
+        </button>
+        <h2 className="text-body border-b-2 border-body w-3/5 mb-3 ">
+          Categories
+        </h2>
+        {categories.map((category) => {
+          return (
+            <div key={category.id}>
+              <h3
+                onClick={() => {
+                  setCategory({
+                    id: category.id,
+                    name: category.name,
+                  });
+                  setShowFilter(false);
+                  window.scrollTo(0, 150);
+                }}
+                className={`${
+                  category.id === categoryId ? styles.active : ""
+                } ${category.subCategories.length > 0 ? "font-bold" : ""}`}
+              >
+                {category.name}
+              </h3>
+              {category.subCategories.length > 0 ? (
+                <ul>
+                  {category.subCategories.map((subCategory: Category) => {
+                    return (
+                      <li
+                        key={subCategory.id}
+                        onClick={() => {
+                          setCategory({
+                            id: subCategory.id,
+                            name: subCategory.name,
+                          });
+                          setShowFilter(false);
+                          window.scrollTo(0, 150);
+                        }}
+                        className={
+                          subCategory.id === categoryId ? styles.active : ""
+                        }
+                      >
+                        {subCategory.name}
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : (
+                ""
+              )}
+            </div>
+          );
+        })}
+      </div>
     </div>
-    // <div className={styles.filterContainer}>
-    //   {parentCategories.map((parent) => {
-    //     return (
-    //       <div key={parent.id}>
-    //         <h3>{parent.name}</h3>
-    //         <ul>
-    //           {parent.subCategory.map((subCategory) => {
-    //             return (
-    //               <div key={subCategory["id"]}>
-    //                 <li
-    //                   className={
-    //                     subCategory["id"] === currentCategory
-    //                       ? styles.active
-    //                       : ""
-    //                   }
-    //                   onClick={() => {
-    //                     filterProducts(subCategory["id"], subCategory["name"]);
-    //                   }}
-    //                 >
-    //                   {subCategory["name"]}
-    //                   {/* <p>{subCategories.get(subCategory["id"])}</p> */}
-    //                 </li>
-    //                 {subCategories.size > 0 &&
-    //                 subCategories.get(subCategory["id"]) ? (
-    //                   subCategories.get(subCategory["id"]).map((categ) => {
-    //                     return (
-    //                       <p
-    //                         key={categ.id}
-    //                         onClick={() => {
-    //                           filterProducts(categ.id, categ.name);
-    //                         }}
-    //                       >
-    //                         {categ.name}
-    //                       </p>
-    //                     );
-    //                   })
-    //                 ) : (
-    //                   <div></div>
-    //                 )}
-    //               </div>
-    //             );
-    //           })}
-    //         </ul>
-    //       </div>
-    //     );
-    //   })}
-    // </div>
   );
 };
 

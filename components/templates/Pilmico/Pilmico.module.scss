@@ -1,7 +1,6 @@
 .filterContainer {
-  @apply sticky flex flex-row lg:flex-col;
-  top: 25%;
-
+  @apply absolute lg:flex lg:flex-col lg:sticky;
+  transition: all 0.1s ease-in-out;
   h3,
   li {
     @apply text-body font-body;
@@ -24,13 +23,26 @@
   }
 }
 
+@media only screen and (min-width: 1024px) {
+  .filterContainer {
+    top: 25%;
+  }
+}
+
 @media only screen and (max-width: 1024px) {
   .filterContainer {
-    @apply justify-center flex-wrap;
+    @apply justify-center flex-wrap pt-10 pb-36;
     width: 100%;
+    top: 250px;
+    overflow: scroll;
+
     h3 {
-      @apply mr-6 text-center;
-      width: 100%;
+      // @apply mr-6;
+      // width: 100%;
+    }
+    ul,
+    h3 {
+      width: 70%;
     }
     .active {
       @apply border-b-4;

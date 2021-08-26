@@ -25,6 +25,7 @@ const Feeds = () => {
           setCategory(categ);
         }}
         name="Feeds"
+        parentCategoryId={20}
       />
     </div>
   );

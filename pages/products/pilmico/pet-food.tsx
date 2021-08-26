@@ -25,6 +25,7 @@ const PetFood = () => {
           setCategory(categ);
         }}
         name="Pet Food"
+        parentCategoryId={21}
       />
     </div>
   );

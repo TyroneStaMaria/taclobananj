@@ -1,5 +1,5 @@
-.filterContainer {
-  @apply absolute lg:flex lg:flex-col lg:sticky;
+.filterItems {
+  @apply absolute lg:flex lg:flex-col w-full;
   transition: all 0.1s ease-in-out;
   h3,
   li {
@@ -13,7 +13,7 @@
 
   h3 {
     @apply text-h4 mb-3;
-    width: 90%;
+    // width: 90%;
   }
   ul {
     @apply mb-4 ml-3;
@@ -25,12 +25,14 @@
 
 @media only screen and (min-width: 1024px) {
   .filterContainer {
-    top: 25%;
+    position: sticky;
+    top: 20%;
+    bottom: 60%;
   }
 }
 
 @media only screen and (max-width: 1024px) {
-  .filterContainer {
+  .filterItems {
     @apply justify-center flex-wrap pt-10 pb-36;
     width: 100%;
     top: 250px;

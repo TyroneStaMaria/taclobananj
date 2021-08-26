@@ -11,7 +11,12 @@ const Flour = () => {
         <title>Flour | Tacloban ANJ</title>
       </Head>
       <Hero image={banner} />
-      <Products category={category} setCategory={setCategory} name="Flour" />
+      <Products
+        category={category}
+        setCategory={setCategory}
+        name="Flour"
+        parentCategoryId={19}
+      />
     </div>
   );
 };

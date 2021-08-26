@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { api } from "../../../lib/woocommerceApi";
 import styles from "./Pilmico.module.scss";
 import { MdFilterList } from "react-icons/md";
+import ProductSearch from "./ProductSearch";
+import { useMediaQuery } from "react-responsive";
 
 interface Category {
   id: number;
@@ -9,12 +11,18 @@ interface Category {
   subCategories: Array<Object>;
 }
 
-const ProductFilter = ({ categoryId, setCategory }) => {
+const ProductFilter = ({
+  currentCategory,
+  filterProducts,
+  parentCategoryId,
+}) => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [showFilter, setShowFilter] = useState(false);
+  const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
+  const filterScrollValue = isDesktop ? 800 : 150;
 
   useEffect(() => {
-    document.body.style.overflow = showFilter ? "hidden" : "scroll";
+    document.body.style.overflowY = showFilter ? "hidden" : "scroll";
   }, [showFilter]);
 
   const getCategories = async (categoryId) => {
@@ -29,7 +37,25 @@ const ProductFilter = ({ categoryId, setCategory }) => {
     }
   };
 
+  const toggleProductFilterPosition = () => {
+    const filter: HTMLElement = document.querySelector("#prodFilter");
+    if (filter) {
+      window.addEventListener("scroll", () => {
+        if (
+          window.innerHeight + window.scrollY >=
+            document.scrollingElement.scrollHeight - 300 &&
+          parentCategoryId === 20
+        ) {
+          filter.style.top = "-250px";
+        } else {
+          filter.style.top = "20%";
+        }
+      });
+    }
+  };
+
   useEffect(() => {
+    let isMounted = true;
     const fetchCategories = async (categoryId) => {
       const categoryItems = await getCategories(categoryId);
       categoryItems.map(async (singleCategory) => {
@@ -39,10 +65,19 @@ const ProductFilter = ({ categoryId, setCategory }) => {
           name: singleCategory.name,
           subCategories: subCategories,
         };
-        setCategories((categories) => [...categories, categoryItem]);
+        if (isMounted) {
+          setCategories((categories) => [...categories, categoryItem]);
+        }
       });
     };
-    fetchCategories(categoryId);
+
+    fetchCategories(parentCategoryId);
+    toggleProductFilterPosition();
+
+    return () => {
+      isMounted = false;
+    };
+    // console.log("filtering");
   }, []);
 
   categories.sort((a, b) => {
@@ -50,7 +85,11 @@ const ProductFilter = ({ categoryId, setCategory }) => {
   });
 
   return (
-    <div>
+    <div className={styles.filterContainer} id="prodFilter">
+      <ProductSearch
+        currentCategory={currentCategory}
+        filterProducts={filterProducts}
+      />
       <div className="px-10 mb-4">
         <button
           className="flex items-center text-h3 text-body w-full px-3 py-2 md:hidden "
@@ -63,9 +102,12 @@ const ProductFilter = ({ categoryId, setCategory }) => {
           <MdFilterList /> Filter
         </button>
       </div>
+
       <div
-        className={`${styles.filterContainer} ${
-          showFilter ? "left-0 bg-white h-screen z-10 px-5" : "-left-full"
+        className={`${styles.filterItems} ${
+          showFilter
+            ? "left-0 bg-white h-screen z-10 px-5"
+            : "-left-full lg:left-0"
         }`}
       >
         <button
@@ -82,16 +124,22 @@ const ProductFilter = ({ categoryId, setCategory }) => {
             <div key={category.id}>
               <h3
                 onClick={() => {
-                  setCategory({
+                  filterProducts({
                     id: category.id,
                     name: category.name,
+                    searchKey: "",
                   });
                   setShowFilter(false);
-                  window.scrollTo(0, 150);
+                  window.scrollTo(0, filterScrollValue);
                 }}
                 className={`${
-                  category.id === categoryId ? styles.active : ""
-                } ${category.subCategories.length > 0 ? "font-bold" : ""}`}
+                  category.id === currentCategory.id ? styles.active : ""
+                } ${
+                  category.subCategories.length > 0 ||
+                  category.name.includes("gamefowl")
+                    ? "font-bold"
+                    : ""
+                }`}
               >
                 {category.name}
               </h3>
@@ -102,15 +150,18 @@ const ProductFilter = ({ categoryId, setCategory }) => {
                       <li
                         key={subCategory.id}
                         onClick={() => {
-                          setCategory({
+                          filterProducts({
                             id: subCategory.id,
                             name: subCategory.name,
+                            searchKey: "",
                           });
                           setShowFilter(false);
-                          window.scrollTo(0, 150);
+                          window.scrollTo(0, filterScrollValue);
                         }}
                         className={
-                          subCategory.id === categoryId ? styles.active : ""
+                          subCategory.id === currentCategory.id
+                            ? styles.active
+                            : ""
                         }
                       >
                         {subCategory.name}

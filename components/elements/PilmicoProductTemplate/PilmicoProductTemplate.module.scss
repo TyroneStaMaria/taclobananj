@@ -1,0 +1,8 @@
+.productContainer {
+  @apply items-center shadow-md p-4;
+  border-radius: 8px;
+  h3 {
+    @apply leading-6 mb-3;
+    text-transform: capitalize;
+  }
+}

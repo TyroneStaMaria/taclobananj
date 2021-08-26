@@ -1,5 +1,9 @@
 require("dotenv").config();
 module.exports = {
+  env: {
+    CONSUMER_KEY: process.env.CONSUMER_KEY,
+    CONSUMER_SECRET: process.env.CONSUMER_SECRET,
+  },
   images: {
     domains: ["wp.taclobananjph.com"],
   },

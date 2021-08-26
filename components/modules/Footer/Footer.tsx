@@ -6,7 +6,7 @@ import { FaFacebookSquare, FaEnvelope } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className={style.footer}>
+    <footer className={style.footer} id="footer">
       <div className="container mx-auto py-24">
         <div className="flex flex-col items-center">
           <Image

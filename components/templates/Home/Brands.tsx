@@ -2,10 +2,16 @@ import React, { useState, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Image from "next/image";
-import { BRANDS_API_URL } from "../../../lib/constants";
+import { GRAPHQL_URI, BRANDS_QUERY } from "../../../lib/constants";
 import axios from "axios";
 import CustomDots from "../../elements/Carousel/CustomDots/CustomDots";
 import styles from "./Home.module.scss";
+
+interface BrandType {
+  brandId: number;
+  featuredImage: any;
+  title: string;
+}
 
 const Brands = () => {
   const responsive = {
@@ -35,11 +41,17 @@ const Brands = () => {
     },
   };
 
-  const [brands, setBrands] = useState([]);
+  const [brands, setBrands] = useState<Array<BrandType>>([]);
 
   const getBrands = async () => {
     try {
-      const brandsData = await axios.get(BRANDS_API_URL);
+      const brandsData = await axios({
+        method: "POST",
+        url: GRAPHQL_URI,
+        data: {
+          query: BRANDS_QUERY,
+        },
+      });
       return brandsData;
     } catch (error) {
       console.log(error);
@@ -48,8 +60,10 @@ const Brands = () => {
 
   useEffect(() => {
     getBrands().then((b) => {
-      const { data } = b;
-      setBrands(data);
+      const { data } = b.data;
+      const { nodes } = data.brands;
+
+      setBrands(nodes);
       console.log(brands);
     });
   }, []);
@@ -61,7 +75,8 @@ const Brands = () => {
           customDot={<CustomDots items={brands.values} />}
           additionalTransfrom={0}
           arrows={false}
-          autoPlaySpeed={3000}
+          autoPlay={true}
+          autoPlaySpeed={4000}
           centerMode={false}
           className=""
           containerClass={`container ${styles.carousel}`}
@@ -81,13 +96,11 @@ const Brands = () => {
           swipeable
         >
           {brands.map((brand, index) => {
-            // console.log(brand);
             return (
               <div key={index} className={styles.carouselImageContainer}>
-                {/* {brand._embedded} */}
                 <Image
-                  src={brand._embedded["wp:featuredmedia"][0].source_url}
-                  alt={brand.title.rendered}
+                  src={brand.featuredImage.node.sourceUrl}
+                  alt={brand.title}
                   layout="fill"
                   objectFit="contain"
                   quality={100}

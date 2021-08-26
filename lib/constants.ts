@@ -1,8 +1,28 @@
-export const API_URL: string = "https://wp.taclobananjph.com/wp-json";
+export const API_URL: string = "https://wp.taclobananjph.com";
 
 export const CONTACT_FORM_API_URL: string =
-  API_URL + "/contact-form-7/v1/contact-forms/7/feedback";
+  API_URL + "/wp-json/contact-form-7/v1/contact-forms/7/feedback";
 
-export const BRANDS_API_URL: string = API_URL + "/wp/v2/brands?_embed";
+export const GRAPHQL_URI: string = API_URL + "/graphql/";
+
+export const BRANDS_QUERY: string = `query brandsQuery {
+  brands {
+    nodes {
+      brandId
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
+      title(format: RENDERED)
+    }
+  }
+}
+`;
+
+// export const BRANDS_API_URL: string = API_URL + "/wp/v2/brands?_embed";
 
 // export const Constants = [API_URL, CONTACT_FORM_API_URL, BRANDS_API_URL];
+
+export const CONSUMER_KEY = process.env.CONSUMER_KEY;
+export const CONSUMER_SECRET = process.env.CONSUMER_SECRET;

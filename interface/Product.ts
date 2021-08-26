@@ -1,8 +1,7 @@
 interface Product {
   name: string;
   id: string;
-  quantity: number;
-  measurement: string;
+  description: string;
   img: any;
 }
 export default Product;

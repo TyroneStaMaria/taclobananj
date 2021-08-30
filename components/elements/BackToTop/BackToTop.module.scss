@@ -1,0 +1,7 @@
+.backToTopContainer {
+  @apply fixed bottom-9 flex right-5 flex-col items-center text-yellow cursor-pointer;
+  transition: all 0.4s ease-in-out;
+}
+.hide {
+  right: -100% !important;
+}

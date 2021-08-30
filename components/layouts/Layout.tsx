@@ -3,6 +3,7 @@ import React from "react";
 import Head from "next/head";
 import Navbar from "../modules/Navbar/Navbar";
 import Footer from "../modules/Footer/Footer";
+import BackToTop from "../elements/BackToTop/BackToTop";
 interface LayoutProp {
   children: JSX.Element[] | JSX.Element;
 }
@@ -27,7 +28,10 @@ const Layout = (props: LayoutProp): JSX.Element => {
       </Head>
       {/* Navbar */}
       <Navbar />
-      <main>{props.children}</main>
+      <main>
+        {props.children}
+        <BackToTop />
+      </main>
       <Footer />
       {/* Footer */}
     </>

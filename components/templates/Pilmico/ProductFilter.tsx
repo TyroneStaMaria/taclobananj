@@ -43,12 +43,11 @@ const ProductFilter = ({
       window.addEventListener("scroll", () => {
         if (
           window.innerHeight + window.scrollY >=
-            document.scrollingElement.scrollHeight - 300 &&
-          parentCategoryId === 20
+          document.scrollingElement.scrollHeight - 350
         ) {
-          filter.style.top = "-250px";
+          filter.style.top = "-200px";
         } else {
-          filter.style.top = "20%";
+          filter.style.top = "115px";
         }
       });
     }
@@ -72,7 +71,7 @@ const ProductFilter = ({
     };
 
     fetchCategories(parentCategoryId);
-    toggleProductFilterPosition();
+    // toggleProductFilterPosition();
 
     return () => {
       isMounted = false;

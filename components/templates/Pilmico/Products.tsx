@@ -57,7 +57,10 @@ const Products = ({ category, setCategory, name, parentCategory }) => {
             </div>
           ) : (
             <div className="flex justify-center  items-center flex-col lg:items-stretch lg:flex-row">
-              <div className="w-full mb-52 lg:w-1/5 lg:relative">
+              <div
+                className="w-full lg:w-1/5 lg:relative"
+                style={{ marginBottom: `40rem` }}
+              >
                 <ProductFilter
                   currentCategory={category}
                   parentCategory={parentCategory}

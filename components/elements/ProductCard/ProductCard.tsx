@@ -10,7 +10,7 @@ const ProductCard = (props: Product): JSX.Element => {
         <Image src={props.img} alt={props.id} height={350} width={350} />
       </div>
       <div className="px-10">
-        <h3>{props.name}</h3>
+        <h3 className={props.id ? "" : "text-center"}>{props.name}</h3>
         {props.id ? (
           <div>
             <p>Id: {props.id}</p>

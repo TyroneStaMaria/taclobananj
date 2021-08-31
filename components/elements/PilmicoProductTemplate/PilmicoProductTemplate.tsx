@@ -35,6 +35,7 @@ const PilmicoProductTemplate = (props: PilmicoProduct) => {
       <div>
         <h3 className="capitalize">{props.productName}</h3>
         <div
+          className="text-justify"
           dangerouslySetInnerHTML={{ __html: props.productDescription }}
         ></div>
         {/* {props.productDescription} */}

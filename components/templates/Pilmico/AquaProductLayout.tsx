@@ -13,7 +13,7 @@ interface AquaSubCategory {
 
 // TODO: refactor this so that when filtered into subcategories marread siya
 
-const AquaProductLayout = ({ categoryId, fetchProducts }) => {
+const AquaProductLayout = ({ categoryId, fetchProducts, searchKey }) => {
   const [subCategories, setSubCategories] = useState([]);
   const aquaId = 24;
 
@@ -22,6 +22,7 @@ const AquaProductLayout = ({ categoryId, fetchProducts }) => {
       const { data } = await api.get("products/categories", {
         parent: categoryId,
         orderby: "id",
+        search: searchKey,
       });
       return data;
     } catch (err) {

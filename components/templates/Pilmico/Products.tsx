@@ -51,7 +51,7 @@ const Products = ({ category, setCategory, name, parentCategoryId }) => {
             </div>
           ) : (
             <div className="flex justify-center  items-center flex-col lg:items-stretch lg:flex-row">
-              <div className="w-full lg:w-1/5 lg:relative">
+              <div className="w-full mb-52 lg:w-1/5 lg:relative">
                 <ProductFilter
                   currentCategory={category}
                   parentCategoryId={parentCategoryId}
@@ -72,6 +72,7 @@ const Products = ({ category, setCategory, name, parentCategoryId }) => {
                   <AquaProductLayout
                     categoryId={category.id}
                     fetchProducts={fetchProducts}
+                    searchKey={searchKey}
                   />
                 ) : (
                   products.map(({ name, description, images }, index) => {

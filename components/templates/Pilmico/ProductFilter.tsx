@@ -115,7 +115,7 @@ const ProductFilter = ({
         >
           &#10005;
         </button>
-        <h2 className="text-body border-b-2 border-body w-3/5 mb-3 ">
+        <h2 className="text-body border-b-2 border-body w-9/12 mb-3 ">
           Categories
         </h2>
         {categories.map((category) => {

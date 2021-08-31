@@ -10,6 +10,7 @@ const Catalogue = () => {
         <div className="flex flex-wrap justify-center">
           <div className="mr-0 lg:mr-5">
             <CatalogCard
+              title="Our Product Catalogue"
               img="/images/home/catalogue/groceries.png"
               name="groceries"
               link="/products/groceries"
@@ -17,6 +18,7 @@ const Catalogue = () => {
           </div>
           <div className="mr-0 lg:mr-5">
             <CatalogCard
+              title="Our Product Catalogue"
               img="/images/home/catalogue/pilmico.png"
               name="pilmico"
               link="/products/pilmico"

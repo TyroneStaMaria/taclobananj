@@ -4,6 +4,7 @@ import styles from "./CatalogCard.module.scss";
 import Link from "next/link";
 
 interface Catalog {
+  title: string;
   name: string;
   img: string;
   link: string;
@@ -25,7 +26,7 @@ const CatalogCard = (props: Catalog) => {
           />
         </div>
         <div className={styles.catalogCardText}>
-          <p>Our Product Catalogue</p>
+          <p>{props.title}</p>
           <h2>{props.name}</h2>
         </div>
       </div>

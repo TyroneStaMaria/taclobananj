@@ -5,6 +5,8 @@ import Products from "../../../components/templates/Pilmico/Products";
 
 const PetFood = () => {
   const [category, setCategory] = useState({ id: 21, name: "Pet Food" });
+  const parentCategory = { id: 21, name: "Pet Food" };
+
   const banners = {
     maxime: "/images/pilmico/maxime.png",
     maxime_elite: "/images/pilmico/maxime-elite.png",
@@ -25,7 +27,7 @@ const PetFood = () => {
           setCategory(categ);
         }}
         name="Pet Food"
-        parentCategoryId={21}
+        parentCategory={parentCategory}
       />
     </div>
   );

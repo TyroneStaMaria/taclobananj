@@ -2,14 +2,20 @@
   @apply fixed bottom-9 flex flex-col items-center cursor-pointer right-1 lg:right-4;
   transition: all 0.4s ease-in-out;
 
-  * {
+  & > * {
     @apply text-red;
     // color: red !important;
+    &:hover {
+      @apply text-yellow;
+    }
   }
 }
 .yellow {
-  * {
+  & > * {
     color: #fed700 !important;
+    &:hover {
+      color: #f9bfbf !important;
+    }
   }
 }
 .hide {

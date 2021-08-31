@@ -16,11 +16,12 @@ interface AquaSubCategory {
 const AquaProductLayout = ({ categoryId, fetchProducts, searchKey }) => {
   const [subCategories, setSubCategories] = useState([]);
   const aquaId = 24;
+  const aquaSubCategoryIds = [39, 40, 41, 42];
 
   const fetchAquaSubCategories = async () => {
     try {
       const { data } = await api.get("products/categories", {
-        parent: categoryId,
+        parent: aquaId,
         orderby: "id",
         search: searchKey,
       });
@@ -78,17 +79,7 @@ const AquaProductLayout = ({ categoryId, fetchProducts, searchKey }) => {
 
   useEffect(() => {
     const fetchAquaProducts = async () => {
-      if (aquaId === categoryId) {
-        const subCategories = await fetchAquaSubCategories();
-        subCategories.map(async (singleSubCategory) => {
-          const products = await fetchProducts(singleSubCategory.id);
-          const subCategoryItem: AquaSubCategory = initializeSubCategory(
-            singleSubCategory,
-            products
-          );
-          setSubCategories((categories) => [...categories, subCategoryItem]);
-        });
-      } else {
+      if (aquaSubCategoryIds.includes(categoryId)) {
         const subCategory = await fetchSingleSubCategory();
         const products = await fetchProducts(subCategory.id);
         const subCategoryItem: AquaSubCategory = initializeSubCategory(
@@ -96,7 +87,18 @@ const AquaProductLayout = ({ categoryId, fetchProducts, searchKey }) => {
           products
         );
         setSubCategories((categories) => [...categories, subCategoryItem]);
+        return;
       }
+
+      const subCategories = await fetchAquaSubCategories();
+      subCategories.map(async (singleSubCategory) => {
+        const products = await fetchProducts(singleSubCategory.id);
+        const subCategoryItem: AquaSubCategory = initializeSubCategory(
+          singleSubCategory,
+          products
+        );
+        setSubCategories((categories) => [...categories, subCategoryItem]);
+      });
     };
     fetchAquaProducts();
   }, []);

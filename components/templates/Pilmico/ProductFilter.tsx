@@ -11,11 +11,7 @@ interface Category {
   subCategories: Array<Object>;
 }
 
-const ProductFilter = ({
-  currentCategory,
-  filterProducts,
-  parentCategoryId,
-}) => {
+const ProductFilter = ({ currentCategory, filterProducts, parentCategory }) => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [showFilter, setShowFilter] = useState(false);
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
@@ -37,22 +33,6 @@ const ProductFilter = ({
     }
   };
 
-  const toggleProductFilterPosition = () => {
-    const filter: HTMLElement = document.querySelector("#prodFilter");
-    if (filter) {
-      window.addEventListener("scroll", () => {
-        if (
-          window.innerHeight + window.scrollY >=
-          document.scrollingElement.scrollHeight - 350
-        ) {
-          filter.style.top = "-200px";
-        } else {
-          filter.style.top = "115px";
-        }
-      });
-    }
-  };
-
   useEffect(() => {
     let isMounted = true;
     const fetchCategories = async (categoryId) => {
@@ -70,7 +50,7 @@ const ProductFilter = ({
       });
     };
 
-    fetchCategories(parentCategoryId);
+    fetchCategories(parentCategory.id);
     // toggleProductFilterPosition();
 
     return () => {
@@ -88,6 +68,7 @@ const ProductFilter = ({
       <ProductSearch
         currentCategory={currentCategory}
         filterProducts={filterProducts}
+        parentCategory={parentCategory}
       />
       <div className="px-10 mb-4">
         <button

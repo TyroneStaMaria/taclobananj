@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Loader from "react-loader-spinner";
 import { api } from "../../../lib/woocommerceApi";
+import DefaultLoader from "../../elements/DefaultLoader/DefaultLoader";
 import GroceryCategoryCard from "./GroceryCategoryCard";
 const GroceryPage = () => {
   const [categories, setCategories] = useState([]);
@@ -49,9 +49,7 @@ const GroceryPage = () => {
             );
           })
         ) : (
-          <div className="flex justify-center items-center">
-            <Loader type="TailSpin" color="#bf2626" height={80} width={80} />
-          </div>
+          <DefaultLoader />
         )}
       </div>
     </section>

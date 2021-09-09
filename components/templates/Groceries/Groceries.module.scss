@@ -13,13 +13,16 @@
   }
 
   & > p {
-    @apply text-h4;
+    @apply text-h4 mb-3;
   }
 
   & > h2 {
-    @apply border-b-8 border-white text-h1 uppercase;
+    @apply text-h1 capitalize;
     margin: 0 65px;
-
     line-height: 1;
+    &::after {
+      @apply border-b-8 border-white w-full block mt-3;
+      content: "";
+    }
   }
 }

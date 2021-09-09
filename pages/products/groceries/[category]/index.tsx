@@ -1,11 +1,15 @@
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
-import BrandCard from "../../../../components/templates/Groceries/BrandCard";
+import DefaultLoader from "../../../../components/elements/DefaultLoader/DefaultLoader";
+import BrandPage from "../../../../components/templates/Groceries/BrandPage";
 import { api } from "./../../../../lib/woocommerceApi";
 
 const Category = ({ category }) => {
-  const [brands, setBrands] = useState([]);
   const [parent, setParent] = useState({});
+  const [brands, setBrands] = useState([]);
+
+  const [loading, setLoading] = useState(false);
+
   const getParent = async () => {
     try {
       const { data } = await api.get("products/categories", {
@@ -20,11 +24,14 @@ const Category = ({ category }) => {
   const getBrands = async () => {
     const { parentId } = await getParent();
     try {
+      setLoading(true);
       const { data } = await api.get("products/categories", {
         parent: parentId,
         orderby: "name",
         per_page: 30,
       });
+      setLoading(false);
+
       return data;
     } catch (err) {
       console.log(err);
@@ -54,8 +61,6 @@ const Category = ({ category }) => {
     };
   }, []);
 
-  console.log(brands);
-
   return (
     <div>
       <Head>
@@ -63,15 +68,12 @@ const Category = ({ category }) => {
       </Head>
       <section>
         <div className="container mx-auto">
-          <h1 className="capitalize">{parent["parentName"]}</h1>
-
-          <div className="flex flex-wrap justify-center items-center">
-            {brands.map((brand) => {
-              return (
-                <BrandCard key={brand.id} brand={brand} category={category} />
-              );
-            })}
-          </div>
+          <h1 className="capitalize text-center">{parent["parentName"]}</h1>
+          {!loading ? (
+            <BrandPage category={category} brands={brands} />
+          ) : (
+            <DefaultLoader />
+          )}
         </div>
       </section>
     </div>

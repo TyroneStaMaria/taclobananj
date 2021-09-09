@@ -3,7 +3,7 @@ import PilmicoProductTemplate from "../../elements/PilmicoProductTemplate/Pilmic
 import { api } from "./../../../lib/woocommerceApi";
 import ProductFilter from "./ProductFilter";
 import AquaProductLayout from "./AquaProductLayout";
-import Loader from "react-loader-spinner";
+import DefaultLoader from "../../elements/DefaultLoader/DefaultLoader";
 
 const Products = ({ category, setCategory, name, parentCategory }) => {
   const [products, setProducts] = useState([]);
@@ -52,9 +52,7 @@ const Products = ({ category, setCategory, name, parentCategory }) => {
         <div className="container mx-auto">
           <h1 className="capitalize text-center mb-3">{name}</h1>
           {loading ? (
-            <div className="flex justify-center items-center">
-              <Loader type="TailSpin" color="#bf2626" height={80} width={80} />
-            </div>
+            <DefaultLoader />
           ) : (
             <div className="flex justify-center  items-center flex-col lg:items-stretch lg:flex-row">
               <div

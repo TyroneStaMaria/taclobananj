@@ -9,9 +9,10 @@ import DefaultLoader from "../../../components/elements/DefaultLoader/DefaultLoa
 const Products = ({ brand }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
+  console.log(brand);
   const getProducts = async () => {
     try {
-      const { data } = await api.get("products", { category: brand.brandId });
+      const { data } = await api.get("products", { category: brand.id });
       return data;
     } catch (err) {
       console.log(err);
@@ -22,7 +23,7 @@ const Products = ({ brand }) => {
     const storeProducts = async () => {
       try {
         setLoading(true);
-        if (brand.brandId) {
+        if (brand.id) {
           const products = await getProducts();
           products.map((singleProduct: any) => {
             const product: Product = {
@@ -47,30 +48,25 @@ const Products = ({ brand }) => {
   }, [brand]);
 
   return (
-    <div>
-      <section>
-        <div className="container mx-auto">
-          <h1 className="capitalize text-center">{brand["brandName"]}</h1>
-          <div className="flex flex-wrap justify-center">
-            {!loading ? (
-              products.map(({ id, name, description, img }) => {
-                return (
-                  <div key={id} className="items-stretch mx-3 mb-5">
-                    <ProductCard
-                      id={id}
-                      name={name}
-                      description={description}
-                      img={img}
-                    />
-                  </div>
-                );
-              })
-            ) : (
-              <DefaultLoader />
-            )}
-          </div>
-        </div>
-      </section>
+    <div className="container mx-auto">
+      <div className="flex flex-wrap justify-center">
+        {!loading ? (
+          products.map(({ id, name, description, img }) => {
+            return (
+              <div key={id} className="items-stretch mx-3 mb-5">
+                <ProductCard
+                  id={id}
+                  name={name}
+                  description={description}
+                  img={img}
+                />
+              </div>
+            );
+          })
+        ) : (
+          <DefaultLoader />
+        )}
+      </div>
     </div>
   );
 };

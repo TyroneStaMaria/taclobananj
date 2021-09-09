@@ -1,5 +1,6 @@
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
+import Products from "../../../../components/templates/Groceries/Products";
 import DefaultLoader from "../../../../components/elements/DefaultLoader/DefaultLoader";
 import BrandPage from "../../../../components/templates/Groceries/BrandPage";
 import { api } from "./../../../../lib/woocommerceApi";
@@ -15,18 +16,18 @@ const Category = ({ category }) => {
       const { data } = await api.get("products/categories", {
         slug: category,
       });
-      return { parentId: data[0].id, parentName: data[0].name };
+      return { id: data[0].id, name: data[0].name };
     } catch (err) {
       console.log(err);
     }
   };
 
   const getBrands = async () => {
-    const { parentId } = await getParent();
+    const { id } = await getParent();
     try {
       setLoading(true);
       const { data } = await api.get("products/categories", {
-        parent: parentId,
+        parent: id,
         orderby: "name",
         per_page: 30,
       });
@@ -64,13 +65,17 @@ const Category = ({ category }) => {
   return (
     <div>
       <Head>
-        <title>{parent["parentName"]} | Tacloban ANJ</title>
+        <title>{parent["name"]} | Tacloban ANJ</title>
       </Head>
       <section>
         <div className="container mx-auto">
-          <h1 className="capitalize text-center">{parent["parentName"]}</h1>
+          <h1 className="capitalize text-center">{parent["name"]}</h1>
           {!loading ? (
-            <BrandPage category={category} brands={brands} />
+            category === "rice" ? (
+              <Products brand={parent} />
+            ) : (
+              <BrandPage category={category} brands={brands} />
+            )
           ) : (
             <DefaultLoader />
           )}

@@ -11,7 +11,7 @@ const Brand = ({ brand }) => {
   const getBrand = async () => {
     try {
       const { data } = await api.get("products/categories", { slug: brand });
-      return { brandId: data[0].id, brandName: data[0].name };
+      return { id: data[0].id, name: data[0].name };
     } catch (err) {
       console.log(err);
     }
@@ -39,9 +39,12 @@ const Brand = ({ brand }) => {
   return (
     <div>
       <Head>
-        <title>{parentBrand["brandName"]} | Tacloban ANJ</title>
+        <title>{parentBrand["name"]} | Tacloban ANJ</title>
       </Head>
-      <Products brand={parentBrand} />
+      <section>
+        <h1 className="capitalize text-center mb-5">{parentBrand["name"]}</h1>
+        <Products brand={parentBrand} />
+      </section>
     </div>
   );
 };

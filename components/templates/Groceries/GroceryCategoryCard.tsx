@@ -22,9 +22,8 @@ const GroceryCategoryCard = (props: GroceryCategory) => {
           <div>
             <Image
               src={props.image}
-              width={400}
-              height={400}
-              objectFit="cover"
+              width={350}
+              height={350}
               quality={100}
               alt={props.name}
             />

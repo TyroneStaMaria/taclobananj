@@ -44,3 +44,17 @@
   height: 150px;
   width: 150px;
 }
+
+.featuredProductCarousel {
+  align-items: stretch !important;
+  & > ul:first-child {
+    margin-bottom: 80px !important;
+  }
+
+  .featuredProductContainer {
+    @apply mb-8;
+    & > div {
+      @apply mx-auto;
+    }
+  }
+}

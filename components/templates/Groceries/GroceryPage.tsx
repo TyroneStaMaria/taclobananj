@@ -38,7 +38,7 @@ const GroceryPage = () => {
         {!loading ? (
           categories.map(({ id, name, slug, image }) => {
             return (
-              <div className="mb-3 lg:mx-3" key={id}>
+              <div className="mb-3 lg:mx-4" key={id}>
                 <GroceryCategoryCard
                   id={id}
                   slug={slug}

@@ -11,7 +11,7 @@ const BrandCard = ({ brand, category }) => {
       <a>
         <div>
           <Image
-            src={brand.image ? brand.image.src : "/images/anj-logo.png"}
+            src={brand.image ? brand.image.src : "/images/unavailable.png"}
             alt={brand.name}
             width={400}
             height={400}

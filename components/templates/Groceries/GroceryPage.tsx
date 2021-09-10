@@ -43,7 +43,7 @@ const GroceryPage = () => {
                   id={id}
                   slug={slug}
                   name={name}
-                  image={image ? image.src : "/images/anj-logo.png"}
+                  image={image ? image.src : "/images/unavailable.png"}
                 />
               </div>
             );

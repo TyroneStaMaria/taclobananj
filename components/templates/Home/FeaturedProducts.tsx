@@ -59,7 +59,7 @@ const FeaturedProducts = (): JSX.Element => {
             img:
               singleProduct.images.length > 0
                 ? singleProduct.images[0].src
-                : "/images/anj-logo.png",
+                : "/images/unavailable.png",
           };
           setProducts((p) => [...p, product]);
         });

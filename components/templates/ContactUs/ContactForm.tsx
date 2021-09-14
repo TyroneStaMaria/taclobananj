@@ -41,8 +41,6 @@ const ContactForm = () => {
   const submitForm = async (e) => {
     e.preventDefault();
 
-    console.log("Sending");
-
     try {
       setLoading(true);
       const { data } = await axios({

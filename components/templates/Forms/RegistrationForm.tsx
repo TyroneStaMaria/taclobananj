@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { REGISTER_API_URL } from "../../../lib/constants";
+import { REGISTER_API_URL, HUBSPOT_API_KEY } from "../../../lib/constants";
+// import Error from "./Error";
 import styles from "./Forms.module.scss";
 
 enum Gender {
@@ -37,6 +38,7 @@ const RegistrationForm = () => {
     register,
     handleSubmit,
     setError,
+    clearErrors,
     formState: { errors },
   } = useForm();
 
@@ -44,10 +46,19 @@ const RegistrationForm = () => {
     event.preventDefault();
     console.log(userDetails);
     try {
-      const response: any = await axios.post(REGISTER_API_URL, userDetails);
-      if (response.status === 200) {
-        console.log(response.message);
-      }
+      // const response: any = await axios.post(REGISTER_API_URL, userDetails);
+      const res = await axios.post("/api/contact/create", {
+        firstname: userDetails.first_name,
+        lastname: userDetails.last_name,
+        email: userDetails.email,
+        phone: userDetails.phone,
+        address: userDetails.address,
+        gender: userDetails.gender,
+      });
+      console.log(res);
+      // if (response.status === 200) {
+      //   console.log(response.message);
+      // }
       setUserDetails({
         first_name: "",
         last_name: "",
@@ -63,6 +74,19 @@ const RegistrationForm = () => {
     }
   };
 
+  const createContact = async () => {
+    try {
+      const data = await axios.post(
+        `https://api.hubapi.com/crm/v3/objects/contacts?hapikey=${HUBSPOT_API_KEY}`,
+        { properties: { userDetails } },
+        { headers: { "Access-Control-Allow-Origin": "*" } }
+      );
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const onError = (errs, e) => {
     Object.values(errs).forEach(({ type, ref }) => {
       const message = `${ref.placeholder} is required.`;
@@ -72,6 +96,7 @@ const RegistrationForm = () => {
 
   const handleInputChange = (event) => {
     event.persist();
+    clearErrors(event.target.id);
     setUserDetails((details) => ({
       ...details,
       [event.target.name]: event.target.value,
@@ -84,38 +109,31 @@ const RegistrationForm = () => {
         <h1 className="mb-8 text-3xl text-center">Register </h1>
         <form
           method="post"
-          onSubmit={handleSubmit(submitRegistration, onError)}
+          onSubmit={submitRegistration}
           className={styles.formContainer}
         >
           <div className="flex flex-col lg:flex-row">
-            <div className="mr-3">
+            <div className="mr-3 w-full lg:w-1/2">
               <input
-                {...register("firstName", {
-                  required: true,
-                  // message: "First Name is required",
-                })}
+                // {...register("firstName", {
+                //   required: true,
+                // })}
                 type="text"
                 name="first_name"
                 id="firstName"
                 placeholder="First Name"
+                value={userDetails.first_name}
                 onChange={handleInputChange}
               />
-              {errors.firstName && (
-                <p
-                  className="mb-3 -mt-3 text-red"
-                  style={{ fontSize: `0.75rem` }}
-                >
-                  {errors.firstName.message}
-                </p>
-              )}
             </div>
-            <div>
+            <div className="w-full lg:w-1/2">
               <input
-                {...register("lastName", { required: true })}
+                // {...register("lastName", { required: true })}
                 type="text"
                 name="last_name"
                 id="lastName"
                 placeholder="Last Name"
+                value={userDetails.last_name}
                 onChange={handleInputChange}
               />
             </div>
@@ -126,12 +144,14 @@ const RegistrationForm = () => {
             name="email"
             id="email"
             placeholder="Email Address"
+            value={userDetails.email}
             onChange={handleInputChange}
           />
           <select
             name="gender"
             id="gender"
-            defaultValue=""
+            // defaultValue=""
+            value={userDetails.gender}
             onChange={handleInputChange}
           >
             <option value="" disabled>
@@ -141,34 +161,13 @@ const RegistrationForm = () => {
             <option value={Gender.female}>Female</option>
             <option value={Gender.other}>Rather not say</option>
           </select>
-          {/* <div>
-            <p>Gender</p>
-            <div className={styles.genderSelect}>
-              <div>
-                <input type="radio" id="male" name="gender" value="male" />
-                <label htmlFor="male" className="ml-1 mr-3 text-body">
-                  Male
-                </label>
-              </div>
-              <div>
-                <input type="radio" id="female" name="gender" value="female" />
-                <label htmlFor="female" className="ml-1 mr-3 text-body">
-                  Female
-                </label>
-              </div>
-              <div>
-                <input type="radio" id="other" name="gender" value="other" />
-                <label htmlFor="other" className="ml-1 mr-3 text-body">
-                  Rather not say
-                </label>
-              </div>
-            </div>
-          </div> */}
+
           <input
             type="tel"
             name="phone"
             id="phone"
             placeholder="Contact Number"
+            value={userDetails.phone}
             onChange={handleInputChange}
           />
           <input
@@ -176,6 +175,7 @@ const RegistrationForm = () => {
             name="address"
             id="address"
             placeholder="Address"
+            value={userDetails.address}
             onChange={handleInputChange}
           />
           <div className="flex flex-col lg:flex-row">
@@ -184,6 +184,7 @@ const RegistrationForm = () => {
               type="password"
               name="password"
               id="password"
+              value={userDetails.password}
               onChange={handleInputChange}
               placeholder="Password"
             />
@@ -191,6 +192,7 @@ const RegistrationForm = () => {
               type="password"
               name="confirm_password"
               id="confirm"
+              value={userDetails.confirm_password}
               onChange={handleInputChange}
               placeholder="Confirm Password"
             />

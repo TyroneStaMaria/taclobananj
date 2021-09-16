@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { api } from "./../../../lib/woocommerceApi";
+import { api } from "../../../utils/woocommerceApi";
 import Product from "../../../interface/Product";
 import ProductCard from "../../../components/elements/ProductCard/ProductCard";
 import DefaultLoader from "../../../components/elements/DefaultLoader/DefaultLoader";

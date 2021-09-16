@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PilmicoProductTemplate from "../../elements/PilmicoProductTemplate/PilmicoProductTemplate";
-import { api } from "./../../../lib/woocommerceApi";
+import { api } from "../../../utils/woocommerceApi";
 import ProductFilter from "./ProductFilter";
 import AquaProductLayout from "./AquaProductLayout";
 import DefaultLoader from "../../elements/DefaultLoader/DefaultLoader";

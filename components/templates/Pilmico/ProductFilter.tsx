@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { api } from "../../../lib/woocommerceApi";
+import { api } from "../../../utils/woocommerceApi";
 import styles from "./Pilmico.module.scss";
 import { MdFilterList } from "react-icons/md";
 import ProductSearch from "./ProductSearch";

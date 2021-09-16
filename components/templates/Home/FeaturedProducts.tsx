@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ProductCard from "../../elements/ProductCard/ProductCard";
 import Product from "../../../interface/Product";
 import FlexContainer from "../../elements/FlexContainer/FlexContainer";
-import { api } from "../../../lib/woocommerceApi";
+import { api } from "../../../utils/woocommerceApi";
 import Carousel from "react-multi-carousel";
 import CustomDots from "../../elements/Carousel/CustomDots/CustomDots";
 import styles from "./Home.module.scss";

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Products from "../../../../components/templates/Groceries/Products";
 import DefaultLoader from "../../../../components/elements/DefaultLoader/DefaultLoader";
 import BrandPage from "../../../../components/templates/Groceries/BrandPage";
-import { api } from "./../../../../lib/woocommerceApi";
+import { api } from "../../../../utils/woocommerceApi";
 
 const Category = ({ category }) => {
   const [parent, setParent] = useState({});

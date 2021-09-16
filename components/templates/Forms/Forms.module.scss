@@ -4,7 +4,7 @@
     border: 1px solid #4444;
     border-radius: 8px;
   }
-  & > input[type="submit"] {
+  input[type="submit"] {
     @apply py-2 px-3 border-2 border-red bg-white text-red cursor-pointer font-bold w-full;
     transition: all 0.2s ease-in-out;
     border-radius: 8px;
@@ -12,7 +12,7 @@
       @apply text-white bg-red;
     }
   }
-  & > select {
+  select {
     @apply py-2 px-3 w-full mb-4;
     border: 1px solid #4444;
     border-radius: 8px;
@@ -28,5 +28,16 @@
   .error {
     @apply mb-3 -mt-3 text-red;
     font-size: 0.75rem;
+  }
+}
+
+.terms {
+  @apply mt-5;
+  * {
+    font-size: 0.75rem;
+  }
+  span {
+    font-weight: bold;
+    text-decoration: underline;
   }
 }

@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import style from "./Navbar.module.scss";
 import Link from "next/link";
 import Button from "../../elements/Button/Button";
 
-const Navbar = () => {
+const Navbar = (data) => {
   const [showNav, setShowNav] = useState(false);
 
   const toggleNav = () => {
     setShowNav(!showNav);
   };
+  console.log(data);
 
   return (
     <nav className={style.navBar}>

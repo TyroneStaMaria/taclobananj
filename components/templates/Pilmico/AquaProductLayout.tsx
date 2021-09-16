@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PilmicoProductTemplate from "../../elements/PilmicoProductTemplate/PilmicoProductTemplate";
-import { api } from "../../../lib/woocommerceApi";
+import { api } from "../../../utils/woocommerceApi";
 import ProductCard from "./../../elements/ProductCard/ProductCard";
 import styles from "./Pilmico.module.scss";
 

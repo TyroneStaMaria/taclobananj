@@ -1,7 +1,31 @@
 import React from "react";
-import Button from "../../elements/Button/Button";
+import styles from "./Forms.module.scss";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import * as Yup from "yup";
+import ErrorFeedback from "./ErrorFeedback";
+import axios from "axios";
 
 const LoginForm = () => {
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().email().required("Email is required"),
+    password: Yup.string().required("Password is required"),
+  });
+  const formOptions = { resolver: yupResolver(validationSchema) };
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm(formOptions);
+
+  const loginAccount = async (data) => {
+    console.log(data);
+    const response = await axios.post("/api/users/login", data);
+    console.log(response);
+  };
+
   return (
     <div>
       <div
@@ -9,36 +33,43 @@ const LoginForm = () => {
         style={{ height: `60vh` }}
       >
         <div className="w-full max-w-sm mx-auto">
-          <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            <h1 className="text-center mb-5">Log in</h1>
-            <div className="mb-4">
-              <input
-                className="shadow-md appearance-none border border-body rounded w-full py-2 px-3 text-body leading-tight focus:outline-none focus:shadow-outline"
-                id="username"
-                type="text"
-                placeholder="Username"
-              />
-            </div>
-            <div className="mb-6">
-              <input
-                className="shadow-md appearance-none border border-body rounded w-full py-2 px-3 text-body mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                id="password"
-                type="password"
-                placeholder="Password"
-              />
-            </div>
-            <div className="flex items-center justify-between">
-              <Button href="#" btnStyle="redFill">
-                Log in
-              </Button>
+          <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <form
+              method="post"
+              className={styles.formContainer}
+              onSubmit={handleSubmit(loginAccount)}
+            >
+              <h1 className="text-center mb-5">Log in</h1>
+              <div className="mb-3">
+                <input
+                  {...register("email")}
+                  id="email"
+                  type="text"
+                  placeholder="Email"
+                  name="email"
+                />
+                <ErrorFeedback error={errors.email} />
+              </div>
+              <div className="mb-3">
+                <input
+                  {...register("password")}
+                  id="password"
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                />
+                <ErrorFeedback error={errors.password} />
+              </div>
+              <input type="submit" value="Log In" />
               <a
-                className="inline-block align-baseline font-bold text-sm text-red hover:underline"
+                className="mt-3 inline-block align-baseline font-bold text-sm text-red hover:underline"
+                style={{ fontSize: `0.75rem` }}
                 href="#"
               >
                 Forgot Password?
               </a>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>

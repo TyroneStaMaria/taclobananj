@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { api } from "../../../lib/woocommerceApi";
+import { api } from "../../../utils/woocommerceApi";
 import DefaultLoader from "../../elements/DefaultLoader/DefaultLoader";
 import GroceryCategoryCard from "./GroceryCategoryCard";
 const GroceryPage = () => {

@@ -26,6 +26,10 @@ const GroceryCategoryCard = (props: GroceryCategory) => {
               height={350}
               quality={100}
               alt={props.name}
+              placeholder="blur"
+              blurDataURL={
+                props.image ? props.image : "/images/unavailable.png"
+              }
             />
           </div>
           <div className={styles.groceryCardText}>

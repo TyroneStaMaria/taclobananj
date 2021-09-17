@@ -1,8 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import axios from "axios";
-import { WP_TOKEN_URL } from "../../../lib/constants";
 import cookie from "cookie";
-import loginUser from "../../../utils/userRequests";
+import { loginUser } from "../../../utils/userRequests";
 
 export default async function handler(
   req: NextApiRequest,

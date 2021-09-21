@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Forms.module.scss";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import ErrorFeedback from "./ErrorFeedback";
 import axios from "axios";
+import Router from "next/router";
+import Link from "next/link";
+import useUser from "../../../utils/useUser";
 
 const LoginForm = () => {
   const validationSchema = Yup.object().shape({
@@ -12,6 +15,8 @@ const LoginForm = () => {
     password: Yup.string().required("Password is required"),
   });
   const formOptions = { resolver: yupResolver(validationSchema) };
+  const [error, setError] = useState(false);
+  const { mutateUser } = useUser({ redirectTo: "/", redirectIfFound: true });
 
   const {
     register,
@@ -21,10 +26,15 @@ const LoginForm = () => {
   } = useForm(formOptions);
 
   const loginAccount = async (data) => {
-    const response = await axios.post("/api/users/login", data, {
-      withCredentials: true,
-    });
-    // console.log(response);
+    try {
+      mutateUser(
+        await axios.post("/api/users/login", data, {
+          withCredentials: true,
+        })
+      );
+    } catch (err) {
+      setError(true);
+    }
   };
 
   return (
@@ -41,6 +51,12 @@ const LoginForm = () => {
               onSubmit={handleSubmit(loginAccount)}
             >
               <h1 className="text-center mb-5">Log in</h1>
+              {error && (
+                <p className="text-red mb-2" style={{ fontSize: `0.75rem` }}>
+                  Invalid Username or Password
+                </p>
+              )}
+
               <div className="mb-3">
                 <input
                   {...register("email")}
@@ -70,6 +86,14 @@ const LoginForm = () => {
                 Forgot Password?
               </a>
             </form>
+          </div>
+          <div>
+            <p className="text-center">
+              Don&apos;t have an account?{" "}
+              <Link href="/register">
+                <a className="text-red underline cursor-pointer">Register</a>
+              </Link>{" "}
+            </p>
           </div>
         </div>
       </div>

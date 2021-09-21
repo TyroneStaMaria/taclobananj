@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getAuthToken } from "../../../utils/cookies";
 import axios from "axios";
+import { WP_TOKEN_VALIDATION } from "../../../lib/constants";
 
 export default async function handler(
   req: NextApiRequest,
@@ -9,7 +10,7 @@ export default async function handler(
   const authToken = getAuthToken(req);
   try {
     const { data } = await axios.post(
-      "https://wp.taclobananjph.com/wp-json/jwt-auth/v1/token/validate",
+      WP_TOKEN_VALIDATION,
       {},
       { headers: { Authorization: "Bearer " + authToken } }
     );

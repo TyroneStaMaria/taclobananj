@@ -9,6 +9,8 @@ export const REGISTER_API_URL: string =
 export const GRAPHQL_URI: string = API_URL + "/graphql/";
 
 export const WP_TOKEN_URL: string = API_URL + "/wp-json/jwt-auth/v1/token";
+export const WP_TOKEN_VALIDATION: string =
+  API_URL + "/wp-json/jwt-auth/v1/token/validate";
 
 export const BRANDS_QUERY: string = `query brandsQuery {
   brands {

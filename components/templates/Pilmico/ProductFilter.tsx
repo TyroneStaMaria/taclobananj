@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { api } from "../../../lib/woocommerceApi";
+import { api } from "../../../utils/woocommerceApi";
 import styles from "./Pilmico.module.scss";
 import { MdFilterList } from "react-icons/md";
 import ProductSearch from "./ProductSearch";
@@ -11,11 +11,7 @@ interface Category {
   subCategories: Array<Object>;
 }
 
-const ProductFilter = ({
-  currentCategory,
-  filterProducts,
-  parentCategoryId,
-}) => {
+const ProductFilter = ({ currentCategory, filterProducts, parentCategory }) => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [showFilter, setShowFilter] = useState(false);
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
@@ -37,23 +33,6 @@ const ProductFilter = ({
     }
   };
 
-  const toggleProductFilterPosition = () => {
-    const filter: HTMLElement = document.querySelector("#prodFilter");
-    if (filter) {
-      window.addEventListener("scroll", () => {
-        if (
-          window.innerHeight + window.scrollY >=
-            document.scrollingElement.scrollHeight - 300 &&
-          parentCategoryId === 20
-        ) {
-          filter.style.top = "-250px";
-        } else {
-          filter.style.top = "20%";
-        }
-      });
-    }
-  };
-
   useEffect(() => {
     let isMounted = true;
     const fetchCategories = async (categoryId) => {
@@ -71,8 +50,8 @@ const ProductFilter = ({
       });
     };
 
-    fetchCategories(parentCategoryId);
-    toggleProductFilterPosition();
+    fetchCategories(parentCategory.id);
+    // toggleProductFilterPosition();
 
     return () => {
       isMounted = false;
@@ -89,6 +68,7 @@ const ProductFilter = ({
       <ProductSearch
         currentCategory={currentCategory}
         filterProducts={filterProducts}
+        parentCategory={parentCategory}
       />
       <div className="px-10 mb-4">
         <button
@@ -116,7 +96,7 @@ const ProductFilter = ({
         >
           &#10005;
         </button>
-        <h2 className="text-body border-b-2 border-body w-3/5 mb-3 ">
+        <h2 className="text-body border-b-2 border-body w-9/12 mb-3 ">
           Categories
         </h2>
         {categories.map((category) => {

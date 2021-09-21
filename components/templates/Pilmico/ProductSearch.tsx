@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { MdSearch } from "react-icons/md";
 
-const ProductSearch = ({ currentCategory, filterProducts }) => {
+const ProductSearch = ({ currentCategory, filterProducts, parentCategory }) => {
   const [searchKey, setSearchKey] = useState("");
   const handleSearch = (event, searchKey) => {
     if (
       (event.type === "keydown" && event.key === "Enter") ||
       event.type === "click"
     ) {
-      filterProducts({ ...currentCategory, searchKey: searchKey });
+      console.log(parentCategory);
+      filterProducts({
+        id: parentCategory.id,
+        name: parentCategory.name,
+        searchKey: searchKey,
+      });
     }
   };
   const handleInputChange = (event) => {

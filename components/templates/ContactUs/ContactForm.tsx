@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import styles from "./ContactForm.module.scss";
-import Loader from "react-loader-spinner";
 import { CONTACT_FORM_API_URL } from "../../../lib/constants";
+import DefaultLoader from "../../elements/DefaultLoader/DefaultLoader";
 interface ContactFormData {
   fullname: string;
   email: string;
@@ -41,8 +41,6 @@ const ContactForm = () => {
   const submitForm = async (e) => {
     e.preventDefault();
 
-    console.log("Sending");
-
     try {
       setLoading(true);
       const { data } = await axios({
@@ -76,9 +74,7 @@ const ContactForm = () => {
           ""
         )}
         {loading ? (
-          <div className="flex justify-center">
-            <Loader type="TailSpin" color="#bf2626" height={80} width={80} />
-          </div>
+          <DefaultLoader />
         ) : (
           <form className={styles.contactContainer} onSubmit={submitForm}>
             <input

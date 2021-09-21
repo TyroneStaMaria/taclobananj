@@ -4,7 +4,7 @@ import Hero from "../../../components/templates/Pilmico/Hero";
 import Products from "../../../components/templates/Pilmico/Products";
 const Feeds = () => {
   const [category, setCategory] = useState({ id: 20, name: "feeds" });
-
+  const parentCategory = { id: 20, name: "feeds" };
   const banners = ["/images/pilmico/feeds.png", "/images/pilmico/gamefowl.png"];
   const [banner, setBanner] = useState(banners[0]);
 
@@ -25,7 +25,7 @@ const Feeds = () => {
           setCategory(categ);
         }}
         name="Feeds"
-        parentCategoryId={20}
+        parentCategory={parentCategory}
       />
     </div>
   );

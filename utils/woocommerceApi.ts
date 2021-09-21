@@ -1,5 +1,5 @@
 import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
-import { API_URL, CONSUMER_KEY, CONSUMER_SECRET } from "./constants";
+import { API_URL, CONSUMER_KEY, CONSUMER_SECRET } from "../lib/constants";
 
 export const api = new WooCommerceRestApi({
   url: API_URL,

@@ -1,20 +1,24 @@
 import Head from "next/head";
 import Link from "next/link";
 import React from "react";
+import CatalogCard from "../../../components/elements/CatalogCard/CatalogCard";
 import HeroCarousel from "../../../components/templates/Pilmico/HeroCarousel";
 const Pilmico = () => {
   const links = [
     {
       name: "Feeds",
       link: "/products/pilmico/feeds",
+      img: "/images/pilmico/products/feeds.png",
     },
     {
       name: "Flour",
       link: "/products/pilmico/flour",
+      img: "/images/pilmico/products/flour.png",
     },
     {
       name: "Pet Food",
       link: "/products/pilmico/pet-food",
+      img: "/images/pilmico/products/pet-food.png",
     },
   ];
   return (
@@ -26,19 +30,19 @@ const Pilmico = () => {
       <section>
         <h1 className="text-center">Pilmico Products</h1>
         <div className="container mx-auto">
-          <div className="flex justify-center">
+          <div className="flex justify-center items-center flex-col lg:flex-row">
             {links.map((item, index) => {
               return (
-                <Link key={index} href={item.link} passHref>
-                  <div className="bg-body text-center mx-3 w-full cursor-pointer lg:w-1/3">
-                    <h3>{item.name}</h3>
-                  </div>
-                </Link>
+                <div key={index} className="mx-5 mb-3 lg:mb-0">
+                  <CatalogCard
+                    title="Pilmico Products"
+                    name={item.name}
+                    img={item.img}
+                    link={item.link}
+                  />
+                </div>
               );
             })}
-            {/* <Link href="/products/pilmico/feeds" >Feeds</Link>
-            <Link href="/products/pilmico/flour">Flour</Link>
-            <Link href="/products/pilmico/pet-food">Pet Food</Link> */}
           </div>
         </div>
       </section>

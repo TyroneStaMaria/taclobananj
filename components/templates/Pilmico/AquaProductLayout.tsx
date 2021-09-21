@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PilmicoProductTemplate from "../../elements/PilmicoProductTemplate/PilmicoProductTemplate";
-import { api } from "../../../lib/woocommerceApi";
+import { api } from "../../../utils/woocommerceApi";
 import ProductCard from "./../../elements/ProductCard/ProductCard";
 import styles from "./Pilmico.module.scss";
 
@@ -13,15 +13,17 @@ interface AquaSubCategory {
 
 // TODO: refactor this so that when filtered into subcategories marread siya
 
-const AquaProductLayout = ({ categoryId, fetchProducts }) => {
+const AquaProductLayout = ({ categoryId, fetchProducts, searchKey }) => {
   const [subCategories, setSubCategories] = useState([]);
   const aquaId = 24;
+  const aquaSubCategoryIds = [39, 40, 41, 42];
 
   const fetchAquaSubCategories = async () => {
     try {
       const { data } = await api.get("products/categories", {
-        parent: categoryId,
+        parent: aquaId,
         orderby: "id",
+        search: searchKey,
       });
       return data;
     } catch (err) {
@@ -77,17 +79,7 @@ const AquaProductLayout = ({ categoryId, fetchProducts }) => {
 
   useEffect(() => {
     const fetchAquaProducts = async () => {
-      if (aquaId === categoryId) {
-        const subCategories = await fetchAquaSubCategories();
-        subCategories.map(async (singleSubCategory) => {
-          const products = await fetchProducts(singleSubCategory.id);
-          const subCategoryItem: AquaSubCategory = initializeSubCategory(
-            singleSubCategory,
-            products
-          );
-          setSubCategories((categories) => [...categories, subCategoryItem]);
-        });
-      } else {
+      if (aquaSubCategoryIds.includes(categoryId)) {
         const subCategory = await fetchSingleSubCategory();
         const products = await fetchProducts(subCategory.id);
         const subCategoryItem: AquaSubCategory = initializeSubCategory(
@@ -95,7 +87,18 @@ const AquaProductLayout = ({ categoryId, fetchProducts }) => {
           products
         );
         setSubCategories((categories) => [...categories, subCategoryItem]);
+        return;
       }
+
+      const subCategories = await fetchAquaSubCategories();
+      subCategories.map(async (singleSubCategory) => {
+        const products = await fetchProducts(singleSubCategory.id);
+        const subCategoryItem: AquaSubCategory = initializeSubCategory(
+          singleSubCategory,
+          products
+        );
+        setSubCategories((categories) => [...categories, subCategoryItem]);
+      });
     };
     fetchAquaProducts();
   }, []);

@@ -8,7 +8,7 @@ const Products = () => {
       <Head>
         <title>Products | Tacloban ANJ</title>
       </Head>
-      <Catalogue />;
+      <Catalogue />
     </div>
   );
 };

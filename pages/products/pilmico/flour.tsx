@@ -4,6 +4,7 @@ import Hero from "../../../components/templates/Pilmico/Hero";
 import Products from "../../../components/templates/Pilmico/Products";
 const Flour = () => {
   const [category, setCategory] = useState({ id: 19, name: "Flour" });
+  const parentCategory = { id: 19, name: "Flour" };
   const banner = "/images/pilmico/flour.png";
   return (
     <div>
@@ -15,7 +16,7 @@ const Flour = () => {
         category={category}
         setCategory={setCategory}
         name="Flour"
-        parentCategoryId={19}
+        parentCategory={parentCategory}
       />
     </div>
   );

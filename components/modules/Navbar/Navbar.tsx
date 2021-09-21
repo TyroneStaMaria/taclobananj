@@ -3,15 +3,19 @@ import Image from "next/image";
 import style from "./Navbar.module.scss";
 import Link from "next/link";
 import Button from "../../elements/Button/Button";
+import { getAuthToken } from "../../../utils/cookies";
+import axios from "axios";
+import useUser from "../../../utils/useUser";
 
 const Navbar = (data) => {
   const [showNav, setShowNav] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState({});
 
   const toggleNav = () => {
     setShowNav(!showNav);
   };
-  console.log(data);
 
+  const { user, mutateUser } = useUser();
   return (
     <nav className={style.navBar}>
       <div className="container mx-auto flex items-center justify-between px-7 lg:px-0">
@@ -63,9 +67,13 @@ const Navbar = (data) => {
                 <Link href="/contact-us">Contact Us</Link>
               </li>
               <li onClick={toggleNav}>
-                <Button href="#" btnStyle="redOutline">
-                  Register / Log in
-                </Button>
+                {user?.isLoggedIn ? (
+                  <div>hello</div>
+                ) : (
+                  <Button href="#" btnStyle="redOutline">
+                    Register / Log in
+                  </Button>
+                )}
               </li>
             </ul>
           </div>
@@ -74,5 +82,21 @@ const Navbar = (data) => {
     </nav>
   );
 };
+// export async function getStaticProps({ req }) {
+//   const authToken = getAuthToken(req);
 
+//   const { data } = await axios.post(
+//     "https://wp.taclobananjph.com/wp-json/jwt-auth/v1/token/validate",
+//     {},
+//     { headers: { Authorization: "Bearer " + authToken } }
+//   );
+
+//   console.log("auth", data);
+
+//   return {
+//     props: {
+//       data: "hello",
+//     },
+//   };
+// }
 export default Navbar;

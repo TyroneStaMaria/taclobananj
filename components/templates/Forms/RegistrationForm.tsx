@@ -29,6 +29,7 @@ interface UserRegistration {
 const RegistrationForm = () => {
   const [registerSuccess, setRegisterSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<any>(null);
 
   const validationSchema = Yup.object().shape({
     first_name: Yup.string().required("First Name is required").trim().strict(),
@@ -70,24 +71,18 @@ const RegistrationForm = () => {
   } = useForm(formOptions);
 
   const submitRegistration = async (userDetails) => {
+    setLoading(true);
     try {
-      setLoading(true);
-      const wpResponse: any = await axios.post(REGISTER_API_URL, userDetails);
-      const hubspotResponse = await axios.post("/api/contact/create", {
-        firstname: userDetails.first_name,
-        lastname: userDetails.last_name,
-        email: userDetails.email,
-        phone: userDetails.phone,
-        address: userDetails.address,
-        gender: userDetails.gender,
-      });
-      if (wpResponse.status === 200 && hubspotResponse.status === 200) {
-        setRegisterSuccess(true);
-        reset();
-      }
-      setLoading(false);
+      const response = await axios.post("/api/users/register", userDetails);
+      console.log(response);
+      setRegisterSuccess(true);
+      setErrorMessage(null);
+      reset();
     } catch (err) {
-      console.log(err);
+      setErrorMessage(err.response.data);
+      console.log(err.response);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -103,6 +98,7 @@ const RegistrationForm = () => {
             </span>
           </p>
         )}
+        {errorMessage && <p className="text-red">{errorMessage.wp.message}</p>}
         <form
           method="post"
           onSubmit={handleSubmit(submitRegistration)}

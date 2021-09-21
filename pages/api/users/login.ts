@@ -14,7 +14,7 @@ export default async function handler(
       });
 
       res.setHeader(
-        "SetCookie",
+        "Set-Cookie",
         cookie.serialize("auth", String(data?.token ?? ""), {
           httpOnly: true,
           secure: "development" !== process.env.NODE_ENV,

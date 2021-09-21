@@ -21,9 +21,10 @@ const LoginForm = () => {
   } = useForm(formOptions);
 
   const loginAccount = async (data) => {
-    console.log(data);
-    const response = await axios.post("/api/users/login", data);
-    console.log(response);
+    const response = await axios.post("/api/users/login", data, {
+      withCredentials: true,
+    });
+    // console.log(response);
   };
 
   return (

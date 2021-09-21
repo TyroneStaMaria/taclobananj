@@ -11,8 +11,6 @@ export async function loginUser(userData) {
 }
 
 export async function registerUser(userData) {
-  // TODO: debug wpresponse code
-
   const wpResponse = await wpRegister(userData);
   const { ...responseContent }: any = await hubspotCreateContact(userData);
   const hubspotResponse = responseContent.response;
@@ -34,23 +32,11 @@ export async function registerUser(userData) {
 
   return {
     message: "Success",
-    wp: wpResponse.data,
-    hubspotResponse: {
-      status: 200,
-      message: "success",
-    },
     status: 200,
   };
 }
 
 // local functions
-
-function RegisterException(message, wp, hubspot, status) {
-  this.message = message;
-  this.wp = wp;
-  this.hubspot = hubspot;
-  this.status = status;
-}
 
 const wpRegister = async (userData) => {
   try {

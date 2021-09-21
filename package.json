@@ -23,6 +23,7 @@
     "react-multi-carousel": "^2.6.3",
     "react-responsive": "^9.0.0-beta.3",
     "sass": "^1.36.0",
+    "swr": "^1.0.1",
     "yup": "^0.32.9"
   },
   "devDependencies": {

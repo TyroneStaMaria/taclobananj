@@ -1,9 +1,10 @@
 import Head from "next/head";
 import React from "react";
 import LoginForm from "../components/templates/Forms/LoginForm";
-import axios from "axios";
-import { getAuthToken } from "../utils/cookies";
+import useUser from "../utils/useUser";
+
 const Login = ({ data }) => {
+  const { user } = useUser({ redirectTo: "/", redirectIfFound: true });
   return (
     <div>
       <Head>

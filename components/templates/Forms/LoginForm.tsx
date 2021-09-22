@@ -78,13 +78,14 @@ const LoginForm = () => {
                 <ErrorFeedback error={errors.password} />
               </div>
               <input type="submit" value="Log In" />
-              <a
-                className="mt-3 inline-block align-baseline font-bold text-sm text-red hover:underline"
-                style={{ fontSize: `0.75rem` }}
-                href="#"
-              >
-                Forgot Password?
-              </a>
+              <Link href="/forgot-password">
+                <a
+                  style={{ fontSize: `0.75rem` }}
+                  className="mt-3 inline-block align-baseline font-bold text-sm text-red hover:underline"
+                >
+                  Forgot Password?
+                </a>
+              </Link>
             </form>
           </div>
           <div>

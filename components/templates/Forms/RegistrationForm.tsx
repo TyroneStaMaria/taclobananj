@@ -74,13 +74,13 @@ const RegistrationForm = () => {
     setLoading(true);
     try {
       const response = await axios.post("/api/users/register", userDetails);
-      console.log(response);
+      // console.log(response);
       setRegisterSuccess(true);
       setErrorMessage(null);
       reset();
     } catch (err) {
       setErrorMessage(err.response.data);
-      console.log(err.response);
+      // console.log(err.response);
     } finally {
       setLoading(false);
     }

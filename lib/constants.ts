@@ -12,6 +12,15 @@ export const WP_TOKEN_URL: string = API_URL + "/wp-json/jwt-auth/v1/token";
 export const WP_TOKEN_VALIDATION: string =
   API_URL + "/wp-json/jwt-auth/v1/token/validate";
 
+export const WP_RESET_PASSWORD_CODE_URL: string =
+  API_URL + "/wp-json/bdpwr/v1/reset-password";
+
+export const WP_VALIDATE_RESET_PASSWORD_CODE_URL: string =
+  API_URL + "/wp-json/bdpwr/v1/validate-code";
+
+export const WP_SET_NEW_PASSWORD_URL: string =
+  API_URL + "/wp-json/bdpwr/v1/set-password";
+
 export const BRANDS_QUERY: string = `query brandsQuery {
   brands {
     nodes {

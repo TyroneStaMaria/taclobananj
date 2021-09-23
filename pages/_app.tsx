@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
       value={{
         fetcher: axios,
         onError: (err) => {
-          console.log(err);
+          // console.log(err);
         },
       }}
     >

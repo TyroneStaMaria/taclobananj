@@ -30,7 +30,9 @@ const Layout = (props: LayoutProp): JSX.Element => {
     <div class="fb-customerchat"
       attribution="install_email"
       attribution_version="biz_inbox"
-      page_id="538845559986335">
+      page_id="538845559986335"
+      theme_color= "#f9bfbf"
+      >
     </div>
   `;
   return (

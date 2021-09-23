@@ -42,7 +42,7 @@ const BackToTop = () => {
         window.scrollTo(0, 0);
       }}
     >
-      <div className="text-h1">
+      <div>
         <BiUpArrowCircle />
       </div>
     </button>

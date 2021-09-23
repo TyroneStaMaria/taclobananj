@@ -31,7 +31,7 @@ const Layout = (props: LayoutProp): JSX.Element => {
       attribution="install_email"
       attribution_version="biz_inbox"
       page_id="538845559986335"
-      theme_color= "#f9bfbf"
+      theme_color= "#bf2626"
       >
     </div>
   `;

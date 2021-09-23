@@ -1,6 +1,7 @@
 .backToTopContainer {
-  @apply fixed bottom-9 flex flex-col items-center cursor-pointer right-1 lg:right-4;
+  @apply fixed  flex flex-col items-center cursor-pointer right-5 lg:right-24;
   transition: all 0.4s ease-in-out;
+  bottom: 5.25rem;
 
   & > * {
     @apply text-red;
@@ -8,6 +9,9 @@
     &:hover {
       @apply text-yellow;
     }
+  }
+  & > div {
+    font-size: 4rem;
   }
 }
 .yellow {

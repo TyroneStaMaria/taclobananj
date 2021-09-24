@@ -87,7 +87,7 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className="container mx-auto flex items-center justify-center flex-col h-screen">
+    <div className="container mx-auto flex items-center justify-center flex-col ">
       <div className="bg-white px-10 pt-3 pb-20 rounded shadow-md text-black w-full max-w-lg mx-auto">
         <h1 className="mb-8 text-3xl text-center">Register </h1>
         {registerSuccess && (
@@ -173,7 +173,7 @@ const RegistrationForm = () => {
             <ErrorFeedback error={errors.address} />
           </div>
           <div className="flex flex-col lg:flex-row">
-            <div className="mr-3 lg:w-1/2">
+            <div className="mr-3 w-full lg:w-1/2">
               <input
                 {...register("password")}
                 type="password"
@@ -183,7 +183,7 @@ const RegistrationForm = () => {
               />
               <ErrorFeedback error={errors.password} />
             </div>
-            <div className="lg:w-1/2">
+            <div className="w-full lg:w-1/2">
               <input
                 {...register("confirm_password")}
                 type="password"

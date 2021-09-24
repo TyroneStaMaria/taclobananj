@@ -8,7 +8,9 @@ const Register = () => {
       <Head>
         <title>Register | Tacloban ANJ</title>
       </Head>
-      <RegistrationForm />
+      <section>
+        <RegistrationForm />
+      </section>
     </div>
   );
 };

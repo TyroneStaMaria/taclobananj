@@ -13,7 +13,7 @@ const Doc = ({ title, content }) => {
         <title>{title} | Tacloban ANJ</title>
       </Head>
       {/* <ReactMarkdown children={content} /> */}
-      <div className="container mx-auto py-24">
+      <div className="container mx-auto py-24 px-4  lg:px-0">
         {/* {content} */}
         <ReactMarkdown
           components={{
@@ -21,10 +21,10 @@ const Doc = ({ title, content }) => {
               <h1 className="text-center" {...props} />
             ),
             p: ({ node, ...props }: any) => (
-              <p className="mb-3" {...props} />
+              <p className="mb-3 text-justify" {...props} />
             ),
             h4: ({ node, ...props }: any) => (
-              <h4 className="mb-3 mt-7 font-body font-bold text-body" {...props} />
+              <h4 className="mb-3 mt-7 font-body font-bold text-body text-center lg:text-left" {...props} />
             ),
             a:({ node, ...props }: any) => (
               <a className="text-red underline" target="_blank"  {...props} />

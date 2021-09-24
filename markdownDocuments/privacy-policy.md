@@ -20,7 +20,7 @@ more information about what Personal Information we collect and why.
 
 > Device information
 
--   **Examples of Personal Information collected:** version of web
+-   #### Examples of Personal Information collected: version of web
     browser, IP address, time zone, cookie information, what sites or
     products you view, search terms, and how you interact with the Site.
 
@@ -56,7 +56,7 @@ more information about what Personal Information we collect and why.
 
 -   **Source of collection:** collected from you.
 
-Sharing Personal Information
+#### Sharing Personal Information
 
 We do not sell, trade, or otherwise transfer to outside parties your
 personally information. This does not include third parties that help us
@@ -69,7 +69,7 @@ agreements whereby we provide you Services shall be governed by and
 construed in accordance with the Data Privacy Act of 2012 and other laws
 of the Philippines.
 
-Data Security
+#### Data Security
 
 Security measures are present whenever a form is submitted through our
 website, payment gateways, and processing of orders. All inputted card
@@ -78,7 +78,7 @@ all of it confidential. Basic information such as, but not limited to:
 Name, address, email, and contact number will be present in order to
 process and deliver your products/services.
 
-Data Security
+#### Data Security
 
 As described above, we use your Personal Information to provide you with
 targeted advertisements or marketing communications we believe may be of
@@ -113,7 +113,7 @@ at [[http://www.networkadvertising.org/understanding-online-advertising/how-does
 -   GOOGLE
     - [[https://www.google.com/settings/ads/anonymous]](https://www.google.com/settings/ads/anonymous)
 
-Using Personal Information
+#### Using Personal Information
 
 We use your personal Information to provide our services to you which is
 collected from the forms that are present in our website, and tracked
@@ -122,7 +122,7 @@ offering products for sale, processing payments, shipping and
 fulfillment of your order, and keeping you up to date on new products,
 services, and offers.
 
-Cookies
+#### Cookies
 
 A cookie is a small amount of information that's downloaded to your
 computer or device when you visit our Site. We use a number of different
@@ -135,13 +135,13 @@ browse from one page to another. Cookies also provide information on how
 people use the website, for instance whether it's their first time
 visiting or if they are a frequent visitor.
 
-Changes
+#### Changes
 
 We may update this Privacy Policy from time to time in order to reflect,
 for example, changes to our practices or for other operational, legal,
 or regulatory reasons.
 
-Contact
+#### Contact
 
 Last updated: September 15, 2021\
 For more information about our privacy practices, if you have questions,

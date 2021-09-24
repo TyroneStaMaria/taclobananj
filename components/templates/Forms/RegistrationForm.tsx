@@ -203,11 +203,11 @@ const RegistrationForm = () => {
             <p className="text-body">
               By clicking Register, you agree to our{" "}
               <span>
-                <Link href="#">Terms of Service</Link>{" "}
+                <Link href="/docs/terms-of-service">Terms of Service</Link>{" "}
               </span>{" "}
               and that you have read our{" "}
               <span>
-                <Link href="#">Privacy Policy </Link>
+                <Link href="/docs/privacy-policy">Privacy Policy </Link>
               </span>
             </p>
           </div>

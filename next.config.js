@@ -1,5 +1,6 @@
 require("dotenv").config();
-module.exports = {
+const withTM = require("next-transpile-modules")(["react-markdown"]);
+module.exports = withTM({
   env: {
     CONSUMER_KEY: process.env.CONSUMER_KEY,
     CONSUMER_SECRET: process.env.CONSUMER_SECRET,
@@ -43,4 +44,4 @@ module.exports = {
         : null,
     ].filter(Boolean);
   },
-};
+});

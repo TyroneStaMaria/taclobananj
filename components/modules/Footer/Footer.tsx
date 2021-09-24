@@ -23,13 +23,13 @@ const Footer = () => {
               <Link href="/about">About us</Link>
             </li>
             <li>
-              <Link href="#">Products</Link>
+              <Link href="/products">Products</Link>
             </li>
             <li>
               <Link href="#">Training Center</Link>
             </li>
             <li>
-              <Link href="#">Contact Us</Link>
+              <Link href="/contact-us">Contact Us</Link>
             </li>
           </ul>
           <div className="mt-7 text-center">
@@ -58,6 +58,27 @@ const Footer = () => {
               </a>
             </li>
           </ul>
+          <div className={`${style.navItems} ${style.sitemap} mt-3`}>
+            <Link href="/docs/terms-of-service">
+              <a
+                className="text-white hover:underline"
+                style={{ fontSize: `0.75rem` }}
+              >
+                Terms of Service
+              </a>
+            </Link>
+            <div className="text-white mx-3" style={{ fontSize: `0.75rem` }}>
+              |
+            </div>
+            <Link href="/docs/privacy-policy">
+              <a
+                className="text-white hover:underline"
+                style={{ fontSize: `0.75rem` }}
+              >
+                Privacy Policy
+              </a>
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

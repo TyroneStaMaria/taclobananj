@@ -173,7 +173,7 @@ const RegistrationForm = () => {
             <ErrorFeedback error={errors.address} />
           </div>
           <div className="flex flex-col lg:flex-row">
-            <div className="mr-3">
+            <div className="mr-3 lg:w-1/2">
               <input
                 {...register("password")}
                 type="password"
@@ -183,7 +183,7 @@ const RegistrationForm = () => {
               />
               <ErrorFeedback error={errors.password} />
             </div>
-            <div>
+            <div className="lg:w-1/2">
               <input
                 {...register("confirm_password")}
                 type="password"

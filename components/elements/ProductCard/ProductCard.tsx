@@ -7,7 +7,14 @@ const ProductCard = (props: Product): JSX.Element => {
   return (
     <div className={styles.productCard}>
       <div>
-        <Image src={props.img} alt={props.id} height={350} width={350} />
+        <Image
+          src={props.img}
+          alt={props.id}
+          height={350}
+          width={350}
+          placeholder="blur"
+          blurDataURL={props.img ? props.img : "/images/unavailable.png"}
+        />
       </div>
       <div className="px-10">
         <h3 className={props.id ? "" : "text-center"}>{props.name}</h3>

@@ -5,29 +5,17 @@ import DefaultLoader from "../../../../components/elements/DefaultLoader/Default
 import BrandPage from "../../../../components/templates/Groceries/BrandPage";
 import { api } from "../../../../utils/woocommerceApi";
 
-const Category = ({ category }) => {
-  const [parent, setParent] = useState({});
+const Category = ({ parent }) => {
   const [brands, setBrands] = useState([]);
 
   const [loading, setLoading] = useState(false);
 
-  const getParent = async () => {
-    try {
-      const { data } = await api.get("products/categories", {
-        slug: category,
-      });
-      return { id: data[0].id, name: data[0].name };
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   const getBrands = async () => {
-    const { id } = await getParent();
+    // const { id } = await getParent();
     try {
       setLoading(true);
       const { data } = await api.get("products/categories", {
-        parent: id,
+        parent: parent.id,
         orderby: "name",
         per_page: 30,
       });
@@ -55,7 +43,7 @@ const Category = ({ category }) => {
 
     storeState(getBrands, setBrands);
 
-    storeState(getParent, setParent);
+    // storeState(getParent, setParent);
 
     return () => {
       isMounted = false;
@@ -71,10 +59,10 @@ const Category = ({ category }) => {
         <div className="container mx-auto">
           <h1 className="capitalize text-center">{parent["name"]}</h1>
           {!loading ? (
-            category === "rice" ? (
+            parent.slug === "rice" ? (
               <Products brand={parent} />
             ) : (
-              <BrandPage category={category} brands={brands} />
+              <BrandPage category={parent.slug} brands={brands} />
             )
           ) : (
             <DefaultLoader />
@@ -85,9 +73,39 @@ const Category = ({ category }) => {
   );
 };
 
-export const getServerSideProps = async ({ params }) => {
-  const { category } = params;
-  return { props: { category } };
-};
+export async function getStaticProps(context) {
+  const { category } = context.params;
+  try {
+    const { data } = await api.get("products/categories", {
+      slug: category,
+    });
+    return {
+      props: { parent: { id: data[0].id, name: data[0].name, slug: category } },
+    };
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function getStaticPaths() {
+  const groceryId = 22;
+  try {
+    const { data } = await api.get("products/categories", {
+      parent: groceryId,
+      orderby: "id",
+    });
+    const paths = data.map(({ slug }) => {
+      return {
+        params: {
+          category: slug,
+        },
+      };
+    });
+    return { paths, fallback: false };
+  } catch (err) {
+    console.log(err);
+  }
+  // return {  }
+}
 
 export default Category;

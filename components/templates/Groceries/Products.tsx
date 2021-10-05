@@ -4,8 +4,6 @@ import Product from "../../../interface/Product";
 import ProductCard from "../../../components/elements/ProductCard/ProductCard";
 import DefaultLoader from "../../../components/elements/DefaultLoader/DefaultLoader";
 
-// TODO: add redirects to the slugs
-
 const Products = ({ brand }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);

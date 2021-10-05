@@ -36,6 +36,37 @@ export const BRANDS_QUERY: string = `query brandsQuery {
 }
 `;
 
+export const TRAINING_CENTER_QUERY: string = `query trainingCenterQuery {
+  trainingCenters(where: {orderby: {field: DATE, order: ASC}}) {
+    nodes {
+      trainingCenterContent {
+        description
+        video {
+          mediaItemUrl
+        }
+      }
+      title
+      uri
+      slug
+    }
+  }
+}
+`;
+
+export function SINGLE_TRAINING_CENTER_QUERY_BY_SLUG(slug) {
+  return `query trainingCenterQueryBy { 
+    trainingCenterBy(slug: "${slug}") {
+      title(format: RENDERED)
+      trainingCenterContent {
+        description
+        video {
+          mediaItemUrl
+        }
+      }
+    }
+  }`;
+}
+
 export const CONSUMER_KEY = process.env.CONSUMER_KEY;
 export const CONSUMER_SECRET = process.env.CONSUMER_SECRET;
 export const HUBSPOT_API_KEY = process.env.HUBSPOT_API_KEY;

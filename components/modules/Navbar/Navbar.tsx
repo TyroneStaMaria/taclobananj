@@ -63,7 +63,7 @@ const Navbar = (data) => {
                 <Link href="/products">Products</Link>
               </li>
               <li onClick={toggleNav}>
-                <Link href="#">Training Center</Link>
+                <Link href="/training-center">Training Center</Link>
               </li>
               <li onClick={toggleNav}>
                 <Link href="/contact-us">Contact Us</Link>

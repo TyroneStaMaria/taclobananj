@@ -5,6 +5,7 @@ module.exports = withTM({
     CONSUMER_KEY: process.env.CONSUMER_KEY,
     CONSUMER_SECRET: process.env.CONSUMER_SECRET,
     HUBSPOT_API_KEY: process.env.HUBSPOT_API_KEY,
+    URL: process.env.URL,
   },
   images: {
     domains: ["wp.taclobananjph.com"],

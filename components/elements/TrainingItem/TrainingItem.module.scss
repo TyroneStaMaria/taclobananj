@@ -1,0 +1,12 @@
+.trainingItem {
+  @apply flex items-center justify-center shadow-lg rounded-lg py-5 px-10;
+  .itemDetail {
+    @apply ml-4;
+    & > * {
+      @apply mb-3;
+    }
+    & > p {
+      @apply mb-5;
+    }
+  }
+}

@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import TrainingItem from "../../components/elements/TrainingItem/TrainingItem";
 import axios from "axios";
+import { BASE_URL } from "../../lib/constants";
 const TrainingCenter = ({ trainingVideos }) => {
   return (
     <div>
@@ -34,8 +35,9 @@ export default TrainingCenter;
 export async function getServerSideProps(context) {
   try {
     // console.log(process.env.URL);
+
     const { data } = await axios.get(
-      `${process.env.URL}/api/training-center/get-all-content`
+      `${BASE_URL}/api/training-center/get-all-content`
     );
 
     return {

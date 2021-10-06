@@ -70,3 +70,8 @@ export function SINGLE_TRAINING_CENTER_QUERY_BY_SLUG(slug) {
 export const CONSUMER_KEY = process.env.CONSUMER_KEY;
 export const CONSUMER_SECRET = process.env.CONSUMER_SECRET;
 export const HUBSPOT_API_KEY = process.env.HUBSPOT_API_KEY;
+
+export const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? process.env.PRODUCTION_URL
+    : process.env.URL;

@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import axios from "axios";
 import ReactPlayer from "react-player";
+import { BASE_URL } from "../../lib/constants";
 
 const TrainingVideo = ({ trainingVideo }) => {
   const { title, trainingCenterContent } = trainingVideo;
@@ -43,7 +44,7 @@ export async function getStaticProps(context) {
   const { slug } = context.params;
 
   const { data } = await axios.get(
-    `${process.env.URL}/api/training-center/get-single-content`,
+    `${BASE_URL}/api/training-center/get-single-content`,
     { params: { slug } }
   );
 
@@ -52,7 +53,7 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
   const { data } = await axios.get(
-    `${process.env.URL}/api/training-center/get-all-content`
+    `${BASE_URL}/api/training-center/get-all-content`
   );
 
   const paths = data.nodes.map(({ slug }) => {

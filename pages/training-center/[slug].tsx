@@ -39,30 +39,30 @@ const TrainingVideo = ({ trainingVideo }) => {
 
 export default TrainingVideo;
 
-export async function getStaticProps(context) {
-  // console.log(context);
-  const { slug } = context.params;
+// export async function getStaticProps(context) {
+//   // console.log(context);
+//   const { slug } = context.params;
 
-  const { data } = await axios.get(
-    `${BASE_URL}/api/training-center/get-single-content`,
-    { params: { slug } }
-  );
+//   const { data } = await axios.get(
+//     `${BASE_URL}/api/training-center/get-single-content`,
+//     { params: { slug } }
+//   );
 
-  return { props: { trainingVideo: { ...data } } };
-}
+//   return { props: { trainingVideo: { ...data } } };
+// }
 
-export async function getStaticPaths() {
-  const { data } = await axios.get(
-    `${BASE_URL}/api/training-center/get-all-content`
-  );
+// export async function getStaticPaths() {
+//   const { data } = await axios.get(
+//     `${BASE_URL}/api/training-center/get-all-content`
+//   );
 
-  const paths = data.nodes.map(({ slug }) => {
-    return {
-      params: {
-        slug: slug,
-      },
-    };
-  });
+//   const paths = data.nodes.map(({ slug }) => {
+//     return {
+//       params: {
+//         slug: slug,
+//       },
+//     };
+//   });
 
-  return { paths, fallback: false };
-}
+//   return { paths, fallback: false };
+// }

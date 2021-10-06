@@ -3,8 +3,11 @@ import Head from "next/head";
 import axios from "axios";
 import ReactPlayer from "react-player";
 import { BASE_URL } from "../../lib/constants";
+import useUser from "../../utils/useUser";
 
 const TrainingVideo = ({ trainingVideo }) => {
+  const { user } = useUser({ redirectTo: "/", redirectIfFound: false });
+
   const { title, trainingCenterContent } = trainingVideo;
   return (
     <div>

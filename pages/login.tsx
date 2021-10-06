@@ -3,7 +3,7 @@ import React from "react";
 import LoginForm from "../components/templates/Forms/LoginForm";
 import useUser from "../utils/useUser";
 
-const Login = ({ data }) => {
+const Login = () => {
   const { user } = useUser({ redirectTo: "/", redirectIfFound: true });
   return (
     <div>

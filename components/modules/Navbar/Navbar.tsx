@@ -14,10 +14,7 @@ const Navbar = (data) => {
     setShowNav(!showNav);
   };
 
-  const { user, mutateUser } = useUser({
-    redirectTo: "/",
-    redirectIfFound: true,
-  });
+  const { user, mutateUser } = useUser();
   return (
     <nav className={style.navBar}>
       <div className="container mx-auto flex items-center justify-between px-7 lg:px-0">

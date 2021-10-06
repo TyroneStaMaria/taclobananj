@@ -7,13 +7,15 @@ interface ContactFormData {
   fullname: string;
   email: string;
   message: string;
+  contact_num: string;
 }
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     fullname: "",
     email: "",
     message: "",
+    contact_num: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -56,6 +58,7 @@ const ContactForm = () => {
         fullname: "",
         email: "",
         message: "",
+        contact_num: "",
       });
       setLoading(false);
     } catch (error) {
@@ -66,7 +69,11 @@ const ContactForm = () => {
 
   return (
     <div>
-      <p className="mb-3 text-h4">Leave us a Message</p>
+      <p className=" text-h4">Leave us a Message</p>
+      <p className="text-body mb-3" style={{ fontSize: `0.75rem` }}>
+        Notify us about any inquiries or order placements through the message
+        box below.
+      </p>
       <div>
         {submitted ? (
           <p className="text-success">Thank you, your message has been sent</p>
@@ -95,6 +102,15 @@ const ContactForm = () => {
               value={formData.fullname}
               required
             />
+            <input
+              type="tel"
+              name="contact_num"
+              id="contact"
+              placeholder="Contact Number"
+              onChange={(e) => changeFieldState(e)}
+              value={formData.contact_num}
+              required
+            />
             <textarea
               name="message"
               id="message"
@@ -105,6 +121,7 @@ const ContactForm = () => {
               value={formData.message}
               required
             ></textarea>
+
             <input type="submit" value="Send" />
           </form>
         )}

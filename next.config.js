@@ -1,9 +1,11 @@
 require("dotenv").config();
-module.exports = {
+const withTM = require("next-transpile-modules")(["react-markdown"]);
+module.exports = withTM({
   env: {
     CONSUMER_KEY: process.env.CONSUMER_KEY,
     CONSUMER_SECRET: process.env.CONSUMER_SECRET,
     HUBSPOT_API_KEY: process.env.HUBSPOT_API_KEY,
+    URL: process.env.URL,
   },
   images: {
     domains: ["wp.taclobananjph.com"],
@@ -43,4 +45,4 @@ module.exports = {
         : null,
     ].filter(Boolean);
   },
-};
+});

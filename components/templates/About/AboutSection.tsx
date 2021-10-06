@@ -10,7 +10,7 @@ const AboutSection = () => {
         <h1 className="text-center lg:text-left">About Us</h1>
         <FlexContainer className="items-center justify-between">
           <div className="mb-9 mr-0 text-center px-4 order-2 lg:px-0 lg:text-left lg:mb-0 lg:mr-24 lg:order-1">
-            <p className="mb-7">
+            <p className="mb-7 text-justify">
               Sunshine Bakery Science Center is a project between Pilmico Foods
               Corporation and Tacloban AnJ Marketing. Tacloban AnJ Marketing is
               a distribution company that caters the Visayas Region. It is
@@ -51,7 +51,7 @@ const AboutSection = () => {
             </div>
           </div>
           <div className="mb-9 text-center px-4 order-2 lg:px-0 lg:text-left lg:mb-0  lg:order-1">
-            <p>
+            <p className="text-justify">
               Sunshine Bakery Science Center is a joint project that not only
               promotes and showcases the quality of bread that it produces using
               Pilmico Flour, but it also aims to provide training facility to

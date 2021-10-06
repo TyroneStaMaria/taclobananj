@@ -10,7 +10,9 @@ const Login = ({ data }) => {
       <Head>
         <title>Log in | Tacloban ANJ</title>
       </Head>
-      <LoginForm />
+      <section>
+        <LoginForm />
+      </section>
     </div>
   );
 };

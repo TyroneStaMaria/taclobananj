@@ -7,7 +7,6 @@ import DefaultLoader from "../../../components/elements/DefaultLoader/DefaultLoa
 const Products = ({ brand }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
-  console.log(brand);
   const getProducts = async () => {
     try {
       const { data } = await api.get("products", { category: brand.id });

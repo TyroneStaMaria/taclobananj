@@ -12,6 +12,10 @@ const TrainingVideo = ({ trainingVideo }) => {
       </Head>
       <section>
         <div className="container mx-auto">
+          <div className=" mx-5 mb-5 lg:mx-32">
+            <h1 className="mb-3 text-h2">{title}</h1>
+            <p className="text-justify">{trainingCenterContent.description}</p>
+          </div>
           <ReactPlayer
             className="mx-auto"
             url={trainingCenterContent.video.mediaItemUrl}
@@ -26,10 +30,6 @@ const TrainingVideo = ({ trainingVideo }) => {
             width="80%"
             height="auto"
           />
-          <div className=" mx-5 lg:mx-28">
-            <h1 className="mt-5 mb-3 text-h3">{title}</h1>
-            <p className="text-justify">{trainingCenterContent.description}</p>
-          </div>
         </div>
       </section>
     </div>

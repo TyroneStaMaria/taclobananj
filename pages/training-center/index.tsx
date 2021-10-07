@@ -24,7 +24,7 @@ const TrainingCenter = ({ trainingVideos }) => {
                     title={title}
                     pageUrl={uri}
                     description={content.description}
-                    videoUrl={content.video.mediaItemUrl}
+                    thumbnail={content.thumbnail.mediaItemUrl}
                   />
                 </div>
               );

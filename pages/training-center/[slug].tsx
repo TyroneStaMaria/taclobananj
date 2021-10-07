@@ -33,6 +33,7 @@ const TrainingVideo = ({ trainingVideo }) => {
             }}
             width="80%"
             height="auto"
+            // light={trainingCenterContent.thumbnail.mediaItemUrl}
           />
         </div>
       </section>

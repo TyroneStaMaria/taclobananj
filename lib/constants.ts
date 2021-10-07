@@ -44,6 +44,9 @@ export const TRAINING_CENTER_QUERY: string = `query trainingCenterQuery {
         video {
           mediaItemUrl
         }
+        thumbnail {
+          mediaItemUrl
+        }
       }
       title
       uri
@@ -60,6 +63,9 @@ export function SINGLE_TRAINING_CENTER_QUERY_BY_SLUG(slug) {
       trainingCenterContent {
         description
         video {
+          mediaItemUrl
+        }
+        thumbnail {
           mediaItemUrl
         }
       }

@@ -3,7 +3,7 @@
 }
 
 .navItemContainer {
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1024px) {
     width: 100%;
     position: absolute;
     // left: 0;
@@ -15,10 +15,10 @@
 }
 
 .navItems {
-  @apply flex-col md:flex md:flex-row md:items-center;
+  @apply flex-col lg:flex lg:flex-row lg:items-center;
 
   & > li {
-    @apply py-3 pl-10  sm:py-0 sm:pl-0 sm:mr-4 transition-all;
+    @apply py-3 pl-10  lg:py-0 lg:pl-0 lg:mr-4 transition-all;
 
     &:hover {
       @apply text-red;

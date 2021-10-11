@@ -47,21 +47,23 @@ export async function getUser(req) {
     const contactDetails = await hubspotGetContact(email);
     return { ...contactDetails, status: 200 };
   } catch (err) {
-    return { error: err, status: 500 };
+    return { error: err, status: 400 };
   }
 }
 
 export async function editUser(userData, req) {
-  // TODO: ayusin error response
   try {
     const wpRes = await wpEditUser(userData, req);
     const hubspotRes = await hubspotEditUser(userData);
     return {
-      success: true,
+      ...wpRes,
+      ...hubspotRes,
+      status: 200,
     };
   } catch (err) {
     return {
-      success: false,
+      ...err,
+      status: 400,
     };
   }
 }

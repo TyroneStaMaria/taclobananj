@@ -70,20 +70,21 @@ const Navbar = (data) => {
                   <Link href="/account">My Account</Link>
                 </li>
               )}
-              <li></li>
               <li onClick={toggleNav}>
-                {user?.isLoggedIn && (
-                  <li onClick={toggleNav}>
-                    <a
-                      className="cursor-pointer"
-                      onClick={async () => {
-                        mutateUser(await axios.post("/api/users/logout"));
-                      }}
-                    >
-                      Log out
-                    </a>
-                  </li>
-                )}
+                <ul className={`${style.navItems}`}>
+                  {user?.isLoggedIn && (
+                    <li onClick={toggleNav}>
+                      <a
+                        className="cursor-pointer"
+                        onClick={async () => {
+                          mutateUser(await axios.post("/api/users/logout"));
+                        }}
+                      >
+                        Log out
+                      </a>
+                    </li>
+                  )}
+                </ul>
                 {!user?.isLoggedIn && (
                   <Button href="/login" btnStyle="redOutline">
                     Register / Log in

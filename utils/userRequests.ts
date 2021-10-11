@@ -7,12 +7,25 @@ import {
 import { hubspotClient } from "./hubspotApi";
 import { getAuthToken } from "../utils/cookies";
 
-export async function loginUser(userData) {
-  const response = await axios.post(WP_TOKEN_URL, userData);
-  if (response.status !== 200) {
-    throw new Error(response.status + " " + response.statusText);
+export async function validateUser(userData) {
+  try {
+    const response = await axios.post(WP_TOKEN_URL, userData);
+    // if (response.status !== 200) {
+    //   throw new Error(response.status + " " + response.statusText);
+    // }
+    return {
+      status: 200,
+      message: "Logged in successfully",
+      success: true,
+      ...response.data,
+    };
+  } catch (err) {
+    return {
+      status: 400,
+      message: "Invalid username or password",
+      success: false,
+    };
   }
-  return response.data || {};
 }
 
 export async function registerUser(userData) {

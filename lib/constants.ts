@@ -21,6 +21,8 @@ export const WP_VALIDATE_RESET_PASSWORD_CODE_URL: string =
 export const WP_SET_NEW_PASSWORD_URL: string =
   API_URL + "/wp-json/bdpwr/v1/set-password";
 
+export const WP_GET_USER_URL: string = API_URL + "/wp-json/wp/v2/users/me";
+
 export const BRANDS_QUERY: string = `query brandsQuery {
   brands {
     nodes {

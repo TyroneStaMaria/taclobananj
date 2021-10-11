@@ -1,8 +1,8 @@
 import axios from "axios";
 import Link from "next/link";
+import React, { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { REGISTER_API_URL } from "../../../lib/constants";
 import DefaultLoader from "../../elements/DefaultLoader/DefaultLoader";

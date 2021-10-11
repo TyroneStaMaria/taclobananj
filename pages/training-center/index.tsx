@@ -5,7 +5,7 @@ import axios from "axios";
 import { BASE_URL } from "../../lib/constants";
 import useUser from "../../utils/useUser";
 import Button from "../../components/elements/Button/Button";
-
+import CarouselBanner from "../../components/templates/TrainingCenter/CarouselBanner";
 const TrainingCenter = ({ trainingVideos }) => {
   const { user } = useUser();
   return (
@@ -13,6 +13,8 @@ const TrainingCenter = ({ trainingVideos }) => {
       <Head>
         <title>Training Center | Tacloban ANJ</title>
       </Head>
+      {user?.isLoggedIn ? <CarouselBanner /> : <div></div>}
+
       <section>
         <h1>Training Center</h1>
         {user?.isLoggedIn ? (

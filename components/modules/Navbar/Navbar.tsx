@@ -65,6 +65,12 @@ const Navbar = (data) => {
               <li onClick={toggleNav}>
                 <Link href="/contact-us">Contact Us</Link>
               </li>
+              {user?.isLoggedIn && (
+                <li onClick={toggleNav}>
+                  <Link href="/account">My Account</Link>
+                </li>
+              )}
+              <li></li>
               <li onClick={toggleNav}>
                 {user?.isLoggedIn && (
                   <li onClick={toggleNav}>

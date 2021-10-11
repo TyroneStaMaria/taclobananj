@@ -5,33 +5,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import ErrorFeedback from "../Forms/ErrorFeedback";
+import DefaultLoader from "../../elements/DefaultLoader/DefaultLoader";
 enum Gender {
   male = "Male",
   female = "Female",
   other = "Rather not say",
 }
 
-const AboutUser = () => {
-  const [user, setUser] = useState<any>({});
+const AboutUser = ({ user, getUser }) => {
   const [edit, setEdit] = useState(false);
   const [errorMessage, setErrorMessage] = useState<any>(null);
-  const getUser = async () => {
-    try {
-      const { data } = await axios.get("/api/users/get-user-info");
-      // console.log(data);
-      // console.log(data);
-      setUser({
-        ...data,
-        created: new Date(data.createdate).toDateString(),
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    getUser();
-  }, []);
+  const [loading, setLoading] = useState(false);
 
   const validationSchema = Yup.object().shape({
     first_name: Yup.string().required("First Name is required").trim().strict(),
@@ -48,34 +32,51 @@ const AboutUser = () => {
     address: Yup.string().required("Address is required").trim().strict(),
   });
 
-  const formOptions = { resolver: yupResolver(validationSchema) };
+  const formOptions = {
+    resolver: yupResolver(validationSchema),
+    defaultValues: { first_name: user?.firstname },
+  };
 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
+    setValue,
   } = useForm(formOptions);
 
+  const cleanupAfterSave = async () => {
+    setErrorMessage(null);
+    await getUser();
+    setEdit(false);
+    setLoading(false);
+  };
+
   const saveChanges = async (userDetails) => {
-    // setLoading(true);
     try {
+      setLoading(true);
       const response = await axios.post("/api/users/edit", {
         ...userDetails,
         id: user.hs_object_id,
         email: user.email,
       });
-      console.log(response);
-      setErrorMessage(null);
-      setEdit(false);
-      getUser();
+
+      cleanupAfterSave();
     } catch (err) {
       setErrorMessage(err.response.data);
-      // console.log(err.response);
-    } finally {
-      // setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      setValue("first_name", user.firstname);
+      setValue("last_name", user.lastname);
+      setValue("gender", user.gender);
+      setValue("phone", user.phone);
+      setValue("address", user.address);
+    }
+  }, [user]);
+
   return (
     <div>
       <h3 className="border-b-2 border-body mb-5">
@@ -113,7 +114,6 @@ const AboutUser = () => {
                     name="first_name"
                     id="firstName"
                     placeholder="First Name"
-                    // value={user?.firstname}
                   />
                   <ErrorFeedback error={errors.first_name} />
                 </div>
@@ -135,7 +135,6 @@ const AboutUser = () => {
                     name="last_name"
                     id="lastName"
                     placeholder="Last Name"
-                    value={user?.lastname}
                   />
                   <ErrorFeedback error={errors.last_name} />
                 </div>
@@ -168,7 +167,6 @@ const AboutUser = () => {
                     name="address"
                     id="address"
                     placeholder="Address"
-                    value={user?.address}
                   />
                   <ErrorFeedback error={errors.address} />
                 </div>
@@ -191,7 +189,6 @@ const AboutUser = () => {
                     name="phone"
                     id="phone"
                     placeholder="Contact Number"
-                    value={user?.phone}
                   />
                   <ErrorFeedback error={errors.phone} />
                 </div>
@@ -205,12 +202,7 @@ const AboutUser = () => {
                 </p>
               ) : (
                 <div>
-                  <select
-                    {...register("gender")}
-                    name="gender"
-                    id="gender"
-                    defaultValue={user?.gender}
-                  >
+                  <select {...register("gender")} name="gender" id="gender">
                     <option value="" disabled>
                       Gender
                     </option>
@@ -223,19 +215,28 @@ const AboutUser = () => {
               )}
             </div>
           </div>
-          {edit && (
-            <div>
-              <input type="submit" value="Save" />
-              <button
-                onClick={() => {
-                  setEdit(false);
-                }}
-              >
-                Cancel
-              </button>
-            </div>
-          )}
+          {edit &&
+            (!loading ? (
+              <div>
+                <input type="submit" value="Save" />
+                <button
+                  onClick={() => {
+                    setEdit(false);
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
+            ) : (
+              <DefaultLoader />
+            ))}
         </form>
+        <div className="mt-5">
+          <h3 className={styles.infoHeading}>
+            Membership: <span className="text-h5 font-body">Free</span>
+          </h3>
+          <p className="text-red">*** Premium Membership coming soon! ***</p>
+        </div>
       </div>
     </div>
   );

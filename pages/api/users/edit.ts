@@ -7,6 +7,6 @@ export default async function handler(
 ) {
   if (req.method === "POST") {
     const data = await editUser(req.body, req);
-    return res.json(data);
+    return res.status(data.status).json(data);
   }
 }

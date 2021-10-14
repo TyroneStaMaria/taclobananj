@@ -10,15 +10,63 @@
   img {
     z-index: -10;
   }
+
+  .heading {
+    font-size: 4rem;
+  }
+
   .textContainer {
     @apply container mx-auto flex flex-col justify-start h-full items-center mt-16;
-    & > h1 {
-      // @apply text-
-      // font-size: xx-large;
-      font-size: 4rem;
-    }
+
     & > p {
-      // background-color: ;
+      background-color: #4aade9;
+    }
+  }
+
+  .recipeBook {
+    h2 {
+      @apply leading-none;
+    }
+    h2,
+    p {
+      @apply text-white;
+      text-shadow: 2px 2px 4px #000000;
+    }
+  }
+
+  .recipeBookDesktop {
+    @apply absolute left-0 w-full h-full;
+    & > div {
+      @apply absolute flex flex-col justify-center h-full;
+      left: 650px;
+      padding-right: 40px;
+
+      .longDescription {
+        font-size: 2rem;
+      }
+
+      .availability {
+        font-size: 1.5rem;
+      }
+
+      @media only screen and (max-width: 1536px) {
+        left: 450px;
+        .longDescription {
+          font-size: 1.65rem;
+        }
+      }
+    }
+  }
+
+  .recipeBookMobile {
+    @apply mt-5;
+    & > div {
+      p {
+        font-size: 1.25rem;
+      }
+      .availability {
+        font-size: 1rem;
+      }
     }
   }
 }

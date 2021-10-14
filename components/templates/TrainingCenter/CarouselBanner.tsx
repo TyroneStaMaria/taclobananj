@@ -7,7 +7,8 @@ import {
   CustomRightArrow,
   CustomLeftArrow,
 } from "../../elements/Carousel/CustomArrows/CustomArrows";
-
+import Button from "../../elements/Button/Button";
+import { useMediaQuery } from "react-responsive";
 interface CarouselData {
   heroImageSrc: string;
   heroHeading: string;
@@ -16,6 +17,8 @@ interface CarouselData {
 }
 
 const CarouselBanner = () => {
+  const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
+
   const responsive = {
     desktop: {
       breakpoint: {
@@ -110,40 +113,67 @@ const CarouselBanner = () => {
             alt="banner"
           />
           <div className={styles.textContainer}>
-            <h1 className="text-body text-center ">TRAINING CENTER</h1>
-            <p className="text-white text-center text-h3 bg-red px-3 rounded-md">
+            <h1 className={`${styles.heading} text-body text-center`}>
+              TRAINING CENTER
+            </h1>
+            <p className="text-white text-center text-h3 px-3 rounded-md">
               Baking made easier. Learning made better.
             </p>
           </div>
         </div>
-        <div className={styles.carouselBanner}>
-          <Image
-            src="/images/training-center/3.png"
-            layout="fill"
-            objectFit="cover"
-            quality={100}
-            alt="banner"
-          />
-        </div>
-        {/* {heroData.map((item, index) => {
-          // console.log(item.heroImageSrc);
-          return (
-            <div key={index} className={styles.heroBanner}>
-              <Image
-                src={item.heroImageSrc}
-                layout="fill"
-                objectFit="cover"
-                quality={100}
-                alt="banner"
-              />
-              <div className={styles.textContainer}>
-                <h1 className={styles.heroHeading}>{item.heroHeading}</h1>
-                <p className={styles.heroBody}>{item.heroBody}</p>
-                {item.heroButton}
+        {isDesktop ? (
+          <div className={styles.carouselBanner}>
+            <Image
+              src="/images/training-center/2.png"
+              layout="fill"
+              objectFit="cover"
+              quality={100}
+              alt="banner"
+            />
+            <div className={`${styles.recipeBookDesktop} ${styles.recipeBook}`}>
+              <div>
+                <h2 className={styles.heading}>HELLO, SUNSHINE! RECIPE BOOK</h2>
+                <p className={styles.longDescription}>
+                  Achieving long term partnerships through teaching and helping
+                  improve baking skills and provide more livelihood
+                  opportunities.
+                </p>
+                <div className="self-end mt-5">
+                  <Button href="/login" btnStyle="orangeFill">
+                    Buy Now! &gt;
+                  </Button>
+                </div>
+                <p className={styles.availability}>
+                  Hard and Soft Copy Available.
+                </p>
               </div>
             </div>
-          );
-        })} */}
+          </div>
+        ) : (
+          <div className={styles.carouselBanner}>
+            <Image
+              src="/images/training-center/3.png"
+              layout="fill"
+              objectFit="cover"
+              quality={100}
+              alt="banner"
+            />
+            <div className={`${styles.recipeBook} ${styles.recipeBookMobile}`}>
+              <div>
+                <p>Improve your baking skills.</p>
+                <p>Explore livelihood opportunities.</p>
+                <div className="my-5">
+                  <Button href="/login" btnStyle="orangeFill">
+                    Buy Now
+                  </Button>
+                </div>
+                <p className={styles.availability}>
+                  *Hard and Soft Copy Available.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </Carousel>
     </section>
   );

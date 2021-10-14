@@ -6,6 +6,8 @@ import { BASE_URL } from "../../lib/constants";
 import useUser from "../../utils/useUser";
 import Button from "../../components/elements/Button/Button";
 import CarouselBanner from "../../components/templates/TrainingCenter/CarouselBanner";
+import Banner from "../../components/templates/TrainingCenter/Banner";
+// import styles from "../../components/templates"
 const TrainingCenter = ({ trainingVideos }) => {
   const { user } = useUser();
   return (
@@ -13,7 +15,7 @@ const TrainingCenter = ({ trainingVideos }) => {
       <Head>
         <title>Training Center | Tacloban ANJ</title>
       </Head>
-      {user?.isLoggedIn ? <CarouselBanner /> : <div></div>}
+      {user?.isLoggedIn ? <CarouselBanner /> : <Banner />}
 
       <section>
         <h1>Training Center</h1>

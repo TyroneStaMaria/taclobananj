@@ -17,6 +17,7 @@ const Account = (props) => {
       setUser({
         ...data,
         created: new Date(data.createdate).toDateString(),
+        name: `${data.firstname} ${data.lastname}`,
       });
     } catch (err) {
       console.log(err);
@@ -31,15 +32,18 @@ const Account = (props) => {
       <Head>
         <title>My Account | Tacloban ANJ</title>
       </Head>
-      <div className="flex">
-        <Sidebar />
-        <div className="pl-5 py-10">
-          <h1>Account Dashboard</h1>
-          {/* <ImageUpload /> */}
-          <AboutUser user={user} getUser={getUser} cookie={props?.cookie} />
-          <Privacy email={user.email} />
+      <section>
+        <h1>Account Dashboard</h1>
+
+        <div className="flex items-start">
+          <Sidebar />
+          <div className="pl-10 ">
+            {/* <ImageUpload /> */}
+            <AboutUser user={user} getUser={getUser} cookie={props?.cookie} />
+            {/* <Privacy email={user.email} /> */}
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

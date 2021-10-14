@@ -6,16 +6,11 @@ const Sidebar = () => {
   return (
     <div className={styles.sidebar}>
       <div className={styles.sidebarNav}>
-        <div>
-          <p className={styles.accountName}>Welcome, Tyrone</p>
-        </div>
         <ul>
           <li>
             <CgProfile /> <span>Account</span>
           </li>
-          <li>
-            <CgInbox /> <span>Inbox</span>
-          </li>
+
           <li>
             <CgBoard /> <span>Training Center</span>
           </li>

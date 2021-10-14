@@ -120,18 +120,9 @@ const AboutUser = ({ user, getUser, cookie }) => {
     };
   };
   return (
-    <section className={styles.dashboardSection}>
-      <h3 className="border-b-2 border-body mb-5">
-        Account Information{" "}
-        <span
-          className="text-base font-body underline cursor-pointer"
-          onClick={() => {
-            setEdit(true);
-          }}
-        >
-          Edit Profile
-        </span>
-      </h3>
+    <div className={styles.dashboardSection}>
+      <h2>{user?.name ?? "Loading..."}</h2>
+      <h3 className="border-b-2 border-body mb-5">Edit Profile</h3>
       <div>
         <p>Account Created: {user?.created}</p>
         <form
@@ -308,7 +299,7 @@ const AboutUser = ({ user, getUser, cookie }) => {
           <p className="text-red">*** Premium Membership coming soon! ***</p>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

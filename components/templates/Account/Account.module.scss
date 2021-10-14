@@ -1,20 +1,17 @@
 .sidebar {
-  @apply py-3;
-  border-right: 1px;
-  border-style: solid;
-  border-color: #a9a9a9;
-  width: 15%;
+  @apply py-3 ml-4 mt-5 rounded-md shadow-lg;
+  // border-right: 1px;
+  // border-style: solid;
+  // border-color: #a9a9a9;
+  max-height: fit-content;
+  width: calc(100% / 5);
   .sidebarNav {
     @apply flex flex-col lg:pl-4;
-
-    .accountName {
-      @apply hidden lg:block;
-    }
 
     ul {
       @apply mt-4;
       & > li {
-        @apply flex items-center  transition-all justify-center mb-5 lg:mb-3 lg:justify-start;
+        @apply flex items-center  transition-all justify-center mb-5 text-h4 lg:mb-3 lg:justify-start;
         svg {
           @apply text-h4 lg:text-base;
         }
@@ -33,7 +30,7 @@
 }
 
 .infoContainer {
-  @apply flex mb-5;
+  @apply flex  mb-5;
   & > div:first-child {
     // @apply w-1/2;
     width: 45%;
@@ -92,5 +89,5 @@
 .dashboardSection {
   // @apply py-3;
 
-  padding: 2rem 0 !important;
+  // padding: 2rem 0 !important;
 }

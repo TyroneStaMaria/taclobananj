@@ -13,10 +13,13 @@ const Banner = () => {
         alt="banner"
       />
       <div className={styles.textContainer}>
-        <h1 className={`${styles.heading} text-body text-center`}>
+        <h1
+          className={`${styles.heading} text-center`}
+          style={{ color: `#282828` }}
+        >
           TRAINING CENTER
         </h1>
-        <p className="text-white text-center text-h3 px-3 rounded-md">
+        <p className="text-white text-center text-h3 py-3 px-5 rounded-md">
           Baking made easier. Learning made better.
         </p>
       </div>

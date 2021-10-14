@@ -18,7 +18,7 @@ const TrainingCenter = ({ trainingVideos }) => {
       {user?.isLoggedIn ? <CarouselBanner /> : <Banner />}
 
       <section>
-        <h1>Training Center</h1>
+        {/* <h1>Training Center</h1> */}
         {user?.isLoggedIn ? (
           trainingVideos.nodes.map(
             ({ title, uri, trainingCenterContent: content }, index) => {

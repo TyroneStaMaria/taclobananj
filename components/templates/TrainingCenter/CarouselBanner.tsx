@@ -46,42 +46,6 @@ const CarouselBanner = () => {
     },
   };
 
-  // const heroData: Array<CarouselData> = [
-  //   {
-  //     heroImageSrc: "/images/home/banners/banner1.png",
-  //     heroHeading: "Focused on Shared Growth",
-  //     heroBody:
-  //       "We are always invested into letting you explore opportunities leading to your own growth. Get educated online and kickstart to honing your skills.",
-  //     heroButton: (
-  //       <Button href="#" btnStyle="redOutline">
-  //         Visit our Training Center &gt;
-  //       </Button>
-  //     ),
-  //   },
-  //   {
-  //     heroImageSrc: "/images/home/banners/banner2.png",
-  //     heroHeading: "Commited to Provide the Best",
-  //     heroBody:
-  //       "With our sole purpose to provide you with your day-to-day essentials, we only choose to partner with the best. Sustain all your needs with Tacloban AnJ Marketing!",
-  //     heroButton: (
-  //       <Button href="#" btnStyle="redOutline">
-  //         Learn More about Our Products &gt;
-  //       </Button>
-  //     ),
-  //   },
-  //   {
-  //     heroImageSrc: "/images/home/banners/banner3.png",
-  //     heroHeading: "Going Beyond your Experience",
-  //     heroBody:
-  //       "We are aimed to see what's beyond our products. It's always the customer experience that matters to us. Our products make those experiences memorable!",
-  //     heroButton: (
-  //       <Button href="#" btnStyle="redOutline">
-  //         Check out our Full Catalogue &gt;
-  //       </Button>
-  //     ),
-  //   },
-  // ];
-
   return (
     <section className="banner">
       <Carousel
@@ -89,7 +53,7 @@ const CarouselBanner = () => {
         customLeftArrow={<CustomLeftArrow />}
         additionalTransfrom={0}
         arrows
-        // autoPlay={true}
+        // autoPlay={true} TODO: uncomment before production
         // autoPlaySpeed={3000}
         centerMode={false}
         draggable
@@ -113,10 +77,13 @@ const CarouselBanner = () => {
             alt="banner"
           />
           <div className={styles.textContainer}>
-            <h1 className={`${styles.heading} text-body text-center`}>
+            <h1
+              className={`${styles.heading}  text-center`}
+              style={{ color: `#282828` }}
+            >
               TRAINING CENTER
             </h1>
-            <p className="text-white text-center text-h3 px-3 rounded-md">
+            <p className="text-white text-center text-h3 py-3 px-5 rounded-md">
               Baking made easier. Learning made better.
             </p>
           </div>

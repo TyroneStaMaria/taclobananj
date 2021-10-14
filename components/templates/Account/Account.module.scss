@@ -1,5 +1,5 @@
 .sidebar {
-  @apply h-screen py-3;
+  @apply py-3;
   border-right: 1px;
   border-style: solid;
   border-color: #a9a9a9;
@@ -87,4 +87,10 @@
     @apply mb-3 -mt-3 text-red;
     font-size: 0.75rem;
   }
+}
+
+.dashboardSection {
+  // @apply py-3;
+
+  padding: 2rem 0 !important;
 }

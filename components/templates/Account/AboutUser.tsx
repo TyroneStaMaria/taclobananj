@@ -6,16 +6,23 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import ErrorFeedback from "../Forms/ErrorFeedback";
 import DefaultLoader from "../../elements/DefaultLoader/DefaultLoader";
+import Image from "next/image";
+import useUser from "../../../utils/useUser";
+// import FormData from "form-data";
+
 enum Gender {
   male = "Male",
   female = "Female",
   other = "Rather not say",
 }
 
-const AboutUser = ({ user, getUser }) => {
+// let formData = new FormData();
+
+const AboutUser = ({ user, getUser, cookie }) => {
   const [edit, setEdit] = useState(false);
   const [errorMessage, setErrorMessage] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [img, setImg] = useState<any>();
 
   const validationSchema = Yup.object().shape({
     first_name: Yup.string().required("First Name is required").trim().strict(),
@@ -34,7 +41,6 @@ const AboutUser = ({ user, getUser }) => {
 
   const formOptions = {
     resolver: yupResolver(validationSchema),
-    defaultValues: { first_name: user?.firstname },
   };
 
   const {
@@ -49,21 +55,44 @@ const AboutUser = ({ user, getUser }) => {
     setErrorMessage(null);
     await getUser();
     setEdit(false);
-    setLoading(false);
   };
 
   const saveChanges = async (userDetails) => {
+    // console.log(userDetails.profile_image[0].name);
+    let formData = new FormData();
     try {
       setLoading(true);
+
+      formData.append(
+        "file",
+        userDetails.display_picture[0],
+        userDetails.display_picture[0].name
+      );
+
+      const uploadedImage = await axios.post(
+        "https://wp.taclobananjph.com/wp-json/wp/v2/media",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${cookie}`,
+            "Content-Type": `multipart/form-data`,
+            "Content-Disposition": `attachment`,
+          },
+        }
+      );
+
       const response = await axios.post("/api/users/edit", {
         ...userDetails,
         id: user.hs_object_id,
         email: user.email,
+        profile_image: uploadedImage.data.source_url,
       });
 
       cleanupAfterSave();
     } catch (err) {
-      setErrorMessage(err.response.data);
+      setErrorMessage(err.response);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -74,11 +103,24 @@ const AboutUser = ({ user, getUser }) => {
       setValue("gender", user.gender);
       setValue("phone", user.phone);
       setValue("address", user.address);
+      if (user?.profileImage) {
+        setImg([user?.profileImage[0]]);
+      }
     }
   }, [user]);
 
+  const onUpload = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    const url = reader.readAsDataURL(file);
+
+    reader.onloadend = (e) => {
+      setImg([reader.result]);
+      // console.log(reader.result);
+    };
+  };
   return (
-    <div>
+    <section className={styles.dashboardSection}>
       <h3 className="border-b-2 border-body mb-5">
         Account Information{" "}
         <span
@@ -97,6 +139,34 @@ const AboutUser = ({ user, getUser }) => {
           className={styles.formContainer}
           onSubmit={handleSubmit(saveChanges)}
         >
+          <div>
+            <h3 className={styles.infoHeading}>Profile Picture</h3>
+
+            <div
+              className="relative my-5 shadow-lg"
+              style={{ width: `200px`, height: `200px` }}
+            >
+              <div>
+                <Image
+                  unoptimized
+                  src={img ? img[0] : "/images/profile.jpeg"}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                  alt="image"
+                />
+              </div>
+            </div>
+            {edit && (
+              <input
+                {...register("display_picture")}
+                type="file"
+                name="display_picture"
+                accept="image/*"
+                onChange={onUpload}
+              />
+            )}
+          </div>
           <div className={styles.infoContainer}>
             <div>
               <div>
@@ -238,7 +308,7 @@ const AboutUser = ({ user, getUser }) => {
           <p className="text-red">*** Premium Membership coming soon! ***</p>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

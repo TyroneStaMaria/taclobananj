@@ -54,7 +54,7 @@ const Privacy = ({ email }) => {
   };
 
   return (
-    <div className="mt-5">
+    <section className={styles.dashboardSection}>
       <h3 className="border-b-2 border-body mb-5">Prviacy and Security</h3>
       <div>
         {!edit ? (
@@ -125,7 +125,7 @@ const Privacy = ({ email }) => {
       </div>
 
       {/* <h4>Cha</h4> */}
-    </div>
+    </section>
   );
 };
 

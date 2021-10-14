@@ -6,6 +6,41 @@ import {
 } from "../lib/constants";
 import { hubspotClient } from "./hubspotApi";
 import { getAuthToken } from "../utils/cookies";
+import { FormData, Blob } from "formdata-node";
+
+export async function uploadMedia(imageData, req) {
+  const authToken = getAuthToken(req);
+  // let formData = new FormData();
+  // const blob = new Blob(imageData.file);
+
+  // formData.set("file", blob, imageData.fileName);
+
+  try {
+    const { data } = await axios.post(
+      "https://wp.taclobananjph.com/wp-json/wp/v2/media",
+      imageData,
+      {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+          "Content-Type": `multipart/form-data`,
+          // "Content-Disposition": `attachment;filename='image.png'`,
+        },
+      }
+    );
+
+    return {
+      status: 201,
+      source_url: data.source_url,
+      message: "Successfully uploaded",
+    };
+  } catch (err) {
+    console.log(err);
+    return {
+      status: 400,
+      message: "Failed to upload media item",
+    };
+  }
+}
 
 export async function validateUser(userData) {
   try {
@@ -56,9 +91,10 @@ export async function registerUser(userData) {
 
 export async function getUser(req) {
   try {
-    const { email } = await getEmailFromWP(req);
+    const { email, profileImage } = await getEmailAndImageFromWP(req);
     const contactDetails = await hubspotGetContact(email);
-    return { ...contactDetails, status: 200 };
+    return { ...contactDetails, status: 200, profileImage: profileImage };
+    // return { ...contactDetails, status: 200 };
   } catch (err) {
     return { error: err, status: 400 };
   }
@@ -83,13 +119,13 @@ export async function editUser(userData, req) {
 
 // local functions
 
-const getEmailFromWP = async (req) => {
+const getEmailAndImageFromWP = async (req) => {
   const authToken = getAuthToken(req);
   try {
     const { data } = await axios.get(WP_GET_USER_URL + "?context=edit", {
       headers: { Authorization: "Bearer " + authToken },
     });
-    return { email: data.email };
+    return { email: data.email, profileImage: data.profile_image };
   } catch (err) {
     return err;
   }

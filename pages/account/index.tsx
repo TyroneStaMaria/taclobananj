@@ -4,6 +4,7 @@ import Sidebar from "../../components/templates/Account/Sidebar";
 import AboutUser from "../../components/templates/Account/AboutUser";
 import Privacy from "../../components/templates/Account/Privacy";
 import axios from "axios";
+import ImageUpload from "../../components/templates/Account/ImageUpload";
 
 const Account = (props) => {
   const [user, setUser] = useState<any>({});
@@ -32,9 +33,10 @@ const Account = (props) => {
       </Head>
       <div className="flex">
         <Sidebar />
-        <div className="pl-5">
+        <div className="pl-5 py-10">
           <h1>Account Dashboard</h1>
-          <AboutUser user={user} getUser={getUser} />
+          {/* <ImageUpload /> */}
+          <AboutUser user={user} getUser={getUser} cookie={props?.cookie} />
           <Privacy email={user.email} />
         </div>
       </div>
@@ -43,3 +45,9 @@ const Account = (props) => {
 };
 
 export default Account;
+
+export async function getServerSideProps(context) {
+  const cookie = context.req.headers.cookie.split("=")[1];
+
+  return { props: { cookie: cookie } };
+}

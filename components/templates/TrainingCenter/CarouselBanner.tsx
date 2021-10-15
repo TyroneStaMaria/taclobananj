@@ -53,8 +53,8 @@ const CarouselBanner = () => {
         customLeftArrow={<CustomLeftArrow />}
         additionalTransfrom={0}
         arrows
-        autoPlay={true}
-        autoPlaySpeed={3000}
+        // autoPlay={true}
+        // autoPlaySpeed={3000}
         centerMode={false}
         draggable
         focusOnSelect={false}
@@ -99,7 +99,9 @@ const CarouselBanner = () => {
             />
             <div className={`${styles.recipeBookDesktop} ${styles.recipeBook}`}>
               <div>
-                <h2 className={styles.heading}>HELLO, SUNSHINE! RECIPE BOOK</h2>
+                <h2 className={styles.heading}>
+                  HELLO, SUNSHINE! <br /> RECIPE BOOK
+                </h2>
                 <p className={styles.longDescription}>
                   Achieving long term partnerships through teaching and helping
                   improve baking skills and provide more livelihood

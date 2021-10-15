@@ -38,7 +38,7 @@
     @apply absolute left-0 w-full h-full;
     & > div {
       @apply absolute flex flex-col justify-center h-full;
-      left: calc(100% / 3);
+      left: calc(100% / 2.7);
       padding-right: 40px;
 
       .longDescription {
@@ -55,6 +55,13 @@
         }
       }
       @media only screen and (max-width: 1280px) {
+      }
+    }
+    .buyNow {
+      @apply self-end mt-5 mr-8;
+      a {
+        font-size: 1.25rem;
+        font-weight: normal;
       }
     }
   }

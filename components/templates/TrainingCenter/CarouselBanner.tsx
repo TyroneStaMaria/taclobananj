@@ -105,7 +105,7 @@ const CarouselBanner = () => {
                   improve baking skills and provide more livelihood
                   opportunities.
                 </p>
-                <div className="self-end mt-5">
+                <div className={styles.buyNow}>
                   <Button href="/login" btnStyle="orangeFill">
                     Buy Now! &gt;
                   </Button>

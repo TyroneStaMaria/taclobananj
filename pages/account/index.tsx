@@ -5,9 +5,10 @@ import AboutUser from "../../components/templates/Account/AboutUser";
 import Privacy from "../../components/templates/Account/Privacy";
 import axios from "axios";
 import ImageUpload from "../../components/templates/Account/ImageUpload";
-
+import useUser from "../../utils/useUser";
 const Account = (props) => {
   const [user, setUser] = useState<any>({});
+  const { user: u } = useUser({ redirectTo: "/", redirectIfFound: false });
 
   const getUser = async () => {
     try {
@@ -17,7 +18,6 @@ const Account = (props) => {
       setUser({
         ...data,
         created: new Date(data.createdate).toDateString(),
-        name: `${data.firstname} ${data.lastname}`,
       });
     } catch (err) {
       console.log(err);
@@ -33,11 +33,11 @@ const Account = (props) => {
         <title>My Account | Tacloban ANJ</title>
       </Head>
       <section>
-        <h1>Account Dashboard</h1>
+        <h1 className="text-center lg:text-left">Account Dashboard</h1>
 
-        <div className="flex items-start">
+        <div className="flex flex-col items-center lg:items-start lg:flex-row">
           <Sidebar />
-          <div className="pl-10 ">
+          <div className="lg:pl-10">
             {/* <ImageUpload /> */}
             <AboutUser user={user} getUser={getUser} cookie={props?.cookie} />
             {/* <Privacy email={user.email} /> */}
@@ -51,7 +51,9 @@ const Account = (props) => {
 export default Account;
 
 export async function getServerSideProps(context) {
-  const cookie = context.req.headers.cookie.split("=")[1];
-
-  return { props: { cookie: cookie } };
+  if (context.req.headers.cookie) {
+    const cookie = context.req.headers.cookie?.split("=")[1];
+    return { props: { cookie: cookie } };
+  }
+  return { props: {} };
 }

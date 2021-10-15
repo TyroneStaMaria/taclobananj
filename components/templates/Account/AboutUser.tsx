@@ -8,6 +8,7 @@ import ErrorFeedback from "../Forms/ErrorFeedback";
 import DefaultLoader from "../../elements/DefaultLoader/DefaultLoader";
 import Image from "next/image";
 import useUser from "../../../utils/useUser";
+import { BsPencil } from "react-icons/bs";
 // import FormData from "form-data";
 
 enum Gender {
@@ -21,6 +22,7 @@ enum Gender {
 const AboutUser = ({ user, getUser, cookie }) => {
   const [edit, setEdit] = useState(false);
   const [errorMessage, setErrorMessage] = useState<any>(null);
+  const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const [img, setImg] = useState<any>();
 
@@ -55,6 +57,7 @@ const AboutUser = ({ user, getUser, cookie }) => {
     setErrorMessage(null);
     await getUser();
     setEdit(false);
+    setSuccess(true);
   };
 
   const saveChanges = async (userDetails) => {
@@ -63,33 +66,40 @@ const AboutUser = ({ user, getUser, cookie }) => {
     try {
       setLoading(true);
 
-      formData.append(
-        "file",
-        userDetails.display_picture[0],
-        userDetails.display_picture[0].name
-      );
-
-      const uploadedImage = await axios.post(
-        "https://wp.taclobananjph.com/wp-json/wp/v2/media",
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${cookie}`,
-            "Content-Type": `multipart/form-data`,
-            "Content-Disposition": `attachment`,
-          },
-        }
-      );
-
-      const response = await axios.post("/api/users/edit", {
+      const userBody = {
         ...userDetails,
         id: user.hs_object_id,
         email: user.email,
-        profile_image: uploadedImage.data.source_url,
-      });
+      };
+
+      if (userDetails.display_picture) {
+        formData.append(
+          "file",
+          userDetails.display_picture[0],
+          userDetails.display_picture[0].name
+        );
+
+        const uploadedImage = await axios.post(
+          "https://wp.taclobananjph.com/wp-json/wp/v2/media",
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${cookie}`,
+              "Content-Type": `multipart/form-data`,
+              "Content-Disposition": `attachment`,
+            },
+          }
+        );
+
+        userBody.profile_image = uploadedImage.data.source_url;
+      }
+
+      const response = await axios.post("/api/users/edit", userBody);
 
       cleanupAfterSave();
     } catch (err) {
+      console.log(err);
+
       setErrorMessage(err.response);
     } finally {
       setLoading(false);
@@ -121,7 +131,9 @@ const AboutUser = ({ user, getUser, cookie }) => {
   };
   return (
     <div className={styles.dashboardSection}>
-      <h2>{user?.name ?? "Loading..."}</h2>
+      <h2>
+        {user?.firstname ? `${user.firstname} ${user.lastname}` : "Loading..."}
+      </h2>
       <h3 className="border-b-2 border-body mb-5">Edit Profile</h3>
       <div>
         <p>Account Created: {user?.created}</p>
@@ -134,8 +146,11 @@ const AboutUser = ({ user, getUser, cookie }) => {
             <h3 className={styles.infoHeading}>Profile Picture</h3>
 
             <div
-              className="relative my-5 shadow-lg"
+              className="relative my-5 shadow-lg cursor-pointer"
               style={{ width: `200px`, height: `200px` }}
+              onClick={() => {
+                setEdit(!edit);
+              }}
             >
               <div>
                 <Image
@@ -147,62 +162,55 @@ const AboutUser = ({ user, getUser, cookie }) => {
                   alt="image"
                 />
               </div>
+              <div className="absolute bottom-0 right-0 bg-red p-1 text-white">
+                <BsPencil />
+              </div>
             </div>
             {edit && (
-              <input
-                {...register("display_picture")}
-                type="file"
-                name="display_picture"
-                accept="image/*"
-                onChange={onUpload}
-              />
+              <div className="mb-5">
+                <p>Upload Photo</p>
+                <input
+                  {...register("display_picture")}
+                  type="file"
+                  name="display_picture"
+                  accept="image/*"
+                  onChange={onUpload}
+                />
+              </div>
             )}
           </div>
-          <div className={styles.infoContainer}>
-            <div>
+          <div className={`${styles.infoContainer} flex flex-col lg:flex-row`}>
+            <div className={styles.flexChild}>
               <div>
                 <h3 className={styles.infoHeading}>First Name</h3>
               </div>
-              {!edit ? (
-                <p className={styles.infoMain}>
-                  {user?.firstname ?? "Loading..."}
-                </p>
-              ) : (
-                <div>
-                  <input
-                    {...register("first_name")}
-                    type="text"
-                    name="first_name"
-                    id="firstName"
-                    placeholder="First Name"
-                  />
-                  <ErrorFeedback error={errors.first_name} />
-                </div>
-              )}
+              <div>
+                <input
+                  {...register("first_name")}
+                  type="text"
+                  name="first_name"
+                  id="firstName"
+                  placeholder="First Name"
+                />
+                <ErrorFeedback error={errors.first_name} />
+              </div>
             </div>
-            <div>
+            <div className={styles.flexChild}>
               <div>
                 <h3 className={styles.infoHeading}>Last Name</h3>
               </div>
-              {!edit ? (
-                <p className={styles.infoMain}>
-                  {user?.lastname ?? "Loading..."}
-                </p>
-              ) : (
-                <div>
-                  <input
-                    {...register("last_name")}
-                    type="text"
-                    name="last_name"
-                    id="lastName"
-                    placeholder="Last Name"
-                  />
-                  <ErrorFeedback error={errors.last_name} />
-                </div>
-              )}
+              <div>
+                <input
+                  {...register("last_name")}
+                  type="text"
+                  name="last_name"
+                  id="lastName"
+                  placeholder="Last Name"
+                />
+                <ErrorFeedback error={errors.last_name} />
+              </div>
             </div>
           </div>
-
           <div className={styles.infoContainer}>
             <div>
               <div>
@@ -216,88 +224,70 @@ const AboutUser = ({ user, getUser, cookie }) => {
               <div>
                 <h3 className={styles.infoHeading}>Address</h3>
               </div>
-              {!edit ? (
-                <p className={styles.infoMain}>
-                  {user?.address ?? "Loading..."}
-                </p>
-              ) : (
-                <div>
-                  <input
-                    {...register("address")}
-                    type="text"
-                    name="address"
-                    id="address"
-                    placeholder="Address"
-                  />
-                  <ErrorFeedback error={errors.address} />
-                </div>
-              )}
+
+              <div>
+                <input
+                  {...register("address")}
+                  type="text"
+                  name="address"
+                  id="address"
+                  placeholder="Address"
+                />
+                <ErrorFeedback error={errors.address} />
+              </div>
             </div>
           </div>
-
           <div className={styles.infoContainer}>
             <div>
               <div>
                 <h3 className={styles.infoHeading}>Phone Number</h3>
               </div>
-              {!edit ? (
-                <p className={styles.infoMain}>{user?.phone ?? "Loading..."}</p>
-              ) : (
-                <div>
-                  <input
-                    {...register("phone")}
-                    type="tel"
-                    name="phone"
-                    id="phone"
-                    placeholder="Contact Number"
-                  />
-                  <ErrorFeedback error={errors.phone} />
-                </div>
-              )}
+
+              <div>
+                <input
+                  {...register("phone")}
+                  type="tel"
+                  name="phone"
+                  id="phone"
+                  placeholder="Contact Number"
+                />
+                <ErrorFeedback error={errors.phone} />
+              </div>
             </div>
             <div>
               <h3 className={styles.infoHeading}>Gender</h3>
-              {!edit ? (
-                <p className={styles.infoMain}>
-                  {user?.gender ?? "Loading..."}
-                </p>
-              ) : (
-                <div>
-                  <select {...register("gender")} name="gender" id="gender">
-                    <option value="" disabled>
-                      Gender
-                    </option>
-                    <option value={Gender.male}>Male</option>
-                    <option value={Gender.female}>Female</option>
-                    <option value={Gender.other}>Rather not say</option>
-                  </select>
-                  <ErrorFeedback error={errors.gender} />
-                </div>
-              )}
+
+              <div>
+                <select {...register("gender")} name="gender" id="gender">
+                  <option value="" disabled>
+                    Gender
+                  </option>
+                  <option value={Gender.male}>Male</option>
+                  <option value={Gender.female}>Female</option>
+                  <option value={Gender.other}>Rather not say</option>
+                </select>
+                <ErrorFeedback error={errors.gender} />
+              </div>
             </div>
           </div>
-          {edit &&
-            (!loading ? (
-              <div>
-                <input type="submit" value="Save" />
-                <button
-                  onClick={() => {
-                    setEdit(false);
-                  }}
-                >
-                  Cancel
-                </button>
-              </div>
-            ) : (
-              <DefaultLoader />
-            ))}
+          <div className="my-5">
+            <h3 className={styles.infoHeading}>
+              Membership: <span className="text-h5 font-body">Free</span>
+            </h3>
+            <p className="text-red">*** Premium Membership coming soon! ***</p>
+          </div>
+
+          {!loading ? (
+            <div>
+              <input type="submit" value="Save" />
+            </div>
+          ) : (
+            <DefaultLoader />
+          )}
+          {success && (
+            <p className="text-success mt-5">Account successfully edited</p>
+          )}
         </form>
-        <div className="mt-5">
-          <h3 className={styles.infoHeading}>
-            Membership: <span className="text-h5 font-body">Free</span>
-          </h3>
-          <p className="text-red">*** Premium Membership coming soon! ***</p>
-        </div>
       </div>
     </div>
   );

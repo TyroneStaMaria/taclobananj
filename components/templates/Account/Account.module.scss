@@ -1,5 +1,5 @@
 .sidebar {
-  @apply py-3 rounded-md shadow-lg lg:ml-4 lg:mt-5;
+  @apply py-3 rounded-md shadow-lg bg-red lg:ml-4 lg:mt-5;
 
   max-height: fit-content;
 
@@ -10,7 +10,16 @@
   }
 
   .active {
-    @apply text-red transition-all;
+    @apply transition-all relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      border: 2px solid white;
+      left: 0;
+      bottom: -8px;
+    }
 
     @media only screen and (max-width: 1280px) {
       @apply border-b-2 border-red;
@@ -18,25 +27,21 @@
   }
 
   .sidebarNav {
-    @apply flex flex-col lg:pl-4;
-    // border-bottom: ;
+    @apply flex flex-col;
     ul {
       @apply mt-4 flex justify-around lg:block;
       & > li {
-        @apply cursor-pointer flex items-center transition-all justify-center mb-5 text-h4 flex-col lg:flex-row lg:mb-3 lg:justify-start;
-        // @media only screen and (max-width: 1024px) {
-        //   @apply mx-5;
-        // }
+        @apply text-white cursor-pointer flex items-center transition-all justify-center mb-5 text-h4 flex-col  lg:flex-row lg:mb-3 lg:justify-start;
+
         svg {
-          @apply text-h4 lg:text-base;
+          @apply lg:text-base lg:ml-5;
+          font-size: 1.7rem !important;
         }
+
         span {
           @apply lg:ml-2;
           @media only screen and (max-width: 1024px) {
             @apply mt-1;
-            // width: 0;
-            // height: 0;
-            // opacity: 0;
           }
         }
       }
@@ -47,7 +52,6 @@
 .infoContainer {
   @apply mb-5;
   .flexChild {
-    // @apply mr-3;
     margin-right: 1rem;
     width: calc(45% - 0.4rem);
 
@@ -57,6 +61,9 @@
     @media only screen and (max-width: 1280px) {
       width: 100%;
       margin-right: 0;
+      input[type="text"] {
+        width: 90%;
+      }
     }
   }
   & > div:not(.flexChild) {
@@ -76,6 +83,7 @@
 }
 
 .formContainer {
+  @apply pl-7 lg:pl-0;
   input:not(input[type="submit"], input[type="radio"]) {
     @apply py-2 px-3;
     width: 90%;
@@ -114,15 +122,24 @@
   @media only screen and (max-width: 1280px) {
     input:not(input[type="submit"], input[type="radio"]),
     select {
-      width: 100%;
+      width: 90%;
     }
   }
 }
 
 .dashboardSection {
-  // @apply py-3;
+  @apply mb-10;
   @media only screen and (min-width: 1280px) {
     width: 60vw;
   }
   // padding: 2rem 0 !important;
+}
+
+.passwordForm {
+  input {
+    @apply mb-5;
+  }
+  button {
+    @apply ml-3;
+  }
 }

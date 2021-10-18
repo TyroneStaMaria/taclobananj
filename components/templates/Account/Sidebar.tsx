@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Account.module.scss";
-import { CgProfile, CgInbox, CgBoard } from "react-icons/cg";
+import { CgProfile } from "react-icons/cg";
+import { FiPlayCircle } from "react-icons/fi";
 
 const Sidebar = () => {
   const [active, setActive] = useState("account");
@@ -16,10 +17,10 @@ const Sidebar = () => {
           </li>
 
           <li
-          // className={active === "training-center" ? styles.active : ""}
-          // onClick={() => setActive("training-center")}
+            className={active === "training-center" ? styles.active : ""}
+            onClick={() => setActive("training-center")}
           >
-            <CgBoard /> <span>Training Center</span>
+            <FiPlayCircle /> <span>Training Center</span>
           </li>
         </ul>
       </div>

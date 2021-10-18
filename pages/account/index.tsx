@@ -32,15 +32,16 @@ const Account = (props) => {
       <Head>
         <title>My Account | Tacloban ANJ</title>
       </Head>
+      <section className="bg-red">
+        <h1 className="text-center text-white">Account Dashboard</h1>
+      </section>
       <section>
-        <h1 className="text-center lg:text-left">Account Dashboard</h1>
-
         <div className="flex flex-col items-center lg:items-start lg:flex-row">
           <Sidebar />
           <div className="lg:pl-10">
             {/* <ImageUpload /> */}
             <AboutUser user={user} getUser={getUser} cookie={props?.cookie} />
-            {/* <Privacy email={user.email} /> */}
+            <Privacy email={user.email} />
           </div>
         </div>
       </section>

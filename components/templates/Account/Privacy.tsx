@@ -54,27 +54,31 @@ const Privacy = ({ email }) => {
   };
 
   return (
-    <section className={styles.dashboardSection}>
-      <h3 className="border-b-2 border-body mb-5">Prviacy and Security</h3>
+    <div className={styles.dashboardSection}>
+      <h3 className="border-b-2 border-body mb-5 text-center lg:text-left">
+        Privacy and Security
+      </h3>
       <div>
         {!edit ? (
-          <h4 className={styles.infoHeading}>
-            Change Password
-            <span
-              className="text-base font-body underline cursor-pointer ml-2 text-red"
-              onClick={() => {
-                setEdit(true);
-              }}
-            >
-              Change{" "}
-            </span>
-          </h4>
+          <div className="pl-7 lg:pl-0">
+            <h4 className={styles.infoHeading}>
+              Change Password
+              <span
+                className="text-base font-body underline cursor-pointer ml-2 text-red"
+                onClick={() => {
+                  setEdit(true);
+                }}
+              >
+                Change{" "}
+              </span>
+            </h4>
+          </div>
         ) : (
           <div>
             {errorMessage && <p className="text-red">{errorMessage}</p>}
             <form
               method="post"
-              className={styles.formContainer}
+              className={`${styles.formContainer} ${styles.passwordForm}`}
               onSubmit={handleSubmit(savePassword)}
             >
               <div>
@@ -125,7 +129,7 @@ const Privacy = ({ email }) => {
       </div>
 
       {/* <h4>Cha</h4> */}
-    </section>
+    </div>
   );
 };
 

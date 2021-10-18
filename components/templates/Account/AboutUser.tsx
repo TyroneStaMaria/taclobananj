@@ -131,12 +131,16 @@ const AboutUser = ({ user, getUser, cookie }) => {
   };
   return (
     <div className={styles.dashboardSection}>
-      <h2>
-        {user?.firstname ? `${user.firstname} ${user.lastname}` : "Loading..."}
-      </h2>
-      <h3 className="border-b-2 border-body mb-5">Edit Profile</h3>
+      <div className="flex justify-between items-end border-b-2 border-body mb-5  flex-col lg:flex-row mt-5 lg:mt-0">
+        <h2 className="text-center lg:text-left">
+          {user?.firstname
+            ? `Welcome, ${user.firstname} ${user.lastname}`
+            : "Loading..."}
+        </h2>
+        <h3 className="mr-4 lg:mr-0">Edit Profile</h3>
+      </div>
       <div>
-        <p>Account Created: {user?.created}</p>
+        <p className="pl-7 lg:pl-0">Account Created: {user?.created}</p>
         <form
           action="post"
           className={styles.formContainer}

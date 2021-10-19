@@ -1,16 +1,15 @@
 import React from "react";
-import Head from "next/head";
 import RegistrationForm from "../components/templates/Forms/RegistrationForm";
 import useUser from "../utils/useUser";
+import Seo from "../components/elements/Seo/Seo";
+import seoData from "../seo.json";
 
 const Register = () => {
   const { user } = useUser({ redirectTo: "/", redirectIfFound: true });
 
   return (
     <div>
-      <Head>
-        <title>Register | Tacloban ANJ</title>
-      </Head>
+      <Seo data={seoData.register} />
       <section>
         <RegistrationForm />
       </section>

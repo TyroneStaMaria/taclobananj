@@ -1,5 +1,4 @@
 import React from "react";
-import Head from "next/head";
 import TrainingItem from "../../components/elements/TrainingItem/TrainingItem";
 import axios from "axios";
 import { BASE_URL } from "../../lib/constants";
@@ -8,13 +7,14 @@ import Button from "../../components/elements/Button/Button";
 import CarouselBanner from "../../components/templates/TrainingCenter/CarouselBanner";
 import Banner from "../../components/templates/TrainingCenter/Banner";
 import styles from "../../components/templates/TrainingCenter/TrainingCenter.module.scss";
+import Seo from "../../components/elements/Seo/Seo";
+import seoData from "../../seo.json";
+
 const TrainingCenter = ({ trainingVideos }) => {
   const { user } = useUser();
   return (
     <div>
-      <Head>
-        <title>Training Center | Tacloban ANJ</title>
-      </Head>
+      <Seo data={seoData.training_center} />
       {user?.isLoggedIn ? <CarouselBanner /> : <Banner />}
 
       <section className={styles.trainingContainer}>

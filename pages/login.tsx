@@ -1,15 +1,14 @@
-import Head from "next/head";
 import React from "react";
 import LoginForm from "../components/templates/Forms/LoginForm";
 import useUser from "../utils/useUser";
+import Seo from "../components/elements/Seo/Seo";
+import seoData from "../seo.json";
 
 const Login = () => {
   const { user } = useUser({ redirectTo: "/", redirectIfFound: true });
   return (
     <div>
-      <Head>
-        <title>Log in | Tacloban ANJ</title>
-      </Head>
+      <Seo data={seoData.login} />
       <section>
         <LoginForm />
       </section>

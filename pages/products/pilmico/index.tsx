@@ -1,8 +1,9 @@
-import Head from "next/head";
-import Link from "next/link";
 import React from "react";
 import CatalogCard from "../../../components/elements/CatalogCard/CatalogCard";
 import HeroCarousel from "../../../components/templates/Pilmico/HeroCarousel";
+import Seo from "../../../components/elements/Seo/Seo";
+import seoData from "../../../seo.json";
+
 const Pilmico = () => {
   const links = [
     {
@@ -23,9 +24,7 @@ const Pilmico = () => {
   ];
   return (
     <div>
-      <Head>
-        <title>Pilmico | Tacloban ANJ</title>
-      </Head>
+      <Seo data={seoData.pilmico} />
       <HeroCarousel />
       <section>
         <h1 className="text-center">Pilmico Products</h1>

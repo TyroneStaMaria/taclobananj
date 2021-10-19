@@ -73,7 +73,7 @@ const Navbar = (data) => {
               <li onClick={toggleNav}>
                 <ul className={`${style.navItems}`}>
                   {user?.isLoggedIn && (
-                    <li onClick={toggleNav}>
+                    <li onClick={toggleNav} className={style.logoutButton}>
                       <a
                         className="cursor-pointer"
                         onClick={async () => {

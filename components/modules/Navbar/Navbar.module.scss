@@ -27,3 +27,8 @@
   // display: flex;
   // align-items: center;
 }
+.logoutButton {
+  @media only screen and (max-width: 1024px) {
+    padding: 0 !important;
+  }
+}

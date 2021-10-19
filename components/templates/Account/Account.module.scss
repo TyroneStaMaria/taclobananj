@@ -144,6 +144,12 @@
   }
 }
 
+.training {
+  cursor: not-allowed !important;
+  flex-direction: column !important;
+  align-items: start !important;
+}
+
 .dashboardSection {
   @apply mb-10;
   @media only screen and (min-width: 1280px) {

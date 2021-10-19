@@ -17,10 +17,16 @@ const Sidebar = () => {
           </li>
           <li className={styles.divider}></li>
           <li
-            className={active === "training-center" ? styles.active : ""}
-            onClick={() => setActive("training-center")}
+            className={styles.training}
+            // className={active === "training-center" ? styles.active : ""}
+            // onClick={() => setActive("training-center")}
           >
-            <FiPlayCircle /> <span>Training Center</span>
+            <div className="flex items-center flex-col w-full lg:flex-row ">
+              <FiPlayCircle /> <span>Training Center</span>
+            </div>
+            <small className="lg:ml-14 text-center w-full lg:w-auto">
+              Coming Soon
+            </small>
           </li>
         </ul>
       </div>

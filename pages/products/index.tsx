@@ -6,7 +6,7 @@ import seoData from "../../seo.json";
 const Products = () => {
   return (
     <div>
-      <Seo data={seoData} />
+      <Seo data={seoData.products} />
       <Catalogue />
     </div>
   );

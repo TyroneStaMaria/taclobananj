@@ -107,14 +107,16 @@ const CarouselBanner = () => {
                   improve baking skills and provide more livelihood
                   opportunities.
                 </p>
-                <div className={styles.buyNow}>
-                  <Button href="/login" btnStyle="orangeFill">
-                    Buy Now! &gt;
-                  </Button>
+                <div className="flex items-center justify-between mt-5">
+                  <p className={styles.availability}>
+                    Hard and Soft Copy Available.
+                  </p>
+                  <div className={styles.buyNow}>
+                    <Button href="/login" btnStyle="orangeFill">
+                      Buy Now! &gt;
+                    </Button>
+                  </div>
                 </div>
-                <p className={styles.availability}>
-                  Hard and Soft Copy Available.
-                </p>
               </div>
             </div>
           </div>

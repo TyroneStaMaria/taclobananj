@@ -15,7 +15,7 @@ const Sidebar = () => {
           >
             <CgProfile /> <span>Account</span>
           </li>
-
+          <li className={styles.divider}></li>
           <li
             className={active === "training-center" ? styles.active : ""}
             onClick={() => setActive("training-center")}

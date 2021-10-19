@@ -42,6 +42,7 @@
       padding-right: 40px;
 
       .longDescription {
+        @apply mt-5;
         font-size: 2rem;
       }
 

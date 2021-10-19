@@ -1,5 +1,5 @@
 .sidebar {
-  @apply py-3 rounded-md shadow-lg bg-red lg:ml-4 lg:mt-5;
+  @apply rounded-md shadow-lg bg-red lg:ml-4 lg:mt-5 lg:py-3;
 
   max-height: fit-content;
 
@@ -9,29 +9,46 @@
     width: 90%;
   }
 
+  .divider {
+    @apply bg-white lg:my-5 lg:w-full;
+    height: 4px;
+    @media only screen and (max-width: 1280px) {
+      width: 4px;
+      height: auto;
+    }
+  }
+
   .active {
     @apply transition-all relative;
 
-    &::after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      border: 2px solid white;
-      left: 0;
-      bottom: -8px;
-    }
-
     @media only screen and (max-width: 1280px) {
-      @apply border-b-2 border-red;
+      &::after {
+        content: "";
+        position: absolute;
+        width: 80%;
+        border: 2px solid white;
+        left: calc(80% / 50%);
+        // top: 30px;
+        bottom: 10px;
+      }
     }
   }
 
   .sidebarNav {
     @apply flex flex-col;
     ul {
-      @apply mt-4 flex justify-around lg:block;
+      @apply flex justify-around  lg:block;
+
+      & > li:not(.divider) {
+        @media only screen and (max-width: 1280px) {
+          @apply py-5 text-center;
+          width: 50%;
+        }
+      }
+
       & > li {
-        @apply text-white cursor-pointer flex items-center transition-all justify-center mb-5 text-h4 flex-col  lg:flex-row lg:mb-3 lg:justify-start;
+        @apply text-white cursor-pointer flex items-center transition-all justify-center  text-h4 flex-col  lg:flex-row  lg:justify-start;
+        // border-bottom: 2px solid white;
 
         svg {
           @apply lg:text-base lg:ml-5;

@@ -61,7 +61,7 @@ const AboutUser = ({ user, getUser, cookie }) => {
   };
 
   const saveChanges = async (userDetails) => {
-    // console.log(userDetails.profile_image[0].name);
+    console.log(userDetails.display_picture[0]);
     let formData = new FormData();
     try {
       setLoading(true);
@@ -131,13 +131,13 @@ const AboutUser = ({ user, getUser, cookie }) => {
   };
   return (
     <div className={styles.dashboardSection}>
-      <div className="flex justify-between items-end border-b-2 border-body mb-5  flex-col lg:flex-row mt-5 lg:mt-0">
+      <div className="flex justify-between  border-b-2 border-body mb-5  flex-col  items-center lg:items-end lg:flex-row mt-5 lg:mt-0">
         <h2 className="text-center lg:text-left">
           {user?.firstname
             ? `Welcome, ${user.firstname} ${user.lastname}`
             : "Loading..."}
         </h2>
-        <h3 className="mr-4 lg:mr-0">Edit Profile</h3>
+        <h3 className="text-center lg:text-left lg:mr-0">Edit Profile</h3>
       </div>
       <div>
         <p className="pl-7 lg:pl-0">Account Created: {user?.created}</p>

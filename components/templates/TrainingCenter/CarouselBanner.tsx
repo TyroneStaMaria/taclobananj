@@ -53,8 +53,8 @@ const CarouselBanner = () => {
         customLeftArrow={<CustomLeftArrow />}
         additionalTransfrom={0}
         arrows
-        // autoPlay={true}
-        // autoPlaySpeed={3000}
+        autoPlay={true}
+        autoPlaySpeed={3000}
         centerMode={false}
         draggable
         focusOnSelect={false}

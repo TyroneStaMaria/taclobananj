@@ -7,7 +7,7 @@ import useUser from "../../utils/useUser";
 import Button from "../../components/elements/Button/Button";
 import CarouselBanner from "../../components/templates/TrainingCenter/CarouselBanner";
 import Banner from "../../components/templates/TrainingCenter/Banner";
-// import styles from "../../components/templates"
+import styles from "../../components/templates/TrainingCenter/TrainingCenter.module.scss";
 const TrainingCenter = ({ trainingVideos }) => {
   const { user } = useUser();
   return (
@@ -17,7 +17,7 @@ const TrainingCenter = ({ trainingVideos }) => {
       </Head>
       {user?.isLoggedIn ? <CarouselBanner /> : <Banner />}
 
-      <section>
+      <section className={styles.trainingContainer}>
         {/* <h1>Training Center</h1> */}
         {user?.isLoggedIn ? (
           trainingVideos.nodes.map(

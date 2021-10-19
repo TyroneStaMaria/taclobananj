@@ -10,7 +10,7 @@
   }
 
   .divider {
-    @apply bg-white lg:my-5 lg:w-full;
+    @apply bg-white lg:my-3 lg:w-full;
     height: 4px;
     @media only screen and (max-width: 1280px) {
       width: 4px;

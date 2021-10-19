@@ -1,5 +1,5 @@
 .trainingItem {
-  @apply flex items-center shadow-lg rounded-lg  px-10 flex-wrap justify-center py-12 lg:flex-nowrap lg:justify-start lg:py-3;
+  @apply flex items-center shadow-lg rounded-lg  px-10 flex-wrap justify-center py-12 text-center lg:text-left lg:flex-nowrap lg:justify-start lg:py-3;
   height: auto;
   .itemDetail {
     @apply lg:ml-4;

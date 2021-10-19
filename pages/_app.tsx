@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }) {
       }}
     >
       <Head>
-        <link rel="icon" type="image/png" href="/images/anj-logo.png" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
       <Layout>
         <Component {...pageProps} />

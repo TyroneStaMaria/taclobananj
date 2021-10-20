@@ -38,8 +38,6 @@ const ValidateCodeForm = () => {
       localStorage.setItem("code", formData.code.toString());
       router.push("/forgot-password/set-password");
     }
-
-    console.log(data);
   };
 
   return (

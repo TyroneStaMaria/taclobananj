@@ -48,8 +48,6 @@ const NewPasswordForm = () => {
       // localStorage.setItem("code", formData.code.toString());
       router.push("/");
     }
-
-    console.log(data);
   };
 
   return (

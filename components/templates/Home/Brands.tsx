@@ -64,7 +64,6 @@ const Brands = () => {
       const { nodes } = data.brands;
 
       setBrands(nodes);
-      console.log(brands);
     });
   }, []);
 

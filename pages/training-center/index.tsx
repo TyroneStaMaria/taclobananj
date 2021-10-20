@@ -57,7 +57,6 @@ export default TrainingCenter;
 
 export async function getServerSideProps(context) {
   try {
-    // console.log(process.env.URL);
     const { data } = await axios.get(
       `${BASE_URL}/api/training-center/get-all-content`
     );

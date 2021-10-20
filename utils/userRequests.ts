@@ -199,8 +199,7 @@ const wpEditUser = async (userData, req) => {
         headers: { Authorization: "Bearer " + authToken },
       }
     );
-    console.log(data);
-    return {};
+    return { ...data, success: true, status: 400 };
   } catch (err) {
     return err;
   }

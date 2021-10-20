@@ -24,7 +24,9 @@ const GroceryPage = () => {
       setLoading(true);
       const categoryItems = await getCategories(categoryId);
       setCategories(categoryItems);
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 3000);
     };
     fetchCategories(groceryId);
   }, []);

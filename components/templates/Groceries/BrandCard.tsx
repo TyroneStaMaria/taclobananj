@@ -16,6 +16,9 @@ const BrandCard = ({ brand, category }) => {
             width={400}
             height={400}
             objectFit="cover"
+            loader={() => {
+              return brand.image.src;
+            }}
             placeholder="blur"
             blurDataURL={
               brand.image ? brand.image.src : "/images/unavailable.png"

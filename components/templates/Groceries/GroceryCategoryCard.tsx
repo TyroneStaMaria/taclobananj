@@ -26,8 +26,10 @@ const GroceryCategoryCard = (props: GroceryCategory) => {
               height={350}
               // quality={80}
               alt={props.name}
+              loader={() => {
+                return props.image;
+              }}
               placeholder="blur"
-              // blurDataURL="/images/loader.png"
               blurDataURL={
                 props.image ? props.image : "/images/unavailable.png"
               }

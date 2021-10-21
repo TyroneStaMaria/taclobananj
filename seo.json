@@ -1,0 +1,58 @@
+{
+  "home": {
+    "title": "Home",
+    "description": "Tacloban AnJ Marketing is a distribution company catering to the Visayas region that focuses on distributing Grocery and Pilmico products that is composed of three divisions: Flour, Feeds and Animal Health."
+  },
+  "about": {
+    "title": "About",
+    "description": "Sunshine Bakery Science Center is a project between Pilmico Foods Corporation and Tacloban AnJ Marketing that not only promotes and showcases the quality of bread that it produces using Pilmico Flour, but it also aims to provide training facility to our local partners throughout Region VIII - to teach and help them improve their baking skills, to provide livelihood opportunities, and to achieve long term partnerships."
+  },
+  "products": {
+    "title": "Products",
+    "description": "Tacloban AnJ Marketing offers two main categories top choose from. A wide selection of Grocery products and a wide range of Pilmico products that is composed of three divisions: Flour, Feeds and Animal Health."
+  },
+  "groceries": {
+    "title": "Groceries",
+    "description": "Browse the wide range of Grocery products Tacloban AnJ Marketing offers comprising of: beverages, canned-jarred goods, cookies, snacks, candies, baking goods, cleaners, personal care, condiments, dry goods, and others! "
+  },
+  "contact_us": {
+    "title": "Contact Us",
+    "description": "You can now send Tacloban AnJ Marketing a message here or place your order inquiries regarding the products you are interested in. Send us a message now!"
+  },
+  "login": {
+    "title": "Login",
+    "description": "Login your account now to view your dashboard regarding the training center and other features."
+  },
+  "register": {
+    "title": "Register",
+    "description": "Register now to stay updated with the latest offers and training center videos. "
+  },
+  "terms_of_service": {
+    "title": "Terms of Service",
+    "description": "Tacloban AnJ Marketing values customer service and transparency to not only our clients but our visitors as well. Read our Terms of Service here."
+  },
+  "privacy_policy": {
+    "title": "Privacy Policy",
+    "description": "Tacloban AnJ Marketing values your privacy and it is kept confidential all throughout. Read our privacy policy here."
+  },
+  "training_center": {
+    "title": "Training Center",
+    "description": ""
+  },
+  "pilmico": {
+    "title": "Pilmico",
+    "description": "Browse the wide range of Pilmico products Tacloban AnJ Marketing offers comprising of three divisions: Flour, Feeds and Animal Health. Shop Now!"
+  },
+  "feeds": {
+    "title": "Feeds",
+    "description": "Tacloban AnJ Marketing offers multiple products of brands in our Pilmico Feeds. For Aqua, Gamefowl, Hogs, and Poultry. Shop Now!"
+  },
+  "flour": {
+    "title": "Flour",
+    "description": "Tacloban AnJ Marketing offers multiple products of brands in our Pilmico Flour. Hard Wheat Flour, Specialty Flour, and Soft Wheat Flour. Shop Now!"
+  },
+  "pet_food": {
+    "title": "Pet Food",
+    "description": "Tacloban AnJ Marketing offers multiple products of brands in our Pilmico Pet Food. Maxime Elite, Woofy, and Maxime. Shop Now!"
+  }
+}

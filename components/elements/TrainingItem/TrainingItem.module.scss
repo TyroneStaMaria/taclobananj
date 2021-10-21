@@ -1,12 +1,22 @@
 .trainingItem {
-  @apply flex items-center  shadow-lg rounded-lg py-5 px-10;
+  @apply flex items-center shadow-lg rounded-lg  px-10 flex-wrap justify-center py-12 text-center lg:text-left lg:flex-nowrap lg:justify-start lg:py-3;
+  height: auto;
   .itemDetail {
-    @apply ml-4;
+    @apply lg:ml-4;
     & > * {
       @apply mb-3;
     }
     & > p {
-      @apply mb-5;
+      @apply mb-7;
+    }
+  }
+
+  .imageContainer {
+    @apply py-5;
+    & > div {
+      @apply relative;
+      width: 300px;
+      height: 200px;
     }
   }
 }

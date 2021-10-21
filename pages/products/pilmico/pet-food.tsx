@@ -1,7 +1,8 @@
-import Head from "next/head";
 import React, { useState } from "react";
 import Hero from "../../../components/templates/Pilmico/Hero";
 import Products from "../../../components/templates/Pilmico/Products";
+import Seo from "../../../components/elements/Seo/Seo";
+import seoData from "../../../seo.json";
 
 const PetFood = () => {
   const [category, setCategory] = useState({ id: 21, name: "Pet Food" });
@@ -16,9 +17,7 @@ const PetFood = () => {
 
   return (
     <div>
-      <Head>
-        <title>Pet Food | Tacloban ANJ</title>
-      </Head>
+      <Seo data={seoData.pet_food} />
       <Hero image={banner} />
       <Products
         category={category}

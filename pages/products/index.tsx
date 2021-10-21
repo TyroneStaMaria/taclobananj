@@ -1,13 +1,12 @@
-import Head from "next/head";
 import React from "react";
 import Catalogue from "../../components/templates/Home/Catalogue";
+import Seo from "../../components/elements/Seo/Seo";
+import seoData from "../../seo.json";
 
 const Products = () => {
   return (
     <div>
-      <Head>
-        <title>Products | Tacloban ANJ</title>
-      </Head>
+      <Seo data={seoData.products} />
       <Catalogue />
     </div>
   );

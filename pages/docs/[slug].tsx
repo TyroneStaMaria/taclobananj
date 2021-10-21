@@ -3,15 +3,18 @@ import React from "react";
 import Head from "next/head";
 import { getAllDocs, getDocBySlug } from "../../utils/markdown";
 import ReactMarkdown from "react-markdown/react-markdown.min";
-// import remarkHtml from "remark-html";
-// import markdownToHtml from "../../utils/markdownToHtml";
+import Seo from "../../components/elements/Seo/Seo";
+import seoData from "../../seo.json";
 
-const Doc = ({ title, content }) => {
+const Doc = ({ title, content, slug }) => {
+  const doc = {
+    "terms-of-service": seoData.terms_of_service,
+    "privacy-policy": seoData.privacy_policy,
+  };
+
   return (
     <div>
-      <Head>
-        <title>{title} | Tacloban ANJ</title>
-      </Head>
+      <Seo data={doc[slug]} />
       {/* <ReactMarkdown children={content} /> */}
       <div className="container mx-auto py-24 px-4  lg:px-0">
         {/* {content} */}
@@ -24,11 +27,14 @@ const Doc = ({ title, content }) => {
               <p className="mb-3 text-justify" {...props} />
             ),
             h4: ({ node, ...props }: any) => (
-              <h4 className="mb-3 mt-7 font-body font-bold text-body text-center lg:text-left" {...props} />
+              <h4
+                className="mb-3 mt-7 font-body font-bold text-body text-center lg:text-left"
+                {...props}
+              />
             ),
-            a:({ node, ...props }: any) => (
-              <a className="text-red underline" target="_blank"  {...props} />
-            )
+            a: ({ node, ...props }: any) => (
+              <a className="text-red underline" target="_blank" {...props} />
+            ),
           }}
         >
           {content}
@@ -44,6 +50,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       ...doc,
+      slug: params.slug,
     },
   };
 }

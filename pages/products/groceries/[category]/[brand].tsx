@@ -3,8 +3,6 @@ import { api } from "../../../../utils/woocommerceApi";
 import Head from "next/head";
 import Products from "../../../../components/templates/Groceries/Products";
 
-// TODO: add redirects to the slugs
-
 const Brand = ({ brand }) => {
   const [parentBrand, setParentBrand] = useState({});
 

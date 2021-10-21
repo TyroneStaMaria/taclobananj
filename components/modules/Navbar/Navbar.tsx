@@ -14,10 +14,7 @@ const Navbar = (data) => {
     setShowNav(!showNav);
   };
 
-  const { user, mutateUser } = useUser({
-    redirectTo: "/",
-    redirectIfFound: true,
-  });
+  const { user, mutateUser } = useUser();
   return (
     <nav className={style.navBar}>
       <div className="container mx-auto flex items-center justify-between px-7 lg:px-0">
@@ -68,19 +65,26 @@ const Navbar = (data) => {
               <li onClick={toggleNav}>
                 <Link href="/contact-us">Contact Us</Link>
               </li>
+              {user?.isLoggedIn && (
+                <li onClick={toggleNav}>
+                  <Link href="/account">My Account</Link>
+                </li>
+              )}
               <li onClick={toggleNav}>
-                {user?.isLoggedIn && (
-                  <li onClick={toggleNav}>
-                    <a
-                      className="cursor-pointer"
-                      onClick={async () => {
-                        mutateUser(await axios.post("/api/users/logout"));
-                      }}
-                    >
-                      Log out
-                    </a>
-                  </li>
-                )}
+                <ul className={`${style.navItems}`}>
+                  {user?.isLoggedIn && (
+                    <li onClick={toggleNav} className={style.logoutButton}>
+                      <a
+                        className="cursor-pointer"
+                        onClick={async () => {
+                          mutateUser(await axios.post("/api/users/logout"));
+                        }}
+                      >
+                        Log out
+                      </a>
+                    </li>
+                  )}
+                </ul>
                 {!user?.isLoggedIn && (
                   <Button href="/login" btnStyle="redOutline">
                     Register / Log in

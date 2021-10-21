@@ -27,3 +27,11 @@
     background-color: #fde34d;
   }
 }
+
+.btnOrangeFill {
+  @apply text-white;
+  background-color: #975230;
+  &:hover {
+    background-color: #7c4429;
+  }
+}

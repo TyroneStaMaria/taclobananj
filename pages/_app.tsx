@@ -4,6 +4,7 @@ import "../styles/main.scss";
 import Layout from "../components/layouts/Layout";
 import { SWRConfig } from "swr";
 import axios from "axios";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -15,6 +16,9 @@ function MyApp({ Component, pageProps }) {
         },
       }}
     >
+      <Head>
+        <link rel="icon" type="image/png" href="/favicon.png" />
+      </Head>
       <Layout>
         <Component {...pageProps} />
       </Layout>

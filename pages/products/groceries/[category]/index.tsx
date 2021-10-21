@@ -1,9 +1,9 @@
-import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import Products from "../../../../components/templates/Groceries/Products";
 import DefaultLoader from "../../../../components/elements/DefaultLoader/DefaultLoader";
 import BrandPage from "../../../../components/templates/Groceries/BrandPage";
 import { api } from "../../../../utils/woocommerceApi";
+import Seo from "./../../../../components/elements/Seo/Seo";
 
 const Category = ({ parent }) => {
   const [brands, setBrands] = useState([]);
@@ -52,9 +52,7 @@ const Category = ({ parent }) => {
 
   return (
     <div>
-      <Head>
-        <title>{parent["name"]} | Tacloban ANJ</title>
-      </Head>
+      <Seo data={{ title: parent.name, description: parent.description }} />
       <section>
         <div className="container mx-auto">
           <h1 className="capitalize text-center">{parent["name"]}</h1>
@@ -80,7 +78,14 @@ export async function getStaticProps(context) {
       slug: category,
     });
     return {
-      props: { parent: { id: data[0].id, name: data[0].name, slug: category } },
+      props: {
+        parent: {
+          id: data[0].id,
+          name: data[0].name,
+          slug: category,
+          description: data[0].description,
+        },
+      },
     };
   } catch (err) {
     console.log(err);

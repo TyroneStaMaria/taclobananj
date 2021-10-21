@@ -1,11 +1,11 @@
-import Head from "next/head";
 import ContactForm from "../components/templates/ContactUs/ContactForm";
+import Seo from "../components/elements/Seo/Seo";
+import seoData from "../seo.json";
+
 const ContactUs = () => {
   return (
     <div>
-      <Head>
-        <title>Contact Us | Tacloban ANJ</title>
-      </Head>
+      <Seo data={seoData.contact_us} />
       <section>
         <h1 className="text-center mb-5">Contact Us</h1>
         <div className="flex justify-center items-center flex-col lg:flex-row">

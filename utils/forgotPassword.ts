@@ -15,13 +15,16 @@ export async function validateCode(data) {
 
 export async function setPassword(data) {
   if (data.password === data.confirm_password) {
-    return await forgotPasswordRequest(WP_SET_NEW_PASSWORD_URL, {
-      email: data.email,
-      code: data.code,
-      password: data.password,
-    });
+    return await {
+      ...forgotPasswordRequest(WP_SET_NEW_PASSWORD_URL, {
+        email: data.email,
+        code: data.code,
+        password: data.password,
+      }),
+      status: 200,
+    };
   } else {
-    return { message: "Password does not match." };
+    return { message: "Password does not match.", status: 400 };
   }
 }
 

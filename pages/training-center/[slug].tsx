@@ -3,8 +3,11 @@ import Head from "next/head";
 import axios from "axios";
 import ReactPlayer from "react-player";
 import { BASE_URL } from "../../lib/constants";
+import useUser from "../../utils/useUser";
 
 const TrainingVideo = ({ trainingVideo }) => {
+  const { user } = useUser({ redirectTo: "/", redirectIfFound: false });
+
   const { title, trainingCenterContent } = trainingVideo;
   return (
     <div>
@@ -14,8 +17,10 @@ const TrainingVideo = ({ trainingVideo }) => {
       <section>
         <div className="container mx-auto">
           <div className=" mx-5 mb-5 lg:mx-32">
-            <h1 className="mb-3 text-h2">{title}</h1>
-            <p className="text-justify">{trainingCenterContent.description}</p>
+            <h1 className="mb-3 text-h2 text-center lg:text-left">{title}</h1>
+            <p className="text-center lg:text-justify">
+              {trainingCenterContent.description}
+            </p>
           </div>
           <ReactPlayer
             className="mx-auto"
@@ -30,6 +35,7 @@ const TrainingVideo = ({ trainingVideo }) => {
             }}
             width="80%"
             height="auto"
+            // light={trainingCenterContent.thumbnail.mediaItemUrl}
           />
         </div>
       </section>

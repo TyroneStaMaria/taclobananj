@@ -1,12 +1,11 @@
-import Head from "next/head";
 import HomeTemplate from "../components/templates/Home/Home";
+import Seo from "../components/elements/Seo/Seo";
+import seoData from "../seo.json";
 
 const Home = () => {
   return (
     <div>
-      <Head>
-        <title>Home | Tacloban ANJ</title>
-      </Head>
+      <Seo data={seoData.home} />
       <HomeTemplate />
     </div>
   );

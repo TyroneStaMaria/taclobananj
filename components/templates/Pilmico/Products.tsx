@@ -28,7 +28,6 @@ const Products = ({ category, setCategory, name, parentCategory }) => {
   const storeProducts = async (categoryId: number, searchKey: string) => {
     setLoading(true);
     const products = await fetchProducts(categoryId, searchKey);
-    console.log(products);
     setProducts(products);
     setLoading(false);
   };

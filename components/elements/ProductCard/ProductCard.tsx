@@ -12,6 +12,9 @@ const ProductCard = (props: Product): JSX.Element => {
           alt={props.id}
           height={350}
           width={350}
+          loader={() => {
+            return props.img;
+          }}
           placeholder="blur"
           blurDataURL={props.img ? props.img : "/images/unavailable.png"}
         />

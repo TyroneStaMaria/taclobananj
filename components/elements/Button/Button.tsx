@@ -14,6 +14,7 @@ const Button = (props: ButtonProps) => {
     redFill: style.btnRedFill,
     yellowOutline: style.btnYellowOutline,
     yellowFill: style.btnYellowFill,
+    orangeFill: style.btnOrangeFill,
   };
 
   return (

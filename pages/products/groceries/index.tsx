@@ -1,12 +1,12 @@
-import Head from "next/head";
 import React from "react";
 import GroceryPage from "../../../components/templates/Groceries/GroceryPage";
+import Seo from "../../../components/elements/Seo/Seo";
+import seoData from "../../../seo.json";
+
 const Groceries = () => {
   return (
     <div>
-      <Head>
-        <title>Groceries | Tacloban ANJ</title>
-      </Head>
+      <Seo data={seoData.groceries} />
       <GroceryPage />
     </div>
   );

@@ -6,5 +6,5 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const data = await setPassword(req?.body);
-  return res.json(data);
+  return res.status(data.status).json(data);
 }

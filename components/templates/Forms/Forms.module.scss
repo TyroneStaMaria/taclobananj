@@ -24,13 +24,11 @@
       @apply w-1/3 font-body;
     }
   }
-
-  .error {
-    @apply mb-3 -mt-3 text-red;
-    font-size: 0.75rem;
-  }
 }
-
+.error {
+  @apply mb-3 -mt-3 text-red;
+  font-size: 0.75rem;
+}
 .terms {
   @apply mt-5;
   * {

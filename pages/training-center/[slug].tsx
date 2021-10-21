@@ -19,7 +19,7 @@ const TrainingVideo = ({ trainingVideo }) => {
           <div className=" mx-5 mb-5 lg:mx-32">
             <h1 className="mb-3 text-h2 text-center lg:text-left">{title}</h1>
             <p className="text-center lg:text-justify">
-              {trainingCenterContent.description}
+              {trainingCenterContent.description ?? ""}
             </p>
           </div>
           <ReactPlayer

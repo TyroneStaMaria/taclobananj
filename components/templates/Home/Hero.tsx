@@ -58,9 +58,9 @@ const Hero = (): JSX.Element => {
     },
     {
       heroImageSrc: "/images/home/banners/banner2.png",
-      heroHeading: "Commited to Provide the Best",
+      heroHeading: "Committed to Provide the Best",
       heroBody:
-        "With our sole purpose to provide you with your day-to-day essentials, we only choose to partner with the best. Sustain all your needs with Tacloban AnJ Marketing!",
+        "With our sole purpose of providing you with your day-to-day essentials, we only choose to partner with the best. Sustain all your needs with Tacloban AnJ Marketing!",
       heroButton: (
         <Button href="#" btnStyle="redOutline">
           Learn More about Our Products &gt;

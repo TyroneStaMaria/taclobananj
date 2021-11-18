@@ -51,7 +51,7 @@ const Hero = (): JSX.Element => {
       heroBody:
         "We are always invested into letting you explore opportunities leading to your own growth. Get educated online and kickstart to honing your skills.",
       heroButton: (
-        <Button href="#" btnStyle="redOutline">
+        <Button href="/training-center" btnStyle="redOutline">
           Visit our Training Center &gt;
         </Button>
       ),
@@ -62,7 +62,7 @@ const Hero = (): JSX.Element => {
       heroBody:
         "With our sole purpose of providing you with your day-to-day essentials, we only choose to partner with the best. Sustain all your needs with Tacloban AnJ Marketing!",
       heroButton: (
-        <Button href="#" btnStyle="redOutline">
+        <Button href="/products" btnStyle="redOutline">
           Learn More about Our Products &gt;
         </Button>
       ),
@@ -73,7 +73,7 @@ const Hero = (): JSX.Element => {
       heroBody:
         "We are aimed to see what's beyond our products. It's always the customer experience that matters to us. Our products make those experiences memorable!",
       heroButton: (
-        <Button href="#" btnStyle="redOutline">
+        <Button href="/products/pilmico" btnStyle="redOutline">
           Check out our Full Catalogue &gt;
         </Button>
       ),

@@ -26,7 +26,7 @@ const ContactBanner = () => {
             Easily reach us for any queries or orders you may have with regards
             to all of our products.
           </p>
-          <Button href="#" btnStyle="yellowFill">
+          <Button href="/contact-us" btnStyle="yellowFill">
             Learn More
           </Button>
         </div>

@@ -3,6 +3,7 @@ import AboutIntro from "./AboutIntro";
 import MissionVision from "./MissionVision";
 import CorporateResponsibility from "./CorporateResponsibility";
 import CoreValues from "./CoreValues";
+import AboutSection from "./AboutSection";
 const AboutTemplate = () => {
   return (
     <>
@@ -10,6 +11,7 @@ const AboutTemplate = () => {
       <MissionVision />
       <CorporateResponsibility />
       <CoreValues />
+      <AboutSection />
     </>
   );
 };

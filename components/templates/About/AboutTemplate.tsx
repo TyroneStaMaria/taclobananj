@@ -1,9 +1,11 @@
 import React from "react";
-import AboutSection from "./AboutSection";
+import AboutIntro from "./AboutIntro";
+import MissionVision from "./MissionVision";
 const AboutTemplate = () => {
   return (
     <>
-      <AboutSection />
+      <AboutIntro />
+      <MissionVision />
     </>
   );
 };

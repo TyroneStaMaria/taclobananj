@@ -3,7 +3,7 @@ import React from "react";
 
 const CoreValueItem = ({ image, coreValue }) => {
   return (
-    <div className="w-1/3 mx-6">
+    <div className="lg:w-1/3 lg:mx-6 my-6 lg:my-0">
       <div
         className="relative mb-3 mx-auto"
         style={{ width: "65px", height: "65px" }}

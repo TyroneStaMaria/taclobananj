@@ -8,7 +8,7 @@ const AboutIntro = () => {
     <section className="container mx-auto about-section">
       <h1 className="text-center">About Us</h1>
       <div className="flex items-center text-center px-5 lg:px-0 lg:text-justify mb-5 flex-col lg:flex-row">
-        <div>
+        <div className="my-5 lg:my-0">
           <div className="relative" style={{ width: "150px", height: "150px" }}>
             <Image
               src="/images/anj-logo.png"

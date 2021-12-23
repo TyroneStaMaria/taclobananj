@@ -4,14 +4,14 @@ import CoreValueItem from "./../../elements/CoreValueItem/CoreValueItem";
 const CoreValues = () => {
   return (
     <section className="container mx-auto about-section">
-      <div className="flex">
-        <div>
+      <div className="flex flex-col items-center lg:flex-row">
+        <div className="text-center lg:text-left">
           <h2>Core Values</h2>
-          <p className="text-h5">
+          <p className="text-h5 px-10 lg:px-0">
             Tacloban AnJ Marketing a company grounded in Christian values of{" "}
           </p>
         </div>
-        <div className="flex mx-auto">
+        <div className="flex mx-24 lg:mx-auto flex-col items-center lg:items-start lg:flex-row">
           <CoreValueItem
             image={"/images/about/integrity.png"}
             coreValue="Integrity"

@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const AboutIntro = () => {
   return (
-    <section className="container mx-auto">
+    <section className="container mx-auto about-section">
       <h1 className="text-center">About Us</h1>
       <div className="flex items-center text-center px-5 lg:px-0 lg:text-justify mb-5 flex-col lg:flex-row">
         <div>

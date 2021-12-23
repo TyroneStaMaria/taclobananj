@@ -3,7 +3,7 @@ import React from "react";
 
 const CorporateResponsibility = () => {
   return (
-    <section className="container mx-auto">
+    <section className="container mx-auto about-section">
       <div className="flex flex-col lg:flex-row px-3 lg:px-0">
         <div className="border-2 border-t-0 lg:border-t-2 lg:border-r-0 border-red text-center order-2 lg:order-1 ">
           <h2>Corporate Responsibility</h2>

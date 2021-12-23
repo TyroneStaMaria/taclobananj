@@ -2,7 +2,7 @@ import React from "react";
 import MissionVisionItem from "../../elements/MissionVisionItem/MissionVisionItem";
 const MissionVision = () => {
   return (
-    <section className="container mx-auto ">
+    <section className="container mx-auto about-section">
       <div>
         <MissionVisionItem
           name="Our Mission"

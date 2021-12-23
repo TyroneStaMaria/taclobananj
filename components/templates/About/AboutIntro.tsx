@@ -11,7 +11,7 @@ const AboutIntro = () => {
         <div className="my-5 lg:my-0">
           <div className="relative" style={{ width: "150px", height: "150px" }}>
             <Image
-              src="/images/anj-logo.png"
+              src="/images/anj-logo.PNG"
               layout="fill"
               objectFit="cover"
               alt="Tacloban ANJ logo"

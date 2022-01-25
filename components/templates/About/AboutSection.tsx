@@ -11,15 +11,15 @@ const AboutSection = () => {
           <p className="mb-7 text-justify">
             Sunshine Bakery Science Center is a project between Pilmico Foods
             Corporation and Tacloban AnJ Marketing. Tacloban AnJ Marketing is a
-            distribution company that caters the Visayas Region. It is focused
-            on distributing grocery goods and Pilmico Foods that is composed of
-            three divisions: Flour, Feeds and Animal Health.
+            distribution company that caters to the Visayas Region. It is
+            focused on distributing grocery goods and Pilmico Foods that is
+            composed of three divisions: Flour, Feeds, and Animal Health.
             <br /> <br /> The company was founded in 1969 by Adolfo and Betty
             Tanjuakio as Economy Trading which primarily sells cosmetics,
-            kitchen utensils and household products. In the year 2000’s BT
+            kitchen utensils, and household products. In the year 2000&pos;s BT
             Marketing was introduced and started selling General Merchandise. It
             was then managed by Alan and Jo An Tanjuakio and Alice T. Coo. Then,
-            in the late 2000’s the company was named Tacloban AnJ Marketing.
+            in the late 2000s the company was named Tacloban AnJ Marketing.
           </p>
         </div>
         <div className="relative w-11/12 lg:w-full order-1 lg:order-2 mb-5 lg:mb-0">
@@ -51,19 +51,18 @@ const AboutSection = () => {
           <p className="text-justify">
             Sunshine Bakery Science Center is a joint project that not only
             promotes and showcases the quality of bread that it produces using
-            Pilmico Flour, but it also aims to provide training facility to our
-            local partners throughout Region VIII - to teach and help them
+            Pilmico Flour, but it also aims to provide training facilities to
+            our local partners throughout Region VIII - to teach and help them
             improve their baking skills, to provide livelihood opportunities,
             and to achieve long term partnerships. In the last 50 years,
             continued growth has given us the opportunity to expand our business
-            and provide outmost satisfaction and service to our valued
-            customers. <br /> <br /> Greater Purpose Foundation Inc. was
-            established with a goal to help nurture the needs of vulnerable
-            women and children. Dove, as it’s spirit Animal, symbolizes the
-            unending compassion that does not seek but do give. As a whole,
-            Greater Purpose Foundation Inc. aims to provide programs that
-            introduce possible livelihood to promote better lives for its
-            beneficiaries.
+            and provide utmost satisfaction and service to our valued customers.{" "}
+            <br /> <br /> Greater Purpose Foundation Inc. was established with a
+            goal to help nurture the needs of vulnerable women and children.
+            Dove, as its spirit Animal, symbolizes the unending compassion that
+            does not seek but does give. As a whole, Greater Purpose Foundation
+            Inc. aims to provide programs that introduce possible livelihood to
+            promote better lives for its beneficiaries.
           </p>
         </div>
       </FlexContainer>

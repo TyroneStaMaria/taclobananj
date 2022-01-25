@@ -8,7 +8,8 @@ const CoreValues = () => {
         <div className="text-center lg:text-left">
           <h2>Core Values</h2>
           <p className="text-h5 px-10 lg:px-0">
-            Tacloban AnJ Marketing a company grounded in Christian values of{" "}
+            Tacloban AnJ Marketing is a company grounded in the Christian values
+            of{" "}
           </p>
         </div>
         <div className="flex mx-24 lg:mx-auto flex-col items-center lg:items-start lg:flex-row">

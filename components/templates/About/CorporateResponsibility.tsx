@@ -13,7 +13,7 @@ const CorporateResponsibility = () => {
           >
             As a God-Centered company, Tacloban AnJ Marketing aims to give back
             to the community through feeding program efforts, packed grocery
-            goods for employees and other means to provide aid to the marginal
+            goods for employees, and other means to provide aid to the marginal
             communities of the Visayas Region.
           </p>
         </div>

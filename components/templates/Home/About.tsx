@@ -13,15 +13,15 @@ const About = (): JSX.Element => {
             <p className="mb-7">
               Sunshine Bakery Science Center is a project between Pilmico Foods
               Corporation and Tacloban AnJ Marketing. Tacloban AnJ Marketing is
-              a distribution company that caters the Visayas Region. It is
+              a distribution company that caters to the Visayas Region. It is
               focused on distributing grocery goods and Pilmico Foods that is
-              composed of three divisions: Flour, Feeds and Animal Health.
+              composed of three divisions: Flour, Feeds, and Animal Health.
               <br /> <br /> The company was founded in 1969 by Adolfo and Betty
               Tanjuakio as Economy Trading which primarily sells cosmetics,
-              kitchen utensils and household products. In the year 2000’s BT
+              kitchen utensils, and household products. In the year 2000s BT
               Marketing was introduced and started selling General Merchandise.
               It was then managed by Alan and Jo An Tanjuakio and Alice T. Coo.
-              Then, in the late 2000’s the company was named Tacloban AnJ
+              Then, in the late 2000s the company was named Tacloban AnJ
               Marketing.
             </p>
             <Button href="/about" btnStyle="redOutline">

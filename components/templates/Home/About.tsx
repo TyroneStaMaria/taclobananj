@@ -18,7 +18,7 @@ const About = (): JSX.Element => {
               composed of three divisions: Flour, Feeds, and Animal Health.
               <br /> <br /> The company was founded in 1969 by Adolfo and Betty
               Tanjuakio as Economy Trading which primarily sells cosmetics,
-              kitchen utensils, and household products. In the year 2000&pos;s
+              kitchen utensils, and household products. In the year 2000&#39;s
               BT Marketing was introduced and started selling General
               Merchandise. It was then managed by Alan and Jo An Tanjuakio and
               Alice T. Coo. Then, in the late 2000s the company was named
